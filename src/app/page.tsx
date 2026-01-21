@@ -361,22 +361,34 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="space-y-4">
-            {timelineData.map((item, index) => {
-              const colorClasses = ["bg-primary", "bg-secondary", "bg-accent"];
-              const borderClasses = ["border-primary", "border-secondary", "border-accent"];
-              const textClasses = ["text-primary", "text-secondary", "text-accent"];
-              const colorClass = colorClasses[index % colorClasses.length];
-              const borderClass = borderClasses[index % borderClasses.length];
-              const textClass = textClasses[index % textClasses.length];
-              const isExpanded = expandedItems.includes(index);
+          <div className="relative">
+            {/* Timeline Line */}
+            <div className="absolute left-1.75 top-4 bottom-4 w-0.75 bg-[#e2e8f0] hidden md:block"></div>
 
-              return (
-                <div
-                  key={index}
-                  className={`experience-card bg-white border-2 ${isExpanded ? borderClass : "border-[#e2e8f0]"} p-6 transition-all duration-300 hover:border-[#cbd5e1] cursor-pointer`}
-                  onClick={() => toggleExpand(index)}
-                >
+            <div className="space-y-4">
+              {timelineData.map((item, index, arr) => {
+                const colorClasses = ["bg-primary", "bg-secondary", "bg-accent"];
+                const borderClasses = ["border-primary", "border-secondary", "border-accent"];
+                const textClasses = ["text-primary", "text-secondary", "text-accent"];
+                const colorClass = colorClasses[index % colorClasses.length];
+                const borderClass = borderClasses[index % borderClasses.length];
+                const textClass = textClasses[index % textClasses.length];
+                const isExpanded = expandedItems.includes(index);
+                const isLast = index === arr.length - 1;
+
+                return (
+                  <div key={index} className="relative flex gap-6">
+                    {/* Timeline Dot */}
+                    <div className="hidden md:flex flex-col items-center">
+                      <div className={`w-4 h-4 rounded-full ${colorClass} border-4 border-white shadow-md z-10 transition-transform duration-300 ${isExpanded ? "scale-125" : ""}`}></div>
+                      {!isLast && <div className={`w-0.75 flex-1 ${isExpanded ? colorClass : "bg-transparent"} transition-colors duration-300`}></div>}
+                    </div>
+
+                    {/* Card */}
+                    <div
+                      className={`flex-1 experience-card bg-white border-2 ${isExpanded ? borderClass : "border-[#e2e8f0]"} p-6 transition-all duration-300 hover:border-[#cbd5e1] cursor-pointer`}
+                      onClick={() => toggleExpand(index)}
+                    >
                   {/* Header */}
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                     <div>
@@ -450,18 +462,20 @@ export default function Home() {
                     )}
                   </div>
 
-                  {/* Collapsed Preview */}
-                  {!isExpanded && item.highlights && item.highlights.length > 0 && (
-                    <div className="flex items-center gap-2 text-sm text-[#94a3b8]">
-                      <span>Click to see {item.highlights.length} achievements</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  )}
+                    {/* Collapsed Preview */}
+                    {!isExpanded && item.highlights && item.highlights.length > 0 && (
+                      <div className="flex items-center gap-2 text-sm text-[#94a3b8]">
+                        <span>Click to see {item.highlights.length} achievements</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
                 </div>
               );
             })}
+            </div>
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Theme config - colors for preview dots, actual colors in globals.css
 const themes = [
@@ -122,6 +122,38 @@ const projectsData = [
 export default function Home() {
   const [currentTheme, setCurrentTheme] = useState("default");
   const [expandedItems, setExpandedItems] = useState<number[]>([0]); // First item expanded by default
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const [othersOpen, setOthersOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      // Detect active section
+      const sections = ["about", "skills", "timeline", "projects", "contact"];
+      const scrollPosition = window.scrollY + 150; // offset for header
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            return;
+          }
+        }
+      }
+      // If at top of page
+      if (window.scrollY < 300) {
+        setActiveSection("");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleExpand = (index: number) => {
     setExpandedItems((prev) =>
@@ -156,21 +188,162 @@ export default function Home() {
       </div>
 
       {/* Header */}
-      <header className="header fixed top-0 left-0 right-0 z-50">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-md shadow-lg py-2"
+          : "bg-transparent py-4"
+      }`}>
+        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
           <a href="#" className="font-black text-xl transform -rotate-2 hover:rotate-0 transition-transform text-[#0f172a]">
             AIRU<span className="text-primary">.</span>
           </a>
-          <nav className="hidden md:flex items-center gap-2">
-            <a href="#about" className="nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:-rotate-2 text-[#64748b]">About</a>
-            <a href="#skills" className="nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:rotate-2 text-[#64748b]">Skills</a>
-            <a href="#timeline" className="nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:-rotate-2 text-[#64748b]">Journey</a>
-            <a href="#projects" className="nav-item bg-primary text-white text-sm font-bold mono-label px-4 py-2 transform -rotate-2 hover:rotate-0 transition-transform shadow-md">Projects</a>
-            <a href="#contact" className="nav-item bg-secondary text-white text-sm font-bold mono-label px-4 py-2 transform rotate-2 hover:rotate-0 transition-transform shadow-md">Contact</a>
+          <nav className="hidden md:flex items-center gap-3">
+            {/* Home */}
+            <a href="#" className="nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:-rotate-2 text-[#64748b] hover:text-primary">
+              Home
+            </a>
+
+            {/* Blog */}
+            <a href="/blog" className="nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:rotate-2 text-[#64748b] hover:text-primary">
+              Blog
+            </a>
+
+            {/* Others Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOthersOpen(true)}
+              onMouseLeave={() => setOthersOpen(false)}
+            >
+              <button className="text-sm font-bold mono-label px-4 py-2 transition-all transform hover:-rotate-2 text-[#64748b] flex flex-row items-center gap-1.5">
+                Others
+                <svg className={`w-3 h-3 transition-transform duration-200 ${othersOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {/* Dropdown Menu */}
+              <div className={`absolute top-full right-0 mt-2 bg-white border-2 border-[#e2e8f0] shadow-lg rounded-lg overflow-hidden transition-all duration-200 ${
+                othersOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 invisible"
+              }`}>
+                <a
+                  href="https://byairu.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 px-5 py-3 text-sm font-bold mono-label text-[#64748b] hover:bg-[#f8fafc] hover:text-primary transition-colors whitespace-nowrap"
+                >
+                  <span>📷</span>
+                  Photography
+                  <svg className="w-3 h-3 ml-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+                <a
+                  href="https://hub.airu.dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 px-5 py-3 text-sm font-bold mono-label text-[#64748b] hover:bg-[#f8fafc] hover:text-secondary transition-colors whitespace-nowrap border-t border-[#e2e8f0]"
+                >
+                  <span>🎮</span>
+                  Hub
+                  <svg className="w-3 h-3 ml-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="w-px h-5 bg-[#e2e8f0]"></div>
+
+            {/* Contact CTA */}
+            <a href="#contact" className="nav-item bg-primary text-white text-sm font-bold mono-label px-5 py-2 transition-all transform -rotate-1 hover:rotate-0 shadow-md hover:shadow-lg">
+              Contact
+            </a>
           </nav>
           <a href="#contact" className="md:hidden bg-primary text-white px-4 py-2 text-sm font-bold mono-label transform -rotate-2">Say Hi</a>
         </div>
       </header>
+
+      {/* Floating Sidebar Navigation */}
+      <nav
+        className={`fixed left-4 top-1/2 -translate-y-1/2 z-40 hidden xl:block transition-all duration-500 ease-out ${
+          scrolled ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8 pointer-events-none"
+        }`}
+      >
+        <div className={`bg-white border-2 border-[#e2e8f0] rounded-lg shadow-lg transition-all duration-300 ease-out overflow-hidden ${
+          sidebarCollapsed ? "w-12 p-2" : "w-44 p-3"
+        }`}>
+          {/* Header with collapse button */}
+          <div className={`flex items-center justify-between mb-2 ${sidebarCollapsed ? "flex-col gap-2" : ""}`}>
+            {!sidebarCollapsed && (
+              <div className="text-xs font-bold mono-label text-[#64748b] px-1">Navigate</div>
+            )}
+            <button
+              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+              className="p-1.5 rounded hover:bg-[#f1f5f9] text-[#64748b] hover:text-[#0f172a] transition-colors"
+              title={sidebarCollapsed ? "Expand" : "Collapse"}
+            >
+              <svg
+                className={`w-4 h-4 transition-transform duration-300 ${sidebarCollapsed ? "rotate-180" : ""}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+              </svg>
+            </button>
+          </div>
+
+          <div className="relative flex flex-col gap-0.5">
+            {/* Vertical line connecting dots */}
+            {!sidebarCollapsed && (
+              <div className="absolute left-3 top-4 bottom-4 w-0.5 bg-[#e2e8f0]" />
+            )}
+
+            {[
+              { id: "about", label: "About", icon: "👤" },
+              { id: "skills", label: "Skills", icon: "⚡" },
+              { id: "timeline", label: "Journey", icon: "📍" },
+              { id: "projects", label: "Projects", icon: "🚀" },
+              { id: "contact", label: "Contact", icon: "✉️" },
+            ].map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`group relative flex items-center gap-2.5 py-2 rounded transition-all duration-200 ${
+                  sidebarCollapsed ? "px-1.5 justify-center" : "px-2"
+                } ${
+                  activeSection === item.id
+                    ? "text-[#0f172a]"
+                    : "text-[#94a3b8] hover:text-[#64748b]"
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+                }}
+                title={sidebarCollapsed ? item.label : undefined}
+              >
+                {/* Dot */}
+                <div
+                  className={`relative z-10 shrink-0 w-2.5 h-2.5 rounded-full border-2 transition-all duration-300 ${
+                    activeSection === item.id
+                      ? "bg-primary border-primary scale-125"
+                      : "bg-white border-[#cbd5e1] group-hover:border-[#94a3b8]"
+                  }`}
+                />
+                {!sidebarCollapsed && (
+                  <>
+                    <span className={`text-sm ${activeSection === item.id ? "" : "opacity-70"}`}>{item.icon}</span>
+                    <span className={`text-xs font-bold mono-label whitespace-nowrap ${activeSection === item.id ? "font-black" : ""}`}>
+                      {item.label}
+                    </span>
+                  </>
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
 
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-20">

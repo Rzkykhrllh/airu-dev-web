@@ -601,49 +601,49 @@ export default function Home() {
                     )}
                   </div>
 
-                  {/* Expandable Content */}
-                  <div className={`overflow-hidden transition-all duration-300 ${isExpanded ? "max-h-125 opacity-100" : "max-h-0 opacity-0"}`}>
-                    {/* Highlights */}
-                    {item.highlights && item.highlights.length > 0 && (
-                      <div className="mb-4">
-                        <div className={`mono-label text-xs font-bold ${textClass} mb-3 flex items-center gap-2`}>
-                          <span>KEY ACHIEVEMENTS</span>
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                          </svg>
-                        </div>
-                        <ul className="space-y-2">
-                          {item.highlights.map((highlight, hIndex) => (
-                            <li key={hIndex} className="flex items-start gap-2 text-sm text-[#64748b]">
-                              <span className={`${textClass} mt-1.5`}>◆</span>
-                              <span>{highlight}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                  {/* Key Achievements Header - Always visible */}
+                  {item.highlights && item.highlights.length > 0 && (
+                    <div className={`flex items-center justify-between py-2 mb-2 ${isExpanded ? `border-b border-[#e2e8f0]` : ""}`}>
+                      <span className={`mono-label text-xs font-bold ${textClass}`}>KEY ACHIEVEMENTS</span>
+                      <svg
+                        className={`w-4 h-4 text-[#94a3b8] transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  )}
 
-                    {/* Tech Stack */}
-                    {item.tech && item.tech.length > 0 && (
-                      <div className="flex flex-wrap gap-2 pt-4 border-t border-dashed border-[#e2e8f0]">
-                        {item.tech.map((t) => (
-                          <span key={t} className={`mono-label text-xs ${textClass}`}>
-                            {"</>"} {t}
-                          </span>
+                  {/* Expandable Content - Achievements */}
+                  <div className={`overflow-hidden transition-all duration-300 ${isExpanded ? "max-h-125 opacity-100 mb-4" : "max-h-0 opacity-0"}`}>
+                    {item.highlights && item.highlights.length > 0 && (
+                      <ul className="space-y-2 pt-2">
+                        {item.highlights.map((highlight, hIndex) => (
+                          <li key={hIndex} className="flex items-start gap-2 text-sm text-[#64748b]">
+                            <span className={`${textClass} mt-0.5`}>◆</span>
+                            <span>{highlight}</span>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                     )}
                   </div>
 
-                    {/* Collapsed Preview */}
-                    {!isExpanded && item.highlights && item.highlights.length > 0 && (
-                      <div className="flex items-center gap-2 text-sm text-[#94a3b8]">
-                        <span>Click to see {item.highlights.length} achievements</span>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    )}
+                  {/* Tech Stack - Always visible */}
+                  {item.tech && item.tech.length > 0 && (
+                    <div className="flex flex-wrap gap-x-4 gap-y-1.5 pt-3 border-t border-dashed border-[#e2e8f0]">
+                      {item.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="inline-flex items-center gap-1.5 text-sm text-[#64748b]"
+                        >
+                          <span className="text-[#94a3b8]">{"</>"}</span>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                   </div>
                 </div>
               );

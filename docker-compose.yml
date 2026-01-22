@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  airu-dev-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: airu-dev-web
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3000:3000"
+    networks:
+      - airu-dev-network
+
+networks:
+  airu-dev-network:
+    name: airu-dev-network

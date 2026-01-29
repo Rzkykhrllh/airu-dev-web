@@ -1,3 +1,30 @@
+import {
+  SiTypescript,
+  SiReact,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiVuedotjs,
+  SiNodedotjs,
+  SiExpress,
+  SiPython,
+  SiFastapi,
+  SiDjango,
+  SiPostgresql,
+  SiMongodb,
+  SiRedis,
+  SiDocker,
+  SiGrafana,
+  SiPrometheus,
+  SiRundeck,
+  SiGithubactions,
+  SiGit,
+  SiVscodium,
+  SiFigma,
+  SiPostman,
+  SiNotion,
+} from "react-icons/si";
+import { IconType } from "react-icons";
+
 // Theme config - colors for preview dots, actual colors in globals.css
 export const themes = [
   {
@@ -53,9 +80,35 @@ export const themes = [
 
 export const techStack = {
   frontend: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Vue.js"],
-  backend: ["Node.js", "Python", "PostgreSQL", "MongoDB", "Redis"],
-  devops: ["Docker", "Grafana"],
+  backend: ["Node.js", "Express.js", "Python", "FastAPI", "Django", "PostgreSQL", "MongoDB", "Redis"],
+  devops: ["Docker", "Grafana", "Prometheus", "Rundeck", "GitHub Actions"],
   tools: ["Git", "VS Code", "Figma", "Postman", "Notion", "Claude Code"],
+};
+
+export const techIcons: Record<string, IconType> = {
+  "TypeScript": SiTypescript,
+  "React": SiReact,
+  "Next.js": SiNextdotjs,
+  "Tailwind CSS": SiTailwindcss,
+  "Vue.js": SiVuedotjs,
+  "Node.js": SiNodedotjs,
+  "Express.js": SiExpress,
+  "Python": SiPython,
+  "FastAPI": SiFastapi,
+  "Django": SiDjango,
+  "PostgreSQL": SiPostgresql,
+  "MongoDB": SiMongodb,
+  "Redis": SiRedis,
+  "Docker": SiDocker,
+  "Grafana": SiGrafana,
+  "Prometheus": SiPrometheus,
+  "Rundeck": SiRundeck,
+  "GitHub Actions": SiGithubactions,
+  "Git": SiGit,
+  "VS Code": SiVscodium,
+  "Figma": SiFigma,
+  "Postman": SiPostman,
+  "Notion": SiNotion,
 };
 
 export const timelineData = [

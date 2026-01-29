@@ -12,15 +12,12 @@ export default function AboutSection() {
               WHO IS <span className="text-gradient">AIRU</span>?
             </h3>
             <p className="leading-relaxed mb-4 text-[#64748b]">
-              I&apos;m a passionate software engineer based in Indonesia with a
-              love for creating elegant solutions to complex problems. I
-              specialize in building full-stack web applications that deliver
-              exceptional user experiences.
-            </p>
-            <p className="leading-relaxed text-[#64748b]">
-              When I&apos;m not coding, you&apos;ll find me exploring new
-              technologies, contributing to open-source, or sipping coffee while
-              debugging.
+              Software Engineer with 3 years of experience and a strong focus on
+              backend development and data-driven systems. Experienced in API
+              and system design for ML job orchestration and scheduling, with
+              hands-on involvement in infrastructure and service monitoring as
+              well as ML experimentation platforms supporting traffic data
+              analytics.
             </p>
           </div>
 

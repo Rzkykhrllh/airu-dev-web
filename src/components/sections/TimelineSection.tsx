@@ -3,6 +3,26 @@
 import { useState } from "react";
 import { timelineData } from "@/data/constants";
 
+const renderHighlightText = (highlight: string) => {
+  const parts = highlight.split(/\*\*(.+?)\*\*/g);
+
+  return parts.map((part, index) => {
+    if (!part) {
+      return null;
+    }
+
+    if (index % 2 === 1) {
+      return (
+        <strong key={`${index}-${part}`} className="text-[#0f172a] font-semibold">
+          {part}
+        </strong>
+      );
+    }
+
+    return <span key={`${index}-${part}`}>{part}</span>;
+  });
+};
+
 export default function TimelineSection() {
   const [expandedItems, setExpandedItems] = useState<number[]>([0]);
 
@@ -210,7 +230,7 @@ export default function TimelineSection() {
                               className="flex items-start gap-2 text-sm text-[#64748b]"
                             >
                               <span className={`${textClass} mt-0.5`}>◆</span>
-                              <span>{highlight}</span>
+                              <span>{renderHighlightText(highlight)}</span>
                             </li>
                           ))}
                         </ul>

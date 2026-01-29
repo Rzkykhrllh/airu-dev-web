@@ -108,6 +108,11 @@ body {
   font-size: 0.8rem;
 }
 
+.badge-pill-sm {
+  padding: 6px 14px;
+  font-size: 0.7rem;
+}
+
 /* Tilted card effect */
 .tilt-left {
   transform: rotate(-2deg);

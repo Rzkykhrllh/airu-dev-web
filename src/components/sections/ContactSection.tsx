@@ -11,15 +11,21 @@ export default function ContactSection() {
             LET&apos;S <span className="text-primary">WORK</span> TOGETHER
           </h3>
           <p className="text-lg mb-8 text-[#64748b]">
-            Have a project in mind or just want to say hi? I&apos;m always open to discussing new opportunities and ideas.
+            Have a project in mind or just want to say hi? I&apos;m always open
+            to discussing new opportunities and ideas.
           </p>
 
           <div className="flex flex-wrap gap-4">
             <a
-              href="mailto:hello@airu.dev"
+              href="mailto:m.rizky.khairullah@gmail.com"
               className="tilt-left bg-primary text-white px-8 py-4 font-bold mono-label flex items-center gap-2 shadow-lg"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

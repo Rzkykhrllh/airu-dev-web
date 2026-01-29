@@ -200,6 +200,15 @@ body {
   animation: bounce-x 1s ease-in-out infinite;
 }
 
+@keyframes hint-fade {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.hint-pulse {
+  animation: hint-fade 2.4s ease-in-out infinite;
+}
+
 /* Timeline */
 .timeline-item {
   position: relative;

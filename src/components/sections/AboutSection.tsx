@@ -12,13 +12,15 @@ export default function AboutSection() {
               WHO IS <span className="text-gradient">AIRU</span>?
             </h3>
             <p className="leading-relaxed mb-4 text-[#64748b]">
-              I&apos;m a passionate software engineer based in Indonesia with a love for creating
-              elegant solutions to complex problems. I specialize in building full-stack web
-              applications that deliver exceptional user experiences.
+              I&apos;m a passionate software engineer based in Indonesia with a
+              love for creating elegant solutions to complex problems. I
+              specialize in building full-stack web applications that deliver
+              exceptional user experiences.
             </p>
             <p className="leading-relaxed text-[#64748b]">
-              When I&apos;m not coding, you&apos;ll find me exploring new technologies,
-              contributing to open-source, or sipping coffee while debugging.
+              When I&apos;m not coding, you&apos;ll find me exploring new
+              technologies, contributing to open-source, or sipping coffee while
+              debugging.
             </p>
           </div>
 
@@ -26,7 +28,7 @@ export default function AboutSection() {
             <div className="bg-primary text-white p-6 tilt-left">
               <div className="text-3xl mb-2">📍</div>
               <div className="mono-label text-xs text-white/70">Location</div>
-              <div className="font-bold mt-1">Indonesia</div>
+              <div className="font-bold mt-1">Tokyo, Japan</div>
             </div>
             <div className="p-6 tilt-right border-2 border-[#e2e8f0] bg-white">
               <div className="text-3xl mb-2">💼</div>

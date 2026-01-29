@@ -14,6 +14,10 @@ export default function ProjectsSection() {
             const textColorClasses = ["text-primary", "text-secondary", "text-accent"];
             const bgClass = colorClasses[index % colorClasses.length];
             const textClass = textColorClasses[index % textColorClasses.length];
+            const description =
+              "description" in project && typeof project.description === "string"
+                ? project.description
+                : project.desc;
 
             return (
               <div key={index} className="project-card p-6">
@@ -22,7 +26,7 @@ export default function ProjectsSection() {
                   <span className={`badge-pill ${bgClass} text-white text-xs py-1 px-3`}>{project.year}</span>
                 </div>
                 <h3 className="font-bold text-xl mb-2 text-[#0f172a]">{project.title}</h3>
-                <p className="text-sm mb-4 text-[#64748b]">{project.desc}</p>
+                <p className="text-sm mb-4 text-[#64748b]">{description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((t, i) => (
                     <span key={t} className={`mono-label text-xs ${i === 0 ? textClass : "text-secondary"}`}>

@@ -8,7 +8,7 @@ export default function TimelineSection() {
 
   const toggleExpand = (index: number) => {
     setExpandedItems((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
     );
   };
 
@@ -23,8 +23,9 @@ export default function TimelineSection() {
           <h3 className="text-3xl font-black mb-4 text-[#0f172a]">
             MY <span className="text-primary">TIMELINE</span>
           </h3>
-          <p className="leading-relaxed text-[#64748b] max-w-xl">
-            A quick look at my professional journey so far. Every step taught me something valuable.
+          <p className="leading-relaxed text-[#64748b] max-w-2xl">
+            A quick look at my professional journey so far. Every step taught me
+            something valuable.
           </p>
         </div>
 
@@ -35,13 +36,27 @@ export default function TimelineSection() {
           <div className="space-y-4">
             {timelineData.map((item, index, arr) => {
               const colorClasses = ["bg-primary", "bg-secondary", "bg-accent"];
-              const borderClasses = ["border-primary", "border-secondary", "border-accent"];
-              const textClasses = ["text-primary", "text-secondary", "text-accent"];
+              const borderClasses = [
+                "border-primary",
+                "border-secondary",
+                "border-accent",
+              ];
+              const textClasses = [
+                "text-primary",
+                "text-secondary",
+                "text-accent",
+              ];
               const colorClass = colorClasses[index % colorClasses.length];
               const borderClass = borderClasses[index % borderClasses.length];
               const textClass = textClasses[index % textClasses.length];
               const isExpanded = expandedItems.includes(index);
               const isLast = index === arr.length - 1;
+              const description =
+                "description" in item
+                  ? item.description
+                  : "desciption" in item
+                    ? item.desciption
+                    : undefined;
 
               return (
                 <div key={index} className="relative flex gap-6">
@@ -61,7 +76,7 @@ export default function TimelineSection() {
 
                   {/* Card */}
                   <div
-                    className={`flex-1 experience-card bg-white border-2 ${
+                    className={`flex-1 group experience-card bg-white border-2 ${
                       isExpanded ? borderClass : "border-[#e2e8f0]"
                     } p-6 transition-all duration-300 hover:border-[#cbd5e1] cursor-pointer`}
                     onClick={() => toggleExpand(index)}
@@ -69,8 +84,12 @@ export default function TimelineSection() {
                     {/* Header */}
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                       <div>
-                        <h4 className="font-black text-xl text-[#0f172a]">{item.company}</h4>
-                        <p className="font-medium text-[#64748b]">{item.title}</p>
+                        <h4 className="font-black text-xl text-[#0f172a]">
+                          {item.company}
+                        </h4>
+                        <p className="font-medium text-[#64748b]">
+                          {item.title}
+                        </p>
                       </div>
                       <div className="flex items-center gap-2 flex-wrap">
                         {item.label === "current" && (
@@ -91,7 +110,12 @@ export default function TimelineSection() {
                     {/* Period & Location */}
                     <div className="flex items-center gap-4 text-sm text-[#64748b] mb-4">
                       <span className="flex items-center gap-1.5">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -103,7 +127,12 @@ export default function TimelineSection() {
                       </span>
                       {item.location && (
                         <span className="flex items-center gap-1.5">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
                             <path
                               strokeLinecap="round"
                               strokeLinejoin="round"
@@ -122,6 +151,12 @@ export default function TimelineSection() {
                       )}
                     </div>
 
+                    {description && (
+                      <p className="text-sm text-[#475569] leading-relaxed mb-4">
+                        {description}
+                      </p>
+                    )}
+
                     {/* Key Achievements Header - Always visible */}
                     {item.highlights && item.highlights.length > 0 && (
                       <div
@@ -129,30 +164,51 @@ export default function TimelineSection() {
                           isExpanded ? `border-b border-[#e2e8f0]` : ""
                         }`}
                       >
-                        <span className={`mono-label text-xs font-bold ${textClass}`}>KEY ACHIEVEMENTS</span>
-                        <svg
-                          className={`w-4 h-4 text-[#94a3b8] transition-transform duration-300 ${
-                            isExpanded ? "rotate-180" : ""
-                          }`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                        <span
+                          className={`mono-label text-xs font-bold ${textClass}`}
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
+                          KEY ACHIEVEMENTS
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[11px] uppercase tracking-wide text-[#94a3b8] hint-pulse">
+                            {isExpanded
+                              ? "Click to collapse"
+                              : "Click to expand"}
+                          </span>
+                          <svg
+                            className={`w-4 h-4 text-[#94a3b8] transition-transform duration-300 ${
+                              isExpanded ? "rotate-180" : ""
+                            }`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </div>
                       </div>
                     )}
 
                     {/* Expandable Content - Achievements */}
                     <div
                       className={`overflow-hidden transition-all duration-300 ${
-                        isExpanded ? "max-h-125 opacity-100 mb-4" : "max-h-0 opacity-0"
+                        isExpanded
+                          ? "max-h-125 opacity-100 mb-4"
+                          : "max-h-0 opacity-0"
                       }`}
                     >
                       {item.highlights && item.highlights.length > 0 && (
                         <ul className="space-y-2 pt-2">
                           {item.highlights.map((highlight, hIndex) => (
-                            <li key={hIndex} className="flex items-start gap-2 text-sm text-[#64748b]">
+                            <li
+                              key={hIndex}
+                              className="flex items-start gap-2 text-sm text-[#64748b]"
+                            >
                               <span className={`${textClass} mt-0.5`}>◆</span>
                               <span>{highlight}</span>
                             </li>
@@ -165,7 +221,10 @@ export default function TimelineSection() {
                     {item.tech && item.tech.length > 0 && (
                       <div className="flex flex-wrap gap-x-4 gap-y-1.5 pt-3 border-t border-dashed border-[#e2e8f0]">
                         {item.tech.map((t) => (
-                          <span key={t} className="inline-flex items-center gap-1.5 text-sm text-[#64748b]">
+                          <span
+                            key={t}
+                            className="inline-flex items-center gap-1.5 text-sm text-[#64748b]"
+                          >
                             <span className="text-[#94a3b8]">{"</>"}</span>
                             {t}
                           </span>

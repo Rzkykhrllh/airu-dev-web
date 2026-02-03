@@ -1,33 +1,76 @@
-# Blog Implementation Plan - Airu Portfolio
+# Blog Implementation Plan - Airu Portfolio (Payload CMS)
 
 ## Overview
-Full-stack blog system dengan admin dashboard untuk personal portfolio website.
+Full-stack blog system menggunakan **Payload CMS** - headless CMS native Next.js dengan admin dashboard built-in, authentication, dan rich text editor.
 
 ## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
 | Framework | Next.js 16 (App Router) |
-| Database | SQLite + Drizzle ORM |
-| Authentication | Simple password (env variable) |
-| Rich Text Editor | TipTap |
-| Image Storage | VPS `/public/uploads` |
+| CMS | Payload CMS 3.x |
+| Database | PostgreSQL atau MongoDB |
+| Authentication | Payload built-in auth |
+| Rich Text Editor | Lexical (Payload default) |
+| Image Storage | VPS `/public/media` (Payload local storage) |
 | Search | Client-side Fuse.js |
 | Styling | Tailwind CSS v4 |
 
-## Database Schema
+## Why Payload CMS?
 
-### Posts Table
+✅ **Native Next.js Integration** - Built on top of Next.js, bukan external service
+✅ **Self-hosted** - Perfect untuk VPS, full control atas data
+✅ **TypeScript-first** - Type-safe dari database sampai frontend
+✅ **Admin UI built-in** - No need to build custom admin dashboard
+✅ **Rich text editor** - Lexical editor (modern, extensible)
+✅ **File upload & media management** - Built-in with image optimization
+✅ **Authentication & access control** - Sudah ada, tinggal config
+✅ **GraphQL & REST API** - Auto-generated dari schema
+✅ **Extensible** - Plugin system, custom fields, hooks
+
+## Database Schema (Collections)
+
+### Posts Collection
 ```typescript
 {
-  id: string (uuid)
+  id: string
   title: string
-  slug: string (unique, URL-friendly)
-  excerpt: string (auto-generated or manual)
-  content: string (HTML/JSON from TipTap)
+  slug: string (auto-generated, unique)
+  excerpt: string (optional)
+  content: RichText (Lexical JSON)
   status: 'draft' | 'published'
-  coverImage: string (optional, path to image)
-  tags: string[] (JSON array)
+  coverImage: relationship to Media
+  tags: string[] (select field)
+  author: relationship to Users
+  publishedAt: Date
+  createdAt: Date (auto)
+  updatedAt: Date (auto)
+}
+```
+
+### Media Collection (built-in)
+```typescript
+{
+  id: string
+  filename: string
+  mimeType: string
+  filesize: number
+  width: number (for images)
+  height: number (for images)
+  url: string
+  alt: string
+  createdAt: Date
+  updatedAt: Date
+}
+```
+
+### Users Collection (built-in)
+```typescript
+{
+  id: string
+  email: string
+  password: string (hashed)
+  role: 'admin' | 'editor'
   createdAt: Date
   updatedAt: Date
 }
@@ -38,205 +81,369 @@ Full-stack blog system dengan admin dashboard untuk personal portfolio website.
 ```
 /src
   /app/
-    /api/
-      /posts/
-        - route.ts          # GET list, POST create
-        /[id]/
-          - route.ts        # GET, PUT, DELETE single post
-      /upload/
-        - route.ts          # POST image upload
+    /(payload)/
+      /admin/[[...segments]]/
+        - page.tsx          # Payload admin UI
     
     /blog/
       - page.tsx            # Blog listing + search
       /[slug]/
         - page.tsx          # Individual post
     
-    /admin/
-      - page.tsx            # Login gate
-      /posts/
-        - page.tsx          # Posts list
-        /new/
-          - page.tsx        # Create new post
-        /[id]/
-          /edit/
-            - page.tsx      # Edit existing post
+    /api/
+      /[...payload]/
+        - route.ts          # Payload API routes
+  
+  /collections/
+    - Posts.ts              # Posts collection config
+    - Media.ts              # Media collection config (optional customization)
+    - Users.ts              # Users collection config (optional customization)
   
   /components/
-    /admin/
-      - LoginGate.tsx
-      - AdminSidebar.tsx
-      - PostsTable.tsx
-    /editor/
-      - TipTapEditor.tsx    # Rich text editor
-      - Toolbar.tsx         # Editor toolbar
-  
-  /db/
-    - schema.ts             # Drizzle schema definition
-    - migrations/           # Database migrations
-    - index.ts              # Database connection
+    /blog/
+      - PostCard.tsx
+      - PostContent.tsx
+      - SearchBar.tsx
   
   /lib/
-    - posts.ts              # Database query helpers
+    - payload.ts            # Payload client utilities
     - search.ts             # Fuse.js search utilities
   
-  /content/                 # Optional: for MDX backup
-  
+/payload.config.ts          # Main Payload config
+/next.config.ts             # Next.js config (with Payload)
+
 /public
-  /uploads/                 # Image storage
+  /media/                   # Uploaded files storage
 ```
 
 ## Implementation Phases
 
-### Phase 1: Database Setup
-- [ ] Install dependencies (drizzle-orm, better-sqlite3, drizzle-kit)
-- [ ] Setup database schema
-- [ ] Create migration files
-- [ ] Create database connection helper
-- [ ] Test database operations
+### Phase 1: Payload CMS Setup
+- [ ] Install Payload CMS and dependencies
+- [ ] Setup PostgreSQL/MongoDB database (PostgreSQL recommended)
+- [ ] Configure `payload.config.ts`
+- [ ] Setup admin user (initial seed)
+- [ ] Test Payload admin access at `/admin`
 
-### Phase 2: API Routes
-- [ ] `GET /api/posts` - List posts (with filter by status)
-- [ ] `POST /api/posts` - Create new post
-- [ ] `GET /api/posts/[id]` - Get single post
-- [ ] `PUT /api/posts/[id]` - Update post
-- [ ] `DELETE /api/posts/[id]` - Delete post
-- [ ] `POST /api/upload` - Handle image upload to `/public/uploads`
+### Phase 2: Collections Configuration
+- [ ] Define Posts collection schema (`/collections/Posts.ts`)
+- [ ] Configure Media collection (image upload settings)
+- [ ] Setup Users collection with roles
+- [ ] Configure access control (who can create/edit/delete)
+- [ ] Add custom fields (tags, slug auto-generation)
 
-### Phase 3: Admin Authentication
-- [ ] Create simple password gate component
-- [ ] Store password in `.env.local`
-- [ ] Session management (localStorage or simple cookie)
-- [ ] Protect admin routes
+### Phase 3: Admin Dashboard Customization
+- [ ] Customize Payload admin UI branding (optional)
+- [ ] Configure rich text editor (Lexical) features
+- [ ] Setup media upload constraints (size, format)
+- [ ] Add custom validation rules
+- [ ] Configure slug auto-generation from title
 
-### Phase 4: Admin Dashboard UI
-- [ ] Admin layout dengan sidebar
-- [ ] Posts list page (table view dengan status, actions)
-- [ ] Create new post page
-- [ ] Edit post page
-- [ ] Delete confirmation modal
+### Phase 4: API Integration
+- [ ] Setup Payload REST API endpoints
+- [ ] Create utility functions for fetching posts
+- [ ] Test API queries (get all posts, get by slug, etc.)
+- [ ] Setup API authentication (if needed for protected routes)
+- [ ] Configure CORS (if needed)
 
-### Phase 5: Rich Text Editor
-- [ ] Install TipTap + extensions
-- [ ] Basic formatting (bold, italic, heading 1-3, lists)
-- [ ] Code blocks dengan syntax highlighting
-- [ ] Image upload integration (drag-drop & button)
-- [ ] Link insertion
-- [ ] Auto-save to localStorage (draft recovery)
-
-### Phase 6: Public Blog Pages
+### Phase 5: Public Blog Pages
 - [ ] Blog listing page (`/blog`)
-  - Grid/list view toggle
+  - Fetch published posts from Payload API
+  - Grid layout with post cards
   - Search bar (Fuse.js)
   - Tag filters
-  - Pagination atau infinite scroll
+  - Pagination
 - [ ] Individual post page (`/blog/[slug]`)
-  - Render HTML content
-  - Cover image
-  - Publication date
-  - Tags
-  - Share buttons (optional)
+  - Fetch post by slug
+  - Render Lexical rich text content
+  - Display cover image (optimized)
+  - Show publication date, tags
+  - SEO meta tags
   - Prev/Next navigation
 
-### Phase 7: Search Implementation
-- [ ] Generate search index saat build time
-- [ ] Include: title, excerpt, tags, content (optional)
-- [ ] Client-side search dengan Fuse.js
-- [ ] Search result highlighting
+### Phase 6: Search Implementation
+- [ ] Generate search index from Payload API
+- [ ] Client-side search with Fuse.js
+- [ ] Search by title, excerpt, tags, content
 - [ ] Debounced search input
+- [ ] Search result highlighting
 
-### Phase 8: Polish & Optimization
-- [ ] SEO meta tags (title, description, OG image)
-- [ ] Syntax highlighting untuk code blocks
-- [ ] Responsive design
-- [ ] Loading states
-- [ ] Error handling
+### Phase 7: Polish & Optimization
+- [ ] SEO meta tags (dynamic per post)
+- [ ] Open Graph images
 - [ ] Image optimization (Next.js Image component)
+- [ ] Responsive design
+- [ ] Loading states & skeletons
+- [ ] Error handling (404, etc.)
+- [ ] RSS feed generation
+- [ ] Sitemap.xml generation
 
 ## Environment Variables
 
 ```env
-# .env.local
-ADMIN_PASSWORD=your-secure-password-here
-DATABASE_URL=./sqlite.db
-NEXT_PUBLIC_SITE_URL=https://airu.dev
+# .env
+
+# Payload CMS
+PAYLOAD_SECRET=your-super-secret-key-here
+DATABASE_URI=postgresql://user:password@localhost:5432/airu_blog
+# or for MongoDB: mongodb://localhost:27017/airu_blog
+
+# Next.js
+NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+# Production: https://airu.dev
+
+# File Upload
+PAYLOAD_PUBLIC_STORAGE_PATH=/media
 ```
 
 ## Dependencies to Install
 
 ```bash
-# Database
-npm install drizzle-orm better-sqlite3
-npm install -D drizzle-kit @types/better-sqlite3
+# Payload CMS
+npm install payload @payloadcms/db-postgres @payloadcms/richtext-lexical
+# or for MongoDB: @payloadcms/db-mongodb
 
-# Rich Text Editor
-npm install @tiptap/react @tiptap/starter-kit @tiptap/extension-image
-npm install @tiptap/extension-link @tiptap/extension-code-block-lowlight
+# Additional dependencies
+npm install @payloadcms/plugin-cloud-storage  # optional, for S3/Cloudinary
+npm install sharp  # Image optimization (required by Payload)
 
 # Search
 npm install fuse.js
 
-# Syntax Highlighting (optional)
-npm install lowlight
-
-# Utilities
-npm install uuid
-npm install -D @types/uuid
+# Database client
+npm install pg  # for PostgreSQL
+# or: npm install mongodb  # for MongoDB
 ```
 
 ## Key Features Summary
 
-### Admin Dashboard
-- 🔐 Simple password protection
-- 📝 Rich text editor (TipTap)
-- 🖼️ Drag-drop image upload
-- 🏷️ Tags support
-- 💾 Draft/Published status
-- 🔗 Auto-generated slugs (editable)
+### Admin Dashboard (Payload Built-in)
+- 🔐 **Authentication** - Email/password login, role-based access
+- 📝 **Rich text editor** - Lexical with formatting, links, images, code blocks
+- 🖼️ **Media library** - Drag-drop upload, image preview, alt text
+- 🏷️ **Tags & categories** - Multi-select fields
+- 💾 **Draft/Published status** - Built-in workflow
+- 🔗 **Auto-generated slugs** - From title with collision handling
+- 📊 **Dashboard** - Overview of posts, media, users
+- 🔍 **Admin search** - Built-in search across collections
 
 ### Public Blog
 - 🔍 Client-side search
 - 🏷️ Tag filtering
 - 📱 Responsive layout
-- ⚡ Static generation untuk performa
-- 🎨 Syntax highlighting
+- ⚡ Static/ISR generation untuk performa
+- 🎨 Syntax highlighting (via Lexical)
+- 🖼️ Optimized images
 
 ### Technical Decisions
-- **SQLite**: File-based, no separate DB server needed
-- **Client-side search**: Cukup untuk <100 posts, instant results
-- **VPS image storage**: Semua data di 1 tempat, simple backup
-- **Static generation**: SEO-friendly, cepat, scaleable
+- **Payload CMS**: All-in-one solution, reduces custom code
+- **PostgreSQL**: Robust, scalable, familiar SQL
+- **Lexical editor**: Modern, extensible, better than TipTap for CMS use case
+- **VPS storage**: `/public/media` folder, easy backup
+- **REST API**: Simple, cacheable, no GraphQL complexity needed
+
+## Payload Config Example
+
+```typescript
+// payload.config.ts
+import { buildConfig } from 'payload/config'
+import { postgresAdapter } from '@payloadcms/db-postgres'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { Posts } from './src/collections/Posts'
+import { Media } from './src/collections/Media'
+import { Users } from './src/collections/Users'
+
+export default buildConfig({
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+  admin: {
+    user: Users.slug,
+  },
+  collections: [Posts, Media, Users],
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URI,
+    },
+  }),
+  editor: lexicalEditor({}),
+  secret: process.env.PAYLOAD_SECRET!,
+  typescript: {
+    outputFile: './src/payload-types.ts',
+  },
+})
+```
+
+## Posts Collection Example
+
+```typescript
+// src/collections/Posts.ts
+import { CollectionConfig } from 'payload/types'
+
+export const Posts: CollectionConfig = {
+  slug: 'posts',
+  admin: {
+    useAsTitle: 'title',
+    defaultColumns: ['title', 'status', 'publishedAt'],
+  },
+  access: {
+    read: ({ req: { user } }) => {
+      // Public can read published posts
+      if (user) return true
+      return { status: { equals: 'published' } }
+    },
+    create: ({ req: { user } }) => !!user,
+    update: ({ req: { user } }) => !!user,
+    delete: ({ req: { user } }) => !!user,
+  },
+  fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'slug',
+      type: 'text',
+      unique: true,
+      admin: {
+        position: 'sidebar',
+      },
+      hooks: {
+        beforeValidate: [
+          ({ value, data }) => {
+            if (!value && data?.title) {
+              return data.title
+                .toLowerCase()
+                .replace(/ /g, '-')
+                .replace(/[^\w-]+/g, '')
+            }
+            return value
+          },
+        ],
+      },
+    },
+    {
+      name: 'excerpt',
+      type: 'textarea',
+    },
+    {
+      name: 'content',
+      type: 'richText',
+      required: true,
+    },
+    {
+      name: 'coverImage',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
+      name: 'tags',
+      type: 'select',
+      hasMany: true,
+      options: [
+        { label: 'Tech', value: 'tech' },
+        { label: 'Tutorial', value: 'tutorial' },
+        { label: 'Personal', value: 'personal' },
+        { label: 'Travel', value: 'travel' },
+      ],
+    },
+    {
+      name: 'status',
+      type: 'select',
+      options: [
+        { label: 'Draft', value: 'draft' },
+        { label: 'Published', value: 'published' },
+      ],
+      defaultValue: 'draft',
+      required: true,
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'publishedAt',
+      type: 'date',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+  ],
+}
+```
 
 ## Future Enhancements (Optional)
-- [ ] Newsletter subscription
+- [ ] Newsletter subscription (Payload plugin)
 - [ ] Post analytics (views counter)
-- [ ] Comments system (Giscus atau custom)
-- [ ] RSS feed
-- [ ] Sitemap.xml
-- [ ] Related posts
+- [ ] Comments system (Giscus integration)
+- [ ] RSS feed auto-generation
+- [ ] Related posts recommendation
 - [ ] Reading time estimation
-- [ ] Dark mode untuk blog posts
-- [ ] Table of contents (TOC)
-- [ ] Full-text search dengan Meilisearch/Algolia (kalo posts >100)
+- [ ] Table of contents (TOC) generation
+- [ ] Full-text search with PostgreSQL FTS atau Algolia
+- [ ] Multi-language support (Payload i18n)
+- [ ] Scheduled publishing
+- [ ] Post revisions (Payload versions plugin)
+- [ ] Cloud storage (S3/Cloudinary plugin)
 
-## Notes
-- Images disimpan di `/public/uploads/` dengan struktur folder by date (e.g., `/uploads/2025/02/image.jpg`)
-- Slug harus unique, auto-generated dari title tapi bisa diedit manual
-- Content di-save sebagai HTML string dari TipTap
-- Excerpt bisa auto-generate (first 150 chars) atau manual input
-- Auto-save draft ke localStorage untuk prevent data loss
+## Deployment Checklist (VPS)
 
-## Deployment Checklist
-- [ ] Setup SQLite database di VPS
-- [ ] Create `/public/uploads` folder dengan proper permissions
+### Database Setup
+- [ ] Install PostgreSQL on VPS
+- [ ] Create database user and database
+- [ ] Configure connection string in `.env`
+- [ ] Test database connection
+
+### Application Setup
+- [ ] Clone repository to VPS
+- [ ] Install dependencies (`npm install`)
 - [ ] Setup environment variables
-- [ ] Test image upload functionality
-- [ ] Test all CRUD operations
-- [ ] Verify search functionality
+- [ ] Build Next.js app (`npm run build`)
+- [ ] Setup PM2 or systemd for process management
+- [ ] Configure Nginx reverse proxy
+
+### Payload Setup
+- [ ] Run Payload migrations (auto on first start)
+- [ ] Create admin user via seed script atau manual
+- [ ] Test admin access at `https://airu.dev/admin`
+- [ ] Test file uploads and media library
+
+### Storage Setup
+- [ ] Create `/public/media` folder
+- [ ] Set proper permissions (nginx/node user)
+- [ ] Configure Nginx to serve static files from `/media`
+- [ ] Test image uploads
+
+### Production Checks
+- [ ] Test all CRUD operations in admin
+- [ ] Verify public blog pages render correctly
+- [ ] Test search functionality
 - [ ] Check responsive design
 - [ ] Validate SEO meta tags
+- [ ] Test image optimization
+- [ ] Setup SSL certificate
+- [ ] Configure backup strategy (database + media files)
+
+## Migration from Current Plan
+
+**Current:** TipTap + manual admin + SQLite
+**New:** Payload CMS + built-in admin + PostgreSQL
+
+**Benefits:**
+- ✅ No need to build admin UI from scratch
+- ✅ Authentication handled by Payload
+- ✅ File upload built-in with image optimization
+- ✅ Type-safe API with auto-generated types
+- ✅ Better rich text editor (Lexical)
+- ✅ Extensible with plugins
+- ✅ Better long-term maintenance
+
+**Trade-offs:**
+- Slightly larger bundle size
+- More opinionated architecture
+- Learning Payload-specific concepts
 
 ---
 
-Created: 2026-02-03
-Status: Concept/Planning
-Priority: Medium
+**Updated:** 2026-02-03
+**Status:** Concept/Planning - Payload CMS Approach
+**Priority:** High
+**Estimated Time:** 2-3 days for full implementation

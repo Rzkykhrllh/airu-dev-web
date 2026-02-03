@@ -18,20 +18,9 @@ import {
 } from "@/components/sections";
 
 export default function Home() {
-  // Initialize theme from localStorage or default to "joints"
-  const [currentTheme, setCurrentTheme] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("theme") || "joints";
-    }
-    return "joints";
-  });
+  const [currentTheme, setCurrentTheme] = useState("default");
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-
-  // Save theme to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem("theme", currentTheme);
-  }, [currentTheme]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,10 +55,7 @@ export default function Home() {
       className="min-h-screen grid-pattern"
       data-theme={currentTheme === "default" ? undefined : currentTheme}
     >
-      {/* ThemeSwitcher hidden temporarily - using "joints" theme as default */}
-      <div className="hidden">
-        <ThemeSwitcher currentTheme={currentTheme} onThemeChange={setCurrentTheme} />
-      </div>
+      <ThemeSwitcher currentTheme={currentTheme} onThemeChange={setCurrentTheme} />
       <Header scrolled={scrolled} />
       <FloatingSidebar scrolled={scrolled} activeSection={activeSection} />
 

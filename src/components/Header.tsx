@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 interface HeaderProps {
   scrolled: boolean;
@@ -10,6 +11,7 @@ interface HeaderProps {
 export default function Header({ scrolled }: HeaderProps) {
   const [othersOpen, setOthersOpen] = useState(false);
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const isBlogPage = pathname === "/blog";
 
   return (
@@ -21,23 +23,27 @@ export default function Header({ scrolled }: HeaderProps) {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <a
-          href="#"
+        <Link
+          href="/"
           className="font-black text-xl transform -rotate-2 hover:rotate-0 transition-transform text-[#0f172a]"
         >
           AIRU<span className="text-primary">.</span>
-        </a>
+        </Link>
         <nav className="hidden md:flex items-center gap-3">
           {/* Home */}
-          <a
-            href="#"
-            className="nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:-rotate-2 text-[#64748b] hover:text-primary"
+          <Link
+            href="/"
+            className={`nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:-rotate-2 ${
+              isHomePage
+                ? "text-primary bg-primary/10 rounded-lg"
+                : "text-[#64748b] hover:text-primary"
+            }`}
           >
             Home
-          </a>
+          </Link>
 
           {/* Blog */}
-          <a
+          <Link
             href="/blog"
             className={`nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:rotate-2 ${
               isBlogPage
@@ -46,7 +52,7 @@ export default function Header({ scrolled }: HeaderProps) {
             }`}
           >
             Blog
-          </a>
+          </Link>
 
           {/* Others Dropdown */}
           <div
@@ -103,19 +109,19 @@ export default function Header({ scrolled }: HeaderProps) {
           <div className="w-px h-5 bg-[#e2e8f0]"></div>
 
           {/* Contact CTA */}
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             className="nav-item bg-primary text-white text-sm font-bold mono-label px-5 py-2 transition-all transform -rotate-1 hover:rotate-0 shadow-md hover:shadow-lg"
           >
             Contact
-          </a>
+          </Link>
         </nav>
-        <a
-          href="#contact"
+        <Link
+          href="/#contact"
           className="md:hidden bg-primary text-white px-4 py-2 text-sm font-bold mono-label transform -rotate-2"
         >
           Say Hi
-        </a>
+        </Link>
       </div>
     </header>
   );

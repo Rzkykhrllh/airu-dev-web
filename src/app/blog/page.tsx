@@ -19,7 +19,7 @@ export default function BlogPage() {
   }, []);
 
   return (
-    <div className="min-h-screen grid-pattern flex flex-col">
+    <div className="min-h-screen grid-pattern flex flex-col" data-theme="joints">
       <Header scrolled={scrolled} />
       <div className="flex-1 flex items-center justify-center px-4">
       <div className="text-center max-w-lg">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface HeaderProps {
   scrolled: boolean;
@@ -8,6 +9,8 @@ interface HeaderProps {
 
 export default function Header({ scrolled }: HeaderProps) {
   const [othersOpen, setOthersOpen] = useState(false);
+  const pathname = usePathname();
+  const isBlogPage = pathname === "/blog";
 
   return (
     <header
@@ -36,7 +39,11 @@ export default function Header({ scrolled }: HeaderProps) {
           {/* Blog */}
           <a
             href="/blog"
-            className="nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:rotate-2 text-[#64748b] hover:text-primary"
+            className={`nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:rotate-2 ${
+              isBlogPage
+                ? "text-primary bg-primary/10 rounded-lg"
+                : "text-[#64748b] hover:text-primary"
+            }`}
           >
             Blog
           </a>

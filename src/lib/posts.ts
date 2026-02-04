@@ -33,3 +33,40 @@ export async function getPostBySlug(slug: string) {
 
   return docs[0] || null
 }
+
+export async function getAdjacentPosts(publishedAt: string) {
+  const payload = await getPayload({ config })
+
+  // Previous post (older)
+  const { docs: prevDocs } = await payload.find({
+    collection: 'posts',
+    where: {
+      and: [
+        { status: { equals: 'published' } },
+        { publishedAt: { less_than: publishedAt } },
+      ],
+    },
+    sort: '-publishedAt',
+    limit: 1,
+    depth: 0,
+  })
+
+  // Next post (newer)
+  const { docs: nextDocs } = await payload.find({
+    collection: 'posts',
+    where: {
+      and: [
+        { status: { equals: 'published' } },
+        { publishedAt: { greater_than: publishedAt } },
+      ],
+    },
+    sort: 'publishedAt',
+    limit: 1,
+    depth: 0,
+  })
+
+  return {
+    prev: prevDocs[0] || null,
+    next: nextDocs[0] || null,
+  }
+}

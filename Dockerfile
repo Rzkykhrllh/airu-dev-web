@@ -28,10 +28,19 @@ ENV PORT=3000
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+# Copy standalone output (includes bundled node_modules with sharp)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-# Copy public folder if exists
+
+# Copy public folder
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+
+# Copy Payload config and collections (needed at runtime by Payload CMS)
+COPY --from=builder --chown=nextjs:nodejs /app/payload.config.ts ./payload.config.ts
+COPY --from=builder --chown=nextjs:nodejs /app/src/collections ./src/collections
+
+# Create writable media directory for uploaded images
+RUN mkdir -p /app/public/media && chown -R nextjs:nodejs /app/public/media
 
 # Set correct permissions
 RUN chown -R nextjs:nodejs /app

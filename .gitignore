@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# Payload CMS uploaded media
+/public/media/
+
 # production
 /build
 

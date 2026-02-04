@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPostBySlug, getAdjacentPosts } from '@/lib/posts'
 import PostContent from '@/components/blog/PostContent'
+import BlogPostLayout from '@/components/blog/BlogPostLayout'
 
 // ISR: revalidate every 60 seconds
 export const revalidate = 60
@@ -73,35 +74,44 @@ export default async function BlogPostPage({ params }: Props) {
   const readingTime = Math.max(1, Math.round(wordCount / 200))
 
   return (
-    <div className="min-h-screen grid-pattern" data-theme="joints">
-      {/* Back link */}
-      <div className="max-w-3xl mx-auto w-full px-6 pt-24 pb-4">
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-bold mono-label text-[#64748b] hover:text-primary transition-colors"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-          Back to Blog
-        </Link>
-      </div>
-
-      {/* Article */}
-      <article className="max-w-3xl mx-auto w-full px-6 pb-24">
-        {/* Cover Image */}
-        {post.coverImage?.url && (
-          <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-8 bg-[#f1f5f9]">
+    <BlogPostLayout>
+      {/* Hero area - cover image or fallback with grid pattern */}
+      <div className="relative w-full" style={{ paddingTop: '5rem' }}>
+        {post.coverImage?.url ? (
+          <div className="relative w-full" style={{ height: '40vh', minHeight: '280px', maxHeight: '480px' }}>
             <Image
               src={post.coverImage.url}
               alt={post.coverImage.alt || post.title}
               fill
-              sizes="(max-width: 768px) 100vw, 768px"
+              sizes="100vw"
               className="object-cover"
               priority
             />
+            {/* Gradient overlay bottom */}
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+          </div>
+        ) : (
+          <div
+            className="grid-pattern flex items-end justify-center"
+            style={{ height: '24vh', minHeight: '160px' }}
+          >
+            <div className="h-16 w-full bg-gradient-to-t from-white to-transparent" />
           </div>
         )}
+      </div>
+
+      {/* Article content - clean white, no grid */}
+      <article className="max-w-3xl mx-auto w-full px-6 pb-24" style={{ marginTop: post.coverImage?.url ? '-2rem' : '0' }}>
+        {/* Back link */}
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-2 text-sm font-bold mono-label text-[#64748b] hover:text-primary transition-colors mb-8"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Blog
+        </Link>
 
         {/* Tags */}
         {post.tags && post.tags.length > 0 && (
@@ -115,12 +125,12 @@ export default async function BlogPostPage({ params }: Props) {
         )}
 
         {/* Title */}
-        <h1 className="text-3xl md:text-4xl font-black text-[#0f172a] mb-4 leading-tight">
+        <h1 className="text-3xl md:text-5xl font-black text-[#0f172a] mb-4 leading-tight">
           {post.title}
         </h1>
 
         {/* Meta: date + reading time */}
-        <div className="flex items-center gap-3 text-sm text-[#94a3b8] mono-label mb-8 pb-8 border-b-2 border-[#e2e8f0]">
+        <div className="flex items-center gap-3 text-sm text-[#94a3b8] mono-label mb-10 pb-6 border-b-2 border-[#e2e8f0]">
           {formattedDate && <span>{formattedDate}</span>}
           <span>·</span>
           <span>{readingTime} min read</span>
@@ -131,11 +141,11 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* Prev / Next Navigation */}
         {(prev || next) && (
-          <div className="flex items-stretch gap-4 mt-16 pt-8 border-t-2 border-[#e2e8f0]">
+          <div className="flex items-stretch gap-4 mt-20 pt-10 border-t-2 border-[#e2e8f0]">
             {prev ? (
               <Link
                 href={`/blog/${prev.slug}`}
-                className="flex-1 project-card rounded-lg p-5 flex flex-col justify-between"
+                className="flex-1 project-card rounded-lg p-5 flex flex-col justify-between transition-all hover:-translate-y-1"
               >
                 <span className="text-xs font-bold mono-label text-[#94a3b8] mb-2">← Previous</span>
                 <span className="text-sm font-bold text-[#0f172a]">{prev.title}</span>
@@ -147,7 +157,7 @@ export default async function BlogPostPage({ params }: Props) {
             {next ? (
               <Link
                 href={`/blog/${next.slug}`}
-                className="flex-1 project-card rounded-lg p-5 flex flex-col justify-between items-end text-right"
+                className="flex-1 project-card rounded-lg p-5 flex flex-col justify-between items-end text-right transition-all hover:-translate-y-1"
               >
                 <span className="text-xs font-bold mono-label text-[#94a3b8] mb-2">Next →</span>
                 <span className="text-sm font-bold text-[#0f172a]">{next.title}</span>
@@ -158,6 +168,6 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         )}
       </article>
-    </div>
+    </BlogPostLayout>
   )
 }

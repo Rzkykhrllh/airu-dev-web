@@ -75,37 +75,53 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <BlogPostLayout>
-      {/* Hero area - cover image or fallback with grid pattern */}
-      <div className="relative w-full" style={{ paddingTop: '5rem' }}>
-        {post.coverImage?.url ? (
-          <div className="relative w-full" style={{ height: '40vh', minHeight: '280px', maxHeight: '480px' }}>
+      {/* Cover image hero */}
+      {post.coverImage?.url && (
+        <div className="relative w-full bg-[#0f172a]" style={{ paddingTop: '5rem' }}>
+          <div className="relative w-full" style={{ height: '45vh', minHeight: '300px', maxHeight: '500px' }}>
             <Image
               src={post.coverImage.url}
               alt={post.coverImage.alt || post.title}
               fill
               sizes="100vw"
-              className="object-cover"
+              className="object-cover opacity-80"
               priority
             />
-            {/* Gradient overlay bottom */}
-            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+            {/* Strong bottom gradient so title reads clearly on top */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent" />
           </div>
-        ) : (
-          <div
-            className="grid-pattern flex items-end justify-center"
-            style={{ height: '24vh', minHeight: '160px' }}
-          >
-            <div className="h-16 w-full bg-gradient-to-t from-white to-transparent" />
-          </div>
-        )}
-      </div>
 
-      {/* Article content - clean white, no grid */}
-      <article className="max-w-3xl mx-auto w-full px-6 pb-24" style={{ marginTop: post.coverImage?.url ? '-2rem' : '0' }}>
+          {/* Title overlay on cover */}
+          <div className="absolute bottom-0 left-0 right-0 px-6 pb-10">
+            <div className="max-w-3xl mx-auto">
+              {post.tags && post.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {post.tags.map((tag: string) => (
+                    <span key={tag} className="badge-pill-sm bg-white/15 text-white border border-white/20">
+                      {TAG_LABELS[tag] || tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <h1 className="text-3xl md:text-5xl font-black text-white mb-3 leading-tight drop-shadow-lg">
+                {post.title}
+              </h1>
+              <div className="flex items-center gap-3 text-sm text-white/70 mono-label">
+                {formattedDate && <span>{formattedDate}</span>}
+                <span>·</span>
+                <span>{readingTime} min read</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Main content area - clean white */}
+      <article className="max-w-3xl mx-auto w-full px-6 pb-28">
         {/* Back link */}
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-bold mono-label text-[#64748b] hover:text-primary transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-sm font-bold mono-label text-[#64748b] hover:text-primary transition-colors pt-8 pb-6"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -113,35 +129,40 @@ export default async function BlogPostPage({ params }: Props) {
           Back to Blog
         </Link>
 
-        {/* Tags */}
-        {post.tags && post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {post.tags.map((tag: string) => (
-              <span key={tag} className="badge-pill-sm bg-primary/10 text-primary">
-                {TAG_LABELS[tag] || tag}
-              </span>
-            ))}
+        {/* If no cover image, show title here instead */}
+        {!post.coverImage?.url && (
+          <div className="pt-16 pb-8 border-b-2 border-[#e2e8f0] mb-10">
+            {post.tags && post.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {post.tags.map((tag: string) => (
+                  <span key={tag} className="badge-pill-sm bg-primary/10 text-primary">
+                    {TAG_LABELS[tag] || tag}
+                  </span>
+                ))}
+              </div>
+            )}
+            <h1 className="text-3xl md:text-5xl font-black text-[#0f172a] mb-4 leading-tight">
+              {post.title}
+            </h1>
+            <div className="flex items-center gap-3 text-sm text-[#94a3b8] mono-label">
+              {formattedDate && <span>{formattedDate}</span>}
+              <span>·</span>
+              <span>{readingTime} min read</span>
+            </div>
           </div>
         )}
 
-        {/* Title */}
-        <h1 className="text-3xl md:text-5xl font-black text-[#0f172a] mb-4 leading-tight">
-          {post.title}
-        </h1>
+        {/* Divider after back link when cover exists */}
+        {post.coverImage?.url && (
+          <div className="border-b-2 border-[#e2e8f0] mb-10" />
+        )}
 
-        {/* Meta: date + reading time */}
-        <div className="flex items-center gap-3 text-sm text-[#94a3b8] mono-label mb-10 pb-6 border-b-2 border-[#e2e8f0]">
-          {formattedDate && <span>{formattedDate}</span>}
-          <span>·</span>
-          <span>{readingTime} min read</span>
-        </div>
-
-        {/* Content */}
+        {/* Rich text content */}
         <PostContent content={post.content as SerializedEditorState} />
 
         {/* Prev / Next Navigation */}
         {(prev || next) && (
-          <div className="flex items-stretch gap-4 mt-20 pt-10 border-t-2 border-[#e2e8f0]">
+          <div className="flex items-stretch gap-4 mt-24 pt-10 border-t-2 border-[#e2e8f0]">
             {prev ? (
               <Link
                 href={`/blog/${prev.slug}`}

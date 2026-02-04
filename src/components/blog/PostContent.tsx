@@ -10,14 +10,8 @@ export default function PostContent({ content }: PostContentProps) {
 
   return (
     <div
-      className="prose prose-slate max-w-none"
+      className="prose"
       dangerouslySetInnerHTML={{ __html: html }}
-      style={{
-        // Base typography
-        lineHeight: '1.8',
-        fontSize: '1rem',
-        color: '#0f172a',
-      }}
     />
   )
 }

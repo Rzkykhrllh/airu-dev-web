@@ -9,10 +9,39 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=production
+      - DATABASE_URI=postgresql://airu:Kamisat0@postgres:5432/airu_blog
+      - PAYLOAD_SECRET=${PAYLOAD_SECRET}
+      - NEXT_PUBLIC_SERVER_URL=http://localhost:3000
     ports:
       - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
     networks:
       - airu-dev-network
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: airu-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=airu
+      - POSTGRES_PASSWORD=Kamisat0
+      - POSTGRES_DB=airu_blog
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airu -d airu_blog"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - airu-dev-network
+
+volumes:
+  postgres_data:
 
 networks:
   airu-dev-network:

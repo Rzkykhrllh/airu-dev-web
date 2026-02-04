@@ -6,6 +6,9 @@ import { notFound } from 'next/navigation'
 import { getPostBySlug, getAdjacentPosts } from '@/lib/posts'
 import PostContent from '@/components/blog/PostContent'
 
+// ISR: revalidate every 60 seconds
+export const revalidate = 60
+
 const TAG_LABELS: Record<string, string> = {
   tech: 'Tech',
   tutorial: 'Tutorial',

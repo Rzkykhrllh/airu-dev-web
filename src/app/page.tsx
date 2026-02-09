@@ -9,6 +9,8 @@ import FloatingCTA from "@/components/FloatingCTA";
 import {
   HeroSection,
   StatsBar,
+  PixelDivider,
+  GameTransition,
   AboutSection,
   SkillsSection,
   TimelineSection,
@@ -37,7 +39,10 @@ export default function Home() {
         const element = document.getElementById(section);
         if (element) {
           const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
             setActiveSection(section);
             return;
           }
@@ -54,16 +59,17 @@ export default function Home() {
   }, []);
 
   return (
-    <div
-      className="min-h-screen grid-pattern"
-      data-theme="joints"
-    >
+    <div className="min-h-screen grid-pattern" data-theme="joints">
       {/* ThemeSwitcher hidden temporarily - using "joints" theme as default */}
       <Header scrolled={scrolled} />
       <FloatingSidebar scrolled={scrolled} activeSection={activeSection} />
 
       <HeroSection />
-      <StatsBar />
+
+      {/* Try both dividers - comment out one */}
+      <PixelDivider />
+      {/* <GameTransition /> */}
+
       <AboutSection />
       <SkillsSection />
       <TimelineSection />

@@ -1,5 +1,7 @@
 export { default as HeroSection } from "./HeroSection";
 export { default as StatsBar } from "./StatsBar";
+export { default as PixelDivider } from "./PixelDivider";
+export { default as GameTransition } from "./GameTransition";
 export { default as AboutSection } from "./AboutSection";
 export { default as SkillsSection } from "./SkillsSection";
 export { default as TimelineSection } from "./TimelineSection";

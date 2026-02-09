@@ -7,10 +7,10 @@ export default function ProjectsSection() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
-    <section id="projects" className="py-20 px-6 bg-white">
+    <section id="projects" className="py-20 px-6 bg-paper">
       <div className="max-w-6xl mx-auto">
         {/* Retro section header */}
-        <div className="border-4 border-[#0f172a] bg-white inline-block px-6 py-2 mb-10" style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}>
+        <div className="retro-header mb-10">
           <span className="mono-label font-black text-sm">04. PROJECTS</span>
         </div>
 
@@ -60,15 +60,15 @@ export default function ProjectsSection() {
                 }
               >
                 <div className="flex items-center justify-between gap-4 mb-4">
-                  <h3 className="font-bold text-xl text-[#0f172a]">{project.title}</h3>
-                  <span className={`badge-pill badge-pill-sm ${bgClass} text-white`}>{project.year}</span>
+                  <h3 className="font-bold text-xl text-ink">{project.title}</h3>
+                  <span className={`badge-pill badge-pill-sm ${bgClass} text-paper`}>{project.year}</span>
                 </div>
-                <p className="text-sm text-[#64748b] whitespace-pre-line">
+                <p className="text-sm text-muted whitespace-pre-line">
                   {displayText}
                 </p>
 
                 {isExpandable && (
-                  <div className="flex items-center justify-between mt-4 text-xs text-[#94a3b8]">
+                  <div className="flex items-center justify-between mt-4 text-xs text-muted-light">
                     <span className="mono-label">Details</span>
                     <div className="flex items-center gap-2">
                       <span className="text-[11px] uppercase tracking-wide hint-pulse">
@@ -97,14 +97,14 @@ export default function ProjectsSection() {
                   {project.tech.map((t, i) => (
                     <span
                       key={t}
-                      className="mono-label text-xs text-[#64748b]"
+                      className="mono-label text-xs text-muted"
                     >
                       {t}
                     </span>
                   ))}
                 </div>
                 {links.length > 0 && (
-                  <div className="flex gap-4 pt-3 mt-4 border-t border-dashed border-[#e2e8f0]">
+                  <div className="flex gap-4 pt-3 mt-4 border-t border-dashed border-muted">
                     {links.map((link, linkIndex) => (
                       <a
                         key={link.label}

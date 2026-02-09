@@ -93,7 +93,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           {/* Title overlay on cover */}
           <div className="absolute bottom-0 left-0 right-0 px-6 pb-10">
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-6xl mx-auto px-6">
               {post.tags && post.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-3">
                   {post.tags.map((tag: string) => (
@@ -116,79 +116,81 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       )}
 
-      {/* Main content area - clean white */}
-      <article className="max-w-3xl mx-auto w-full px-6 pb-28">
-        {/* Back link */}
+      {/* Back link — sits on grid background */}
+      <div className="max-w-6xl mx-auto px-6 pt-6 pb-4">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-bold mono-label text-[#64748b] hover:text-primary transition-colors pt-8 pb-6"
+          className="inline-flex items-center gap-2 text-sm font-bold mono-label text-[#64748b] hover:text-primary transition-colors"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           Back to Blog
         </Link>
+      </div>
 
-        {/* If no cover image, show title here instead */}
-        {!post.coverImage?.url && (
-          <div className="pt-16 pb-8 border-b-2 border-[#e2e8f0] mb-10">
-            {post.tags && post.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-4">
-                {post.tags.map((tag: string) => (
-                  <span key={tag} className="badge-pill-sm bg-primary/10 text-primary">
-                    {TAG_LABELS[tag] || tag}
-                  </span>
-                ))}
+      {/* Full-width white content area with border */}
+      <section className="max-w-6xl mx-auto px-6">
+        <article className="bg-white border-2 border-[#e2e8f0] w-full px-6 py-10 pb-28">
+          {/* Full-width content */}
+          <div>
+            {/* If no cover image, show title here */}
+            {!post.coverImage?.url && (
+              <div className="pb-8 border-b-2 border-[#e2e8f0] mb-10">
+                {post.tags && post.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {post.tags.map((tag: string) => (
+                      <span key={tag} className="badge-pill-sm bg-primary/10 text-primary">
+                        {TAG_LABELS[tag] || tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <h1 className="text-3xl md:text-5xl font-black text-[#0f172a] mb-4 leading-tight">
+                  {post.title}
+                </h1>
+                <div className="flex items-center gap-3 text-sm text-[#94a3b8] mono-label">
+                  {formattedDate && <span>{formattedDate}</span>}
+                  <span>·</span>
+                  <span>{readingTime} min read</span>
+                </div>
               </div>
             )}
-            <h1 className="text-3xl md:text-5xl font-black text-[#0f172a] mb-4 leading-tight">
-              {post.title}
-            </h1>
-            <div className="flex items-center gap-3 text-sm text-[#94a3b8] mono-label">
-              {formattedDate && <span>{formattedDate}</span>}
-              <span>·</span>
-              <span>{readingTime} min read</span>
-            </div>
-          </div>
-        )}
 
-        {/* Divider after back link when cover exists */}
-        {post.coverImage?.url && (
-          <div className="border-b-2 border-[#e2e8f0] mb-10" />
-        )}
+            {/* Rich text content */}
+            <PostContent content={post.content as SerializedEditorState} />
 
-        {/* Rich text content */}
-        <PostContent content={post.content as SerializedEditorState} />
+            {/* Prev / Next Navigation — flat cards, no floating effect */}
+            {(prev || next) && (
+              <div className="flex items-stretch gap-4 mt-24 pt-10 border-t-2 border-[#e2e8f0]">
+                {prev ? (
+                  <Link
+                    href={`/blog/${prev.slug}`}
+                    className="flex-1 bg-white border-2 border-[#e2e8f0] rounded-lg p-5 flex flex-col justify-between transition-colors hover:border-primary"
+                  >
+                    <span className="text-xs font-bold mono-label text-[#94a3b8] mb-2">← Previous</span>
+                    <span className="text-sm font-bold text-[#0f172a]">{prev.title}</span>
+                  </Link>
+                ) : (
+                  <div className="flex-1" />
+                )}
 
-        {/* Prev / Next Navigation */}
-        {(prev || next) && (
-          <div className="flex items-stretch gap-4 mt-24 pt-10 border-t-2 border-[#e2e8f0]">
-            {prev ? (
-              <Link
-                href={`/blog/${prev.slug}`}
-                className="flex-1 project-card rounded-lg p-5 flex flex-col justify-between transition-all hover:-translate-y-1"
-              >
-                <span className="text-xs font-bold mono-label text-[#94a3b8] mb-2">← Previous</span>
-                <span className="text-sm font-bold text-[#0f172a]">{prev.title}</span>
-              </Link>
-            ) : (
-              <div className="flex-1" />
-            )}
-
-            {next ? (
-              <Link
-                href={`/blog/${next.slug}`}
-                className="flex-1 project-card rounded-lg p-5 flex flex-col justify-between items-end text-right transition-all hover:-translate-y-1"
-              >
-                <span className="text-xs font-bold mono-label text-[#94a3b8] mb-2">Next →</span>
-                <span className="text-sm font-bold text-[#0f172a]">{next.title}</span>
-              </Link>
-            ) : (
-              <div className="flex-1" />
+                {next ? (
+                  <Link
+                    href={`/blog/${next.slug}`}
+                    className="flex-1 bg-white border-2 border-[#e2e8f0] rounded-lg p-5 flex flex-col justify-between items-end text-right transition-colors hover:border-primary"
+                  >
+                    <span className="text-xs font-bold mono-label text-[#94a3b8] mb-2">Next →</span>
+                    <span className="text-sm font-bold text-[#0f172a]">{next.title}</span>
+                  </Link>
+                ) : (
+                  <div className="flex-1" />
+                )}
+              </div>
             )}
           </div>
-        )}
-      </article>
+        </article>
+      </section>
     </BlogPostLayout>
   )
 }

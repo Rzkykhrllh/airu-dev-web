@@ -78,8 +78,8 @@ body {
 /* Grid pattern background */
 .grid-pattern {
   background-image:
-    linear-gradient(to right, #E5E7EB 1px, transparent 1px),
-    linear-gradient(to bottom, #E5E7EB 1px, transparent 1px);
+    linear-gradient(to right, rgba(203, 213, 225, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(203, 213, 225, 0.4) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
@@ -307,7 +307,6 @@ body {
   font-size: 1.125rem;
   line-height: 1.9;
   color: #334155;
-  max-width: 680px;
 }
 
 .prose h1 {

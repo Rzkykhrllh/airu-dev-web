@@ -19,7 +19,7 @@ export default function BlogPostLayout({ children }: BlogPostLayoutProps) {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white" data-theme="joints">
+    <div className="min-h-screen bg-white grid-pattern" data-theme="joints">
       <Header scrolled={scrolled} />
       {children}
     </div>

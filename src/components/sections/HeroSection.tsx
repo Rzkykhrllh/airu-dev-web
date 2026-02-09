@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { FaPlay, FaDownload, FaEnvelope } from "react-icons/fa";
 
 export default function HeroSection() {
   const [displayText, setDisplayText] = useState("");
@@ -178,8 +179,20 @@ export default function HeroSection() {
                 style={{ boxShadow: "4px 4px 0 rgba(15, 23, 42, 0.5)" }}
               >
                 <span className="flex items-center justify-center gap-2">
-                  <span>▶</span>
+                  <FaPlay className="w-3 h-3" />
                   START
+                </span>
+              </a>
+
+              <a
+                href="/cv-rizky-khairullah.pdf"
+                download
+                className="group relative border-4 border-[#0f172a] px-6 py-3 bg-secondary text-white font-black mono-label text-sm hover:bg-transparent hover:text-[#0f172a] transition-all"
+                style={{ boxShadow: "4px 4px 0 rgba(15, 23, 42, 0.5)" }}
+              >
+                <span className="flex items-center justify-center gap-2">
+                  <FaDownload className="w-3 h-3" />
+                  CV
                 </span>
               </a>
 
@@ -189,7 +202,7 @@ export default function HeroSection() {
                 style={{ boxShadow: "4px 4px 0 rgba(15, 23, 42, 0.5)" }}
               >
                 <span className="flex items-center justify-center gap-2">
-                  <span>✉</span>
+                  <FaEnvelope className="w-3 h-3" />
                   CONTACT
                 </span>
               </a>

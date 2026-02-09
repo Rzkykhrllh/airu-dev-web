@@ -9,8 +9,9 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-20 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
-        <div className="section-bar mb-10">
-          <span className="mr-2">04.</span> Projects
+        {/* Retro section header */}
+        <div className="border-4 border-[#0f172a] bg-white inline-block px-6 py-2 mb-10" style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}>
+          <span className="mono-label font-black text-sm">04. PROJECTS</span>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -8,13 +8,18 @@ interface FloatingSidebarProps {
   activeSection: string;
 }
 
-export default function FloatingSidebar({ scrolled, activeSection }: FloatingSidebarProps) {
+export default function FloatingSidebar({
+  scrolled,
+  activeSection,
+}: FloatingSidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
     <nav
       className={`fixed left-4 top-1/2 -translate-y-1/2 z-40 hidden xl:block transition-all duration-500 ease-out ${
-        scrolled ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8 pointer-events-none"
+        scrolled
+          ? "opacity-100 translate-x-0"
+          : "opacity-0 -translate-x-8 pointer-events-none"
       }`}
     >
       <div
@@ -23,9 +28,13 @@ export default function FloatingSidebar({ scrolled, activeSection }: FloatingSid
         }`}
       >
         {/* Header with collapse button */}
-        <div className={`flex items-center justify-between mb-2 ${collapsed ? "flex-col gap-2" : ""}`}>
+        <div
+          className={`flex items-center justify-between mb-2 ${collapsed ? "flex-col gap-2" : ""}`}
+        >
           {!collapsed && (
-            <div className="text-xs font-bold mono-label text-[#64748b] px-1">Navigate</div>
+            <div className="text-xs font-bold mono-label text-[#64748b] px-1">
+              Navigate
+            </div>
           )}
           <button
             onClick={() => setCollapsed(!collapsed)}
@@ -38,21 +47,28 @@ export default function FloatingSidebar({ scrolled, activeSection }: FloatingSid
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+              />
             </svg>
           </button>
         </div>
 
         <div className="relative flex flex-col gap-0.5">
-          {/* Vertical line connecting dots */}
-          {!collapsed && <div className="absolute left-3 top-4 bottom-4 w-0.5 bg-[#e2e8f0]" />}
+          {/* Vertical line */}
+          {!collapsed && (
+            <div className="absolute left-[12px] top-4 bottom-4 w-0.5 bg-[#e2e8f0]" />
+          )}
 
           {navSections.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
               className={`group relative flex items-center gap-2.5 py-2 rounded transition-all duration-200 ${
-                collapsed ? "px-1.5 justify-center" : "px-2"
+                collapsed ? "px-1.5 justify-center" : "pl-2 pr-2"
               } ${
                 activeSection === item.id
                   ? "text-[#0f172a]"
@@ -60,11 +76,13 @@ export default function FloatingSidebar({ scrolled, activeSection }: FloatingSid
               }`}
               onClick={(e) => {
                 e.preventDefault();
-                document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+                document
+                  .getElementById(item.id)
+                  ?.scrollIntoView({ behavior: "smooth" });
               }}
               title={collapsed ? item.label : undefined}
             >
-              {/* Dot */}
+              {/* Bullet dot on line */}
               <div
                 className={`relative z-10 shrink-0 w-2.5 h-2.5 rounded-full border-2 transition-all duration-300 ${
                   activeSection === item.id
@@ -72,19 +90,30 @@ export default function FloatingSidebar({ scrolled, activeSection }: FloatingSid
                     : "bg-white border-[#cbd5e1] group-hover:border-[#94a3b8]"
                 }`}
               />
-              {!collapsed && (
-                <>
-                  <span className={`text-sm ${activeSection === item.id ? "" : "opacity-70"}`}>
-                    {item.icon}
-                  </span>
-                  <span
-                    className={`text-xs font-bold mono-label whitespace-nowrap ${
-                      activeSection === item.id ? "font-black" : ""
+
+              {/* Icon */}
+              <div className="relative z-10 shrink-0 flex items-center justify-center">
+                {typeof item.icon === "function" ? (
+                  <item.icon
+                    className={`w-4 h-4 transition-all duration-300 ${
+                      activeSection === item.id
+                        ? "text-primary"
+                        : "text-[#94a3b8] group-hover:text-[#64748b]"
                     }`}
-                  >
-                    {item.label}
-                  </span>
-                </>
+                  />
+                ) : (
+                  <span className="text-sm">{item.icon}</span>
+                )}
+              </div>
+
+              {!collapsed && (
+                <span
+                  className={`text-xs font-bold mono-label whitespace-nowrap ${
+                    activeSection === item.id ? "font-black" : ""
+                  }`}
+                >
+                  {item.label}
+                </span>
               )}
             </a>
           ))}

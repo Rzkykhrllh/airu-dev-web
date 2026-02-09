@@ -23,6 +23,7 @@ import {
   SiPostman,
   SiNotion,
 } from "react-icons/si";
+import { FaUser, FaBolt, FaMapMarkerAlt, FaRocket, FaEnvelope } from "react-icons/fa";
 import { IconType } from "react-icons";
 
 // Theme config - colors for preview dots, actual colors in globals.css
@@ -80,7 +81,7 @@ export const themes = [
 
 export const techStack = {
   frontend: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Vue.js"],
-  backend: ["Node.js", "Express.js", "Python", "FastAPI", "Django", "PostgreSQL", "MongoDB", "Redis"],
+  backend: ["Node.js", "Express.js", "Python", "FastAPI", "Django", "PostgreSQL", "MongoDB",],
   devops: ["Docker", "Grafana", "Prometheus", "Rundeck", "GitHub Actions"],
   tools: ["Git", "VS Code", "Figma", "Postman", "Notion", "Claude Code"],
 };
@@ -214,9 +215,9 @@ export const projectsData = [
 ];
 
 export const navSections = [
-  { id: "about", label: "About", icon: "👤" },
-  { id: "skills", label: "Skills", icon: "⚡" },
-  { id: "timeline", label: "Journey", icon: "📍" },
-  { id: "projects", label: "Projects", icon: "🚀" },
-  { id: "contact", label: "Contact", icon: "✉️" },
+  { id: "about", label: "About", icon: FaUser },
+  { id: "skills", label: "Skills", icon: FaBolt },
+  { id: "timeline", label: "Journey", icon: FaMapMarkerAlt },
+  { id: "projects", label: "Projects", icon: FaRocket },
+  { id: "contact", label: "Contact", icon: FaEnvelope },
 ];

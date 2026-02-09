@@ -4,8 +4,9 @@ export default function SkillsSection() {
   return (
     <section id="skills" className="py-20 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
-        <div className="section-bar mb-10">
-          <span className="mr-2">02.</span> Tech Stack
+        {/* Retro section header */}
+        <div className="border-4 border-[#0f172a] bg-white inline-block px-6 py-2 mb-10" style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}>
+          <span className="mono-label font-black text-sm">02. TECH STACK</span>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">

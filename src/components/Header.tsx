@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { FaCamera, FaGamepad } from "react-icons/fa";
 
 interface HeaderProps {
   scrolled: boolean;
@@ -84,7 +85,7 @@ export default function Header({ scrolled }: HeaderProps) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 px-5 py-3 text-sm font-bold mono-label text-[#64748b] hover:bg-[#f8fafc] hover:text-primary transition-colors whitespace-nowrap"
               >
-                <span>📷</span>
+                <FaCamera className="w-4 h-4" />
                 Photography
                 <svg className="w-3 h-3 ml-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -96,7 +97,7 @@ export default function Header({ scrolled }: HeaderProps) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 px-5 py-3 text-sm font-bold mono-label text-[#64748b] hover:bg-[#f8fafc] hover:text-secondary transition-colors whitespace-nowrap border-t border-[#e2e8f0]"
               >
-                <span>🎮</span>
+                <FaGamepad className="w-4 h-4" />
                 Hub
                 <svg className="w-3 h-3 ml-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -111,16 +112,18 @@ export default function Header({ scrolled }: HeaderProps) {
           {/* Contact CTA */}
           <Link
             href="/#contact"
-            className="nav-item bg-primary text-white text-sm font-bold mono-label px-5 py-2 transition-all transform -rotate-1 hover:rotate-0 shadow-md hover:shadow-lg"
+            className="border-4 border-[#0f172a] bg-primary text-white text-sm font-black mono-label px-5 py-2 hover:bg-white hover:text-[#0f172a] transition-all"
+            style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}
           >
-            Contact
+            CONTACT
           </Link>
         </nav>
         <Link
           href="/#contact"
-          className="md:hidden bg-primary text-white px-4 py-2 text-sm font-bold mono-label transform -rotate-2"
+          className="md:hidden border-4 border-[#0f172a] bg-primary text-white px-4 py-2 text-sm font-black mono-label hover:bg-white hover:text-[#0f172a] transition-all"
+          style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}
         >
-          Say Hi
+          CONTACT
         </Link>
       </div>
     </header>

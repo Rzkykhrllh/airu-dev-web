@@ -36,7 +36,7 @@ export default function ContactSection() {
               Email Me
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/Rzkykhrllh"
               target="_blank"
               rel="noopener noreferrer"
               className="tilt-right bg-[#0f172a] text-white px-8 py-4 font-bold mono-label flex items-center gap-2 shadow-lg"
@@ -51,7 +51,7 @@ export default function ContactSection() {
               GitHub
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/airu/"
               target="_blank"
               rel="noopener noreferrer"
               className="border-2 border-[#0f172a] text-[#0f172a] px-8 py-4 font-bold mono-label flex items-center gap-2 hover:bg-[#0f172a] hover:text-white transition-colors"

@@ -35,12 +35,13 @@ export default function TimelineSection() {
   return (
     <section id="timeline" className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="section-bar mb-10">
-          <span className="mr-2">03.</span> Journey
+        {/* Retro section header */}
+        <div className="border-4 border-[#0f172a] bg-white inline-block px-6 py-2 mb-10" style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}>
+          <span className="mono-label font-black text-sm">03. JOURNEY</span>
         </div>
 
         <div className="mb-8">
-          <h3 className="text-3xl font-black mb-4 text-[#0f172a]">
+          <h3 className="text-3xl font-black mb-4 text-[#0f172a]" style={{ fontFamily: 'monospace', letterSpacing: '0.05em' }}>
             MY <span className="text-primary">TIMELINE</span>
           </h3>
           <p className="leading-relaxed text-[#64748b] max-w-2xl">

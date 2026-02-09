@@ -2,12 +2,13 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="section-bar mb-10">
-          <span className="mr-2">05.</span> Contact
+        {/* Retro section header */}
+        <div className="border-4 border-[#0f172a] bg-white inline-block px-6 py-2 mb-10" style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}>
+          <span className="mono-label font-black text-sm">05. CONTACT</span>
         </div>
 
         <div className="max-w-2xl">
-          <h3 className="text-4xl md:text-5xl font-black mb-6 text-[#0f172a]">
+          <h3 className="text-4xl md:text-5xl font-black mb-6 text-[#0f172a]" style={{ fontFamily: 'monospace', letterSpacing: '0.05em' }}>
             LET&apos;S <span className="text-primary">WORK</span> TOGETHER
           </h3>
           <p className="text-lg mb-8 text-[#64748b]">
@@ -18,7 +19,8 @@ export default function ContactSection() {
           <div className="flex flex-wrap gap-4">
             <a
               href="mailto:m.rizky.khairullah@gmail.com"
-              className="tilt-left bg-primary text-white px-8 py-4 font-bold mono-label flex items-center gap-2 shadow-lg"
+              className="border-4 border-[#0f172a] bg-primary text-white px-8 py-4 font-black mono-label flex items-center gap-2 hover:bg-transparent hover:text-[#0f172a] transition-all transform -rotate-1 hover:-rotate-3"
+              style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}
             >
               <svg
                 className="w-5 h-5"
@@ -33,13 +35,14 @@ export default function ContactSection() {
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
-              Email Me
+              EMAIL
             </a>
             <a
               href="https://github.com/Rzkykhrllh"
               target="_blank"
               rel="noopener noreferrer"
-              className="tilt-right bg-[#0f172a] text-white px-8 py-4 font-bold mono-label flex items-center gap-2 shadow-lg"
+              className="border-4 border-[#0f172a] bg-[#0f172a] text-white px-8 py-4 font-black mono-label flex items-center gap-2 hover:bg-white hover:text-[#0f172a] transition-all transform rotate-1 hover:rotate-3"
+              style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -48,18 +51,19 @@ export default function ContactSection() {
                   clipRule="evenodd"
                 />
               </svg>
-              GitHub
+              GITHUB
             </a>
             <a
               href="https://www.linkedin.com/in/airu/"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-[#0f172a] text-[#0f172a] px-8 py-4 font-bold mono-label flex items-center gap-2 hover:bg-[#0f172a] hover:text-white transition-colors"
+              className="border-4 border-[#0f172a] bg-white text-[#0f172a] px-8 py-4 font-black mono-label flex items-center gap-2 hover:bg-[#0f172a] hover:text-white transition-all transform -rotate-1 hover:-rotate-3"
+              style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
               </svg>
-              LinkedIn
+              LINKEDIN
             </a>
           </div>
         </div>

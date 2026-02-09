@@ -10,18 +10,10 @@ export default function StatsBar() {
         </div>
         <div className="text-center">
           <div className="text-4xl md:text-5xl font-black text-primary">
-            20+
+            1000+
           </div>
           <div className="mono-label text-xs mt-2 text-slate-400">
-            Projects Done
-          </div>
-        </div>
-        <div className="text-center">
-          <div className="text-4xl md:text-5xl font-black text-secondary">
-            100%
-          </div>
-          <div className="mono-label text-xs mt-2 text-slate-400">
-            Dedication
+            Cups of Coffee
           </div>
         </div>
       </div>

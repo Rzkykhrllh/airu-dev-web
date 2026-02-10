@@ -25,7 +25,7 @@ export default function AboutSection() {
           </div>
 
           {/* Retro info cards */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="border-4 border-[#0f172a] bg-primary text-white p-5 transform -rotate-1 hover:-rotate-3 transition-transform" style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}>
               <FaMapMarkerAlt className="w-6 h-6 mb-2" />
               <div className="mono-label text-xs text-white/70 mb-1">LOCATION</div>

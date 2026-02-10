@@ -8,18 +8,18 @@ export default function ContactSection() {
         </div>
 
         <div className="max-w-2xl">
-          <h3 className="text-4xl md:text-5xl font-black mb-6 text-[#0f172a]" style={{ fontFamily: 'monospace', letterSpacing: '0.05em' }}>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 text-[#0f172a]" style={{ fontFamily: 'monospace', letterSpacing: '0.05em' }}>
             LET&apos;S <span className="text-primary">WORK</span> TOGETHER
           </h3>
-          <p className="text-lg mb-8 text-[#64748b]">
+          <p className="text-base sm:text-lg mb-8 text-[#64748b]">
             Have a project in mind or just want to say hi? I&apos;m always open
             to discussing new opportunities and ideas.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3 sm:gap-4">
             <a
               href="mailto:m.rizky.khairullah@gmail.com"
-              className="border-4 border-[#0f172a] bg-primary text-white px-8 py-4 font-black mono-label flex items-center gap-2 hover:bg-transparent hover:text-[#0f172a] transition-all transform -rotate-1 hover:-rotate-3"
+              className="border-4 border-[#0f172a] bg-primary text-white px-6 py-3 sm:px-8 sm:py-4 font-black mono-label flex items-center gap-2 hover:bg-transparent hover:text-[#0f172a] transition-all transform -rotate-1 hover:-rotate-3 text-sm sm:text-base"
               style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}
             >
               <svg
@@ -41,7 +41,7 @@ export default function ContactSection() {
               href="https://github.com/Rzkykhrllh"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-4 border-[#0f172a] bg-[#0f172a] text-white px-8 py-4 font-black mono-label flex items-center gap-2 hover:bg-white hover:text-[#0f172a] transition-all transform rotate-1 hover:rotate-3"
+              className="border-4 border-[#0f172a] bg-[#0f172a] text-white px-6 py-3 sm:px-8 sm:py-4 font-black mono-label flex items-center gap-2 hover:bg-white hover:text-[#0f172a] transition-all transform rotate-1 hover:rotate-3 text-sm sm:text-base"
               style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -57,7 +57,7 @@ export default function ContactSection() {
               href="https://www.linkedin.com/in/airu/"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-4 border-[#0f172a] bg-white text-[#0f172a] px-8 py-4 font-black mono-label flex items-center gap-2 hover:bg-[#0f172a] hover:text-white transition-all transform -rotate-1 hover:-rotate-3"
+              className="border-4 border-[#0f172a] bg-white text-[#0f172a] px-6 py-3 sm:px-8 sm:py-4 font-black mono-label flex items-center gap-2 hover:bg-[#0f172a] hover:text-white transition-all transform -rotate-1 hover:-rotate-3 text-sm sm:text-base"
               style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

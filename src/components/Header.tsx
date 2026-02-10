@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { FaCamera, FaGamepad } from "react-icons/fa";
+import { FaCamera, FaGamepad, FaBars, FaTimes } from "react-icons/fa";
 
 interface HeaderProps {
   scrolled: boolean;
@@ -11,6 +11,7 @@ interface HeaderProps {
 
 export default function Header({ scrolled }: HeaderProps) {
   const [othersOpen, setOthersOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const isBlogPage = pathname === "/blog";
@@ -111,12 +112,68 @@ export default function Header({ scrolled }: HeaderProps) {
             CONTACT
           </Link>
         </nav>
-        <Link
-          href="/#contact"
-          className="md:hidden border-4 border-ink bg-primary text-paper px-4 py-2 text-sm font-black mono-label hover:bg-paper hover:text-ink transition-all retro-shadow-strong"
+        {/* Mobile menu button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden border-4 border-ink bg-paper text-ink p-2 hover:bg-ink hover:text-paper transition-all retro-shadow"
         >
-          CONTACT
-        </Link>
+          {mobileMenuOpen ? <FaTimes className="w-5 h-5" /> : <FaBars className="w-5 h-5" />}
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      <div
+        className={`md:hidden border-t-4 border-ink bg-paper transition-all duration-300 overflow-hidden ${
+          mobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav className="px-6 py-4 space-y-2">
+          <Link
+            href="/"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`block text-sm font-bold mono-label px-4 py-3 border-2 border-ink transition-all ${
+              isHomePage ? "bg-primary text-paper" : "bg-paper text-muted hover:bg-paper-soft"
+            }`}
+          >
+            Home
+          </Link>
+          <Link
+            href="/blog"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`block text-sm font-bold mono-label px-4 py-3 border-2 border-ink transition-all ${
+              isBlogPage ? "bg-primary text-paper" : "bg-paper text-muted hover:bg-paper-soft"
+            }`}
+          >
+            Blog
+          </Link>
+          <a
+            href="https://byairu.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 text-sm font-bold mono-label px-4 py-3 border-2 border-ink bg-paper text-muted hover:bg-paper-soft transition-all"
+          >
+            <FaCamera className="w-4 h-4" />
+            Photography
+          </a>
+          <a
+            href="https://hub.airu.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 text-sm font-bold mono-label px-4 py-3 border-2 border-ink bg-paper text-muted hover:bg-paper-soft transition-all"
+          >
+            <FaGamepad className="w-4 h-4" />
+            Hub
+          </a>
+          <Link
+            href="/#contact"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-center border-4 border-ink bg-primary text-paper px-4 py-3 font-black mono-label hover:bg-paper hover:text-ink transition-all retro-shadow-strong"
+          >
+            CONTACT
+          </Link>
+        </nav>
       </div>
     </header>
   );

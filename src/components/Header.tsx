@@ -18,15 +18,13 @@ export default function Header({ scrolled }: HeaderProps) {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg py-2"
-          : "bg-transparent py-4"
+        scrolled ? "py-2 border-b-4 border-ink bg-paper" : "py-4"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <Link
           href="/"
-          className="font-black text-xl transform -rotate-2 hover:rotate-0 transition-transform text-[#0f172a]"
+          className="font-black text-xl transform -rotate-2 hover:rotate-0 transition-transform text-ink"
         >
           AIRU<span className="text-primary">.</span>
         </Link>
@@ -35,9 +33,7 @@ export default function Header({ scrolled }: HeaderProps) {
           <Link
             href="/"
             className={`nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:-rotate-2 ${
-              isHomePage
-                ? "text-primary bg-primary/10 rounded-lg"
-                : "text-[#64748b] hover:text-primary"
+              isHomePage ? "text-primary" : "text-muted hover:text-primary"
             }`}
           >
             Home
@@ -47,9 +43,7 @@ export default function Header({ scrolled }: HeaderProps) {
           <Link
             href="/blog"
             className={`nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:rotate-2 ${
-              isBlogPage
-                ? "text-primary bg-primary/10 rounded-lg"
-                : "text-[#64748b] hover:text-primary"
+              isBlogPage ? "text-primary" : "text-muted hover:text-primary"
             }`}
           >
             Blog
@@ -61,7 +55,7 @@ export default function Header({ scrolled }: HeaderProps) {
             onMouseEnter={() => setOthersOpen(true)}
             onMouseLeave={() => setOthersOpen(false)}
           >
-            <button className="text-sm font-bold mono-label px-4 py-2 transition-all transform hover:-rotate-2 text-[#64748b] flex flex-row items-center gap-1.5">
+            <button className="text-sm font-bold mono-label px-4 py-2 transition-all transform hover:-rotate-2 text-muted flex flex-row items-center gap-1.5">
               Others
               <svg
                 className={`w-3 h-3 transition-transform duration-200 ${othersOpen ? "rotate-180" : ""}`}
@@ -75,7 +69,7 @@ export default function Header({ scrolled }: HeaderProps) {
 
             {/* Dropdown Menu */}
             <div
-              className={`absolute top-full right-0 mt-2 bg-white border-2 border-[#e2e8f0] shadow-lg rounded-lg overflow-hidden transition-all duration-200 ${
+              className={`absolute top-full right-0 mt-2 bg-paper border-4 border-ink retro-shadow overflow-hidden transition-all duration-200 ${
                 othersOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 invisible"
               }`}
             >
@@ -83,7 +77,7 @@ export default function Header({ scrolled }: HeaderProps) {
                 href="https://byairu.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-5 py-3 text-sm font-bold mono-label text-[#64748b] hover:bg-[#f8fafc] hover:text-primary transition-colors whitespace-nowrap"
+                className="flex items-center gap-3 px-5 py-3 text-sm font-bold mono-label text-muted hover:bg-paper-soft hover:text-primary transition-colors whitespace-nowrap"
               >
                 <FaCamera className="w-4 h-4" />
                 Photography
@@ -95,7 +89,7 @@ export default function Header({ scrolled }: HeaderProps) {
                 href="https://hub.airu.dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-5 py-3 text-sm font-bold mono-label text-[#64748b] hover:bg-[#f8fafc] hover:text-secondary transition-colors whitespace-nowrap border-t border-[#e2e8f0]"
+                className="flex items-center gap-3 px-5 py-3 text-sm font-bold mono-label text-muted hover:bg-paper-soft hover:text-secondary transition-colors whitespace-nowrap border-t-2 border-ink"
               >
                 <FaGamepad className="w-4 h-4" />
                 Hub
@@ -107,21 +101,19 @@ export default function Header({ scrolled }: HeaderProps) {
           </div>
 
           {/* Divider */}
-          <div className="w-px h-5 bg-[#e2e8f0]"></div>
+          <div className="w-px h-5 bg-border"></div>
 
           {/* Contact CTA */}
           <Link
             href="/#contact"
-            className="border-4 border-[#0f172a] bg-primary text-white text-sm font-black mono-label px-5 py-2 hover:bg-white hover:text-[#0f172a] transition-all"
-            style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}
+            className="border-4 border-ink bg-primary text-paper text-sm font-black mono-label px-5 py-2 hover:bg-paper hover:text-ink transition-all retro-shadow-strong"
           >
             CONTACT
           </Link>
         </nav>
         <Link
           href="/#contact"
-          className="md:hidden border-4 border-[#0f172a] bg-primary text-white px-4 py-2 text-sm font-black mono-label hover:bg-white hover:text-[#0f172a] transition-all"
-          style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}
+          className="md:hidden border-4 border-ink bg-primary text-paper px-4 py-2 text-sm font-black mono-label hover:bg-paper hover:text-ink transition-all retro-shadow-strong"
         >
           CONTACT
         </Link>

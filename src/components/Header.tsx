@@ -128,6 +128,7 @@ export default function Header({ scrolled }: HeaderProps) {
         }`}
       >
         <nav className="px-6 py-4 space-y-2">
+          {/* Home */}
           <Link
             href="/"
             onClick={() => setMobileMenuOpen(false)}
@@ -137,6 +138,42 @@ export default function Header({ scrolled }: HeaderProps) {
           >
             Home
           </Link>
+
+          {/* Page-level navigation (only show on home page) */}
+          {isHomePage && (
+            <>
+              <a
+                href="#about"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-sm font-bold mono-label px-4 py-3 border-2 border-ink bg-paper text-muted hover:bg-paper-soft transition-all"
+              >
+                About
+              </a>
+              <a
+                href="#skills"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-sm font-bold mono-label px-4 py-3 border-2 border-ink bg-paper text-muted hover:bg-paper-soft transition-all"
+              >
+                Skills
+              </a>
+              <a
+                href="#timeline"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-sm font-bold mono-label px-4 py-3 border-2 border-ink bg-paper text-muted hover:bg-paper-soft transition-all"
+              >
+                Journey
+              </a>
+              <a
+                href="#projects"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-sm font-bold mono-label px-4 py-3 border-2 border-ink bg-paper text-muted hover:bg-paper-soft transition-all"
+              >
+                Projects
+              </a>
+            </>
+          )}
+
+          {/* Blog */}
           <Link
             href="/blog"
             onClick={() => setMobileMenuOpen(false)}
@@ -146,6 +183,8 @@ export default function Header({ scrolled }: HeaderProps) {
           >
             Blog
           </Link>
+
+          {/* Photography */}
           <a
             href="https://byairu.com"
             target="_blank"
@@ -156,6 +195,8 @@ export default function Header({ scrolled }: HeaderProps) {
             <FaCamera className="w-4 h-4" />
             Photography
           </a>
+
+          {/* Hub */}
           <a
             href="https://hub.airu.dev"
             target="_blank"
@@ -166,6 +207,8 @@ export default function Header({ scrolled }: HeaderProps) {
             <FaGamepad className="w-4 h-4" />
             Hub
           </a>
+
+          {/* Contact CTA */}
           <Link
             href="/#contact"
             onClick={() => setMobileMenuOpen(false)}

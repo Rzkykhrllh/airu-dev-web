@@ -8,6 +8,17 @@
   --secondary: #10b981;
   --accent: #f59e0b;
   --muted: #64748b;
+  
+  /* Retro game theme colors */
+  --retro-ink: #0f172a;
+  --retro-night: #1e293b;
+  --retro-paper: #ffffff;
+  --retro-paper-soft: #f8fafc;
+  --retro-paper-muted: #f1f5f9;
+  --retro-border: #e2e8f0;
+  --retro-muted: #64748b;
+  --retro-muted-light: #94a3b8;
+  --retro-shadow: rgba(15, 23, 42, 0.3);
 }
 
 /* Theme: Coral + Teal */
@@ -273,6 +284,24 @@ body {
 .border-primary { border-color: var(--primary); }
 .border-secondary { border-color: var(--secondary); }
 .border-accent { border-color: var(--accent); }
+
+/* Retro theme utility classes */
+.bg-ink { background-color: var(--retro-ink); }
+.bg-paper { background-color: var(--retro-paper); }
+.bg-paper-soft { background-color: var(--retro-paper-soft); }
+.bg-paper-muted { background-color: var(--retro-paper-muted); }
+.text-ink { color: var(--retro-ink); }
+.text-paper { color: var(--retro-paper); }
+.text-muted { color: var(--retro-muted); }
+.text-muted-light { color: var(--retro-muted-light); }
+.border-ink { border-color: var(--retro-ink); }
+.border-border { border-color: var(--retro-border); }
+.border-muted { border-color: var(--retro-muted); }
+.border-muted-light { border-color: var(--retro-muted-light); }
+
+/* Retro shadows */
+.retro-shadow { box-shadow: 4px 4px 0 var(--retro-shadow); }
+.retro-shadow-strong { box-shadow: 4px 4px 0 var(--retro-ink); }
 
 /* Experience card */
 .experience-card {

@@ -60,7 +60,7 @@ export default function FloatingSidebar({
         <div className="relative flex flex-col gap-0.5">
           {/* Vertical line */}
           {!collapsed && (
-            <div className="absolute left-1.75 top-4 bottom-4 w-0.5 bg-border" />
+            <div className="absolute left-[7px] top-4 bottom-4 w-0.5 bg-border" />
           )}
 
           {navSections.map((item) => (

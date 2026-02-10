@@ -290,6 +290,7 @@ body {
 .bg-paper { background-color: var(--retro-paper); }
 .bg-paper-soft { background-color: var(--retro-paper-soft); }
 .bg-paper-muted { background-color: var(--retro-paper-muted); }
+.bg-border { background-color: var(--retro-border); }
 .text-ink { color: var(--retro-ink); }
 .text-paper { color: var(--retro-paper); }
 .text-muted { color: var(--retro-muted); }

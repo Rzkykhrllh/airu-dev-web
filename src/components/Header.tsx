@@ -129,15 +129,13 @@ export default function Header({ scrolled }: HeaderProps) {
       >
         <nav className="px-6 py-4 space-y-2">
           {/* Home */}
-          <Link
-            href="/"
+          <a
+            href="/#hero"
             onClick={() => setMobileMenuOpen(false)}
-            className={`block text-sm font-bold mono-label px-4 py-3 border-2 border-ink transition-all ${
-              isHomePage ? "bg-primary text-paper" : "bg-paper text-muted hover:bg-paper-soft"
-            }`}
+            className="block text-sm font-bold mono-label px-4 py-3 border-2 border-ink bg-paper text-muted hover:bg-paper-soft transition-all"
           >
             Home
-          </Link>
+          </a>
 
           {/* Page-level navigation (only show on home page) */}
           {isHomePage && (
@@ -208,13 +206,13 @@ export default function Header({ scrolled }: HeaderProps) {
             Hub
           </a>
 
-          {/* Contact CTA */}
+          {/* Contact */}
           <Link
             href="/#contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-center border-4 border-ink bg-primary text-paper px-4 py-3 font-black mono-label hover:bg-paper hover:text-ink transition-all retro-shadow-strong"
+            className="block text-sm font-bold mono-label px-4 py-3 border-2 border-ink bg-paper text-muted hover:bg-paper-soft transition-all"
           >
-            CONTACT
+            Contact
           </Link>
         </nav>
       </div>

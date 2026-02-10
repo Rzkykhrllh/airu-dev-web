@@ -27,7 +27,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 pt-20 pb-16 relative overflow-hidden">
+    <section id="hero" className="min-h-screen flex items-center justify-center px-6 pt-20 pb-16 relative overflow-hidden">
       {/* Pixelated corner decorations */}
       <div
         className="absolute top-8 left-8 w-4 h-4 bg-primary"

@@ -23,8 +23,8 @@ export default function FloatingSidebar({
       }`}
     >
       <div
-        className={`bg-white border-2 border-[#e2e8f0] rounded-lg shadow-lg transition-all duration-300 ease-out overflow-hidden ${
-          collapsed ? "w-12 p-2" : "w-44 p-3"
+        className={`bg-paper border-4 border-ink retro-shadow transition-all duration-300 ease-out overflow-hidden ${
+          collapsed ? "w-12 p-2.5" : "w-40 p-3"
         }`}
       >
         {/* Header with collapse button */}
@@ -32,13 +32,13 @@ export default function FloatingSidebar({
           className={`flex items-center justify-between mb-2 ${collapsed ? "flex-col gap-2" : ""}`}
         >
           {!collapsed && (
-            <div className="text-xs font-bold mono-label text-[#64748b] px-1">
+            <div className="text-xs font-bold mono-label text-muted px-1">
               Navigate
             </div>
           )}
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className="p-1.5 rounded hover:bg-[#f1f5f9] text-[#64748b] hover:text-[#0f172a] transition-colors"
+            className="p-1.5 hover:bg-paper-muted text-muted hover:text-ink transition-colors"
             title={collapsed ? "Expand" : "Collapse"}
           >
             <svg
@@ -60,19 +60,19 @@ export default function FloatingSidebar({
         <div className="relative flex flex-col gap-0.5">
           {/* Vertical line */}
           {!collapsed && (
-            <div className="absolute left-[12px] top-4 bottom-4 w-0.5 bg-[#e2e8f0]" />
+            <div className="absolute left-1.75 top-4 bottom-4 w-0.5 bg-border" />
           )}
 
           {navSections.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
-              className={`group relative flex items-center gap-2.5 py-2 rounded transition-all duration-200 ${
-                collapsed ? "px-1.5 justify-center" : "pl-2 pr-2"
+              className={`group relative flex items-center gap-2.5 py-2 transition-all duration-200 ${
+                collapsed ? "px-1.5 justify-center" : "pl-0 pr-2"
               } ${
                 activeSection === item.id
-                  ? "text-[#0f172a]"
-                  : "text-[#94a3b8] hover:text-[#64748b]"
+                  ? "text-ink"
+                  : "text-muted-light hover:text-muted"
               }`}
               onClick={(e) => {
                 e.preventDefault();
@@ -82,14 +82,17 @@ export default function FloatingSidebar({
               }}
               title={collapsed ? item.label : undefined}
             >
-              {/* Bullet dot on line */}
-              <div
-                className={`relative z-10 shrink-0 w-2.5 h-2.5 rounded-full border-2 transition-all duration-300 ${
-                  activeSection === item.id
-                    ? "bg-primary border-primary scale-125"
-                    : "bg-white border-[#cbd5e1] group-hover:border-[#94a3b8]"
-                }`}
-              />
+              {!collapsed && (
+                <div className="relative z-10 shrink-0 w-4 flex items-center justify-center">
+                  <div
+                    className={`w-2.5 h-2.5 rounded-full border-2 transition-all duration-300 ${
+                      activeSection === item.id
+                        ? "bg-primary border-primary scale-125"
+                        : "bg-paper border-muted group-hover:border-muted-light"
+                    }`}
+                  />
+                </div>
+              )}
 
               {/* Icon */}
               <div className="relative z-10 shrink-0 flex items-center justify-center">
@@ -98,7 +101,7 @@ export default function FloatingSidebar({
                     className={`w-4 h-4 transition-all duration-300 ${
                       activeSection === item.id
                         ? "text-primary"
-                        : "text-[#94a3b8] group-hover:text-[#64748b]"
+                        : "text-muted-light group-hover:text-muted"
                     }`}
                   />
                 ) : (

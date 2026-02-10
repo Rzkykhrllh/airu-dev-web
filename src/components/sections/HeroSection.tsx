@@ -142,8 +142,9 @@ export default function HeroSection() {
               </a>
 
               <a
-                href="/cv-rizky-khairullah.pdf"
-                download
+                href="https://drive.google.com/drive/folders/19NOp4kRA3MVpH47GCEOIpFU9GO5jFj-T?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative border-4 border-ink px-6 py-3 bg-secondary text-paper font-black mono-label text-sm hover:bg-transparent hover:text-ink transition-all retro-shadow-strong"
               >
                 <span className="flex items-center justify-center gap-2">

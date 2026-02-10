@@ -23,8 +23,8 @@ export default function FloatingSidebar({
       }`}
     >
       <div
-        className={`bg-paper border-2 border-muted rounded-lg shadow-lg transition-all duration-300 ease-out overflow-hidden ${
-          collapsed ? "w-12 p-2" : "w-44 p-3"
+        className={`bg-paper border-4 border-ink retro-shadow transition-all duration-300 ease-out overflow-hidden ${
+          collapsed ? "w-12 p-2.5" : "w-40 p-3"
         }`}
       >
         {/* Header with collapse button */}
@@ -38,7 +38,7 @@ export default function FloatingSidebar({
           )}
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className="p-1.5 rounded hover:bg-paper-muted text-muted hover:text-ink transition-colors"
+            className="p-1.5 hover:bg-paper-muted text-muted hover:text-ink transition-colors"
             title={collapsed ? "Expand" : "Collapse"}
           >
             <svg
@@ -60,14 +60,14 @@ export default function FloatingSidebar({
         <div className="relative flex flex-col gap-0.5">
           {/* Vertical line */}
           {!collapsed && (
-            <div className="absolute left-2 top-4 bottom-4 w-0.5 bg-border" />
+            <div className="absolute left-1.75 top-4 bottom-4 w-0.5 bg-border" />
           )}
 
           {navSections.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
-              className={`group relative flex items-center gap-2.5 py-2 rounded transition-all duration-200 ${
+              className={`group relative flex items-center gap-2.5 py-2 transition-all duration-200 ${
                 collapsed ? "px-1.5 justify-center" : "pl-0 pr-2"
               } ${
                 activeSection === item.id
@@ -82,21 +82,22 @@ export default function FloatingSidebar({
               }}
               title={collapsed ? item.label : undefined}
             >
-              {/* Bullet dot on line */}
-              <div className="relative z-10 shrink-0 w-4 flex items-center justify-center">
-                <div
-                  className={`w-2.5 h-2.5 rounded-full border-2 transition-all duration-300 ${
-                    activeSection === item.id
-                      ? "bg-primary border-primary scale-125"
-                      : "bg-paper border-muted group-hover:border-muted-light"
-                  }`}
-                />
-              </div>
+              {!collapsed && (
+                <div className="relative z-10 shrink-0 w-4 flex items-center justify-center">
+                  <div
+                    className={`w-2.5 h-2.5 rounded-full border-2 transition-all duration-300 ${
+                      activeSection === item.id
+                        ? "bg-primary border-primary scale-125"
+                        : "bg-paper border-muted group-hover:border-muted-light"
+                    }`}
+                  />
+                </div>
+              )}
 
               {/* Icon */}
               <div className="relative z-10 shrink-0 flex items-center justify-center">
                 {typeof item.icon === "function" ? (
-                  <item.icon 
+                  <item.icon
                     className={`w-4 h-4 transition-all duration-300 ${
                       activeSection === item.id
                         ? "text-primary"

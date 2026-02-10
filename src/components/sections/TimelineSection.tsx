@@ -84,7 +84,7 @@ export default function TimelineSection() {
                   {/* Timeline Dot */}
                   <div className="hidden md:flex flex-col items-center">
                     <div
-                      className={`w-4 h-4 rounded-full ${colorClass} border-4 border-white shadow-md z-10 transition-transform duration-300 ${
+                      className={`w-4 h-4 rounded-full ${colorClass} border-4 border-paper z-10 transition-transform duration-300 ${
                         isExpanded ? "scale-125" : ""
                       }`}
                     ></div>
@@ -115,13 +115,13 @@ export default function TimelineSection() {
                       <div className="flex items-center gap-2 flex-wrap">
                         {item.label === "current" && (
                           <span
-                            className={`${colorClass} text-paper text-xs font-bold mono-label px-3 py-1 rounded-full`}
+                            className={`${colorClass} text-paper text-xs font-bold mono-label px-3 py-1 border-2 border-ink`}
                           >
                             Current
                           </span>
                         )}
                         {item.type && (
-                          <span className="bg-paper-muted text-muted text-xs font-bold mono-label px-3 py-1 rounded-full">
+                          <span className="bg-paper-muted text-muted text-xs font-bold mono-label px-3 py-1 border-2 border-ink">
                             {item.type}
                           </span>
                         )}

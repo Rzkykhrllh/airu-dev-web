@@ -18,9 +18,7 @@ export default function Header({ scrolled }: HeaderProps) {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-paper-glass backdrop-blur-md shadow-lg py-2"
-          : "bg-transparent py-4"
+        scrolled ? "py-2 border-b-4 border-ink bg-paper" : "py-4"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
@@ -35,9 +33,7 @@ export default function Header({ scrolled }: HeaderProps) {
           <Link
             href="/"
             className={`nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:-rotate-2 ${
-              isHomePage
-                ? "text-primary bg-primary/10 rounded-lg"
-                : "text-muted hover:text-primary"
+              isHomePage ? "text-primary" : "text-muted hover:text-primary"
             }`}
           >
             Home
@@ -47,9 +43,7 @@ export default function Header({ scrolled }: HeaderProps) {
           <Link
             href="/blog"
             className={`nav-item text-sm font-bold mono-label px-4 py-2 transition-all transform hover:rotate-2 ${
-              isBlogPage
-                ? "text-primary bg-primary/10 rounded-lg"
-                : "text-muted hover:text-primary"
+              isBlogPage ? "text-primary" : "text-muted hover:text-primary"
             }`}
           >
             Blog
@@ -69,14 +63,21 @@ export default function Header({ scrolled }: HeaderProps) {
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
 
             {/* Dropdown Menu */}
             <div
-              className={`absolute top-full right-0 mt-2 bg-paper border-2 border-muted shadow-lg rounded-lg overflow-hidden transition-all duration-200 ${
-                othersOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 invisible"
+              className={`absolute top-full right-0 mt-2 bg-paper border-4 border-ink retro-shadow overflow-hidden transition-all duration-200 ${
+                othersOpen
+                  ? "opacity-100 translate-y-0 visible"
+                  : "opacity-0 -translate-y-2 invisible"
               }`}
             >
               <a
@@ -87,8 +88,18 @@ export default function Header({ scrolled }: HeaderProps) {
               >
                 <FaCamera className="w-4 h-4" />
                 Photography
-                <svg className="w-3 h-3 ml-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                <svg
+                  className="w-3 h-3 ml-auto opacity-50"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
                 </svg>
               </a>
               <a
@@ -99,8 +110,18 @@ export default function Header({ scrolled }: HeaderProps) {
               >
                 <FaGamepad className="w-4 h-4" />
                 Hub
-                <svg className="w-3 h-3 ml-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                <svg
+                  className="w-3 h-3 ml-auto opacity-50"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
                 </svg>
               </a>
             </div>

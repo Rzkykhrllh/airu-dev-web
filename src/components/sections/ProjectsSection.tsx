@@ -109,6 +109,8 @@ export default function ProjectsSection() {
                       <a
                         key={link.label}
                         href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         onClick={(event) => event.stopPropagation()}
                         className={`mono-label text-xs hover:underline ${
                           linkTextClasses[linkIndex % linkTextClasses.length]

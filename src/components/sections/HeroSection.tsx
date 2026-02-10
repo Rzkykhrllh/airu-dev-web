@@ -185,8 +185,9 @@ export default function HeroSection() {
               </a>
 
               <a
-                href="/cv-rizky-khairullah.pdf"
-                download
+                href="https://drive.google.com/drive/folders/19NOp4kRA3MVpH47GCEOIpFU9GO5jFj-T?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative border-4 border-[#0f172a] px-6 py-3 bg-secondary text-white font-black mono-label text-sm hover:bg-transparent hover:text-[#0f172a] transition-all"
                 style={{ boxShadow: "4px 4px 0 rgba(15, 23, 42, 0.5)" }}
               >

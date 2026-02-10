@@ -8,6 +8,19 @@
   --secondary: #10b981;
   --accent: #f59e0b;
   --muted: #64748b;
+  --retro-ink: var(--foreground);
+  --retro-night: #1e293b;
+  --retro-paper: #ffffff;
+  --retro-paper-soft: #f8fafc;
+  --retro-paper-muted: #f1f5f9;
+  --retro-border: #e2e8f0;
+  --retro-border-strong: #cbd5e1;
+  --retro-muted: var(--muted);
+  --retro-muted-light: #94a3b8;
+  --retro-muted-dark: #475569;
+  --retro-grid: #e5e7eb;
+  --retro-shadow: rgba(15, 23, 42, 0.3);
+  --retro-shadow-strong: rgba(15, 23, 42, 0.5);
 }
 
 /* Theme: Coral + Teal */
@@ -78,8 +91,8 @@ body {
 /* Grid pattern background */
 .grid-pattern {
   background-image:
-    linear-gradient(to right, #E5E7EB 1px, transparent 1px),
-    linear-gradient(to bottom, #E5E7EB 1px, transparent 1px);
+    linear-gradient(to right, var(--retro-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--retro-grid) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
@@ -159,8 +172,8 @@ body {
 
 /* Project card */
 .project-card {
-  background: white;
-  border: 2px solid #e2e8f0;
+  background: var(--retro-paper);
+  border: 2px solid var(--retro-border);
   transition: all 0.3s ease;
 }
 
@@ -184,7 +197,7 @@ body {
 
 /* Stats section */
 .stats-bar {
-  background: linear-gradient(135deg, var(--foreground) 0%, #1e293b 100%);
+  background: linear-gradient(135deg, var(--foreground) 0%, var(--retro-night) 100%);
 }
 
 /* Gradient text */
@@ -219,7 +232,7 @@ body {
   position: relative;
   padding-left: 24px;
   padding-bottom: 32px;
-  border-left: 3px solid #e2e8f0;
+  border-left: 3px solid var(--retro-border);
 }
 
 .timeline-item:hover {
@@ -246,6 +259,33 @@ body {
 .timeline-item.last {
   border-left-color: transparent;
   padding-bottom: 0;
+}
+
+.bg-ink { background-color: var(--retro-ink); }
+.bg-night { background-color: var(--retro-night); }
+.bg-paper { background-color: var(--retro-paper); }
+.bg-paper-soft { background-color: var(--retro-paper-soft); }
+.bg-paper-muted { background-color: var(--retro-paper-muted); }
+.bg-paper-glass { background-color: rgba(255, 255, 255, 0.95); }
+.bg-border { background-color: var(--retro-border); }
+.text-ink { color: var(--retro-ink); }
+.text-paper { color: var(--retro-paper); }
+.text-muted { color: var(--retro-muted); }
+.text-muted-light { color: var(--retro-muted-light); }
+.text-muted-dark { color: var(--retro-muted-dark); }
+.border-ink { border-color: var(--retro-ink); }
+.border-paper { border-color: var(--retro-paper); }
+.border-muted { border-color: var(--retro-border); }
+.border-muted-light { border-color: var(--retro-border-strong); }
+.retro-shadow { box-shadow: 4px 4px 0 var(--retro-shadow); }
+.retro-shadow-strong { box-shadow: 4px 4px 0 var(--retro-shadow-strong); }
+.pixelated { image-rendering: pixelated; }
+.retro-header {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border: 4px solid var(--retro-ink);
+  background-color: var(--retro-paper);
+  box-shadow: 4px 4px 0 var(--retro-shadow);
 }
 
 /* Floating CTA */

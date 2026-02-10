@@ -196,11 +196,20 @@ export const timelineData = [
 export const projectsData = [
   {
     year: "2025",
+    title: "Yomeru App",
+    desc: `Learn Japanese by reading. Save your texts, click words to add them to your vocabulary bank with meanings, furigana, and custom notes. Watch your vocabulary grow as you read.`,
+    tech: ["Next.js", "TypeScript", "Express.Js", "PostgreSQL", "Prisma ORM"],
+    // demoUrl: "",
+    sourceUrl: "https://github.com/Rzkykhrllh/yomeru-app",
+    color: "primary",
+  },
+  {
+    year: "2024",
     title: "Photography Portfolio Website",
     desc: `End-to-end developed photography portfolio website with a custom admin panel for content and collection management.\n\n The project emphasizes clean UI design, responsive layout, and performance optimization for fast and reliable delivery of high-resolution images in a production environment.`,
     tech: ["Next.js", "Tailwind CSS", "Midtrans API"],
-    demoUrl: "#",
-    sourceUrl: "#",
+    demoUrl: "https://byairu.com/",
+    sourceUrl: "https://github.com/Rzkykhrllh/airu-portfolio-web",
     color: "primary",
   },
   {
@@ -208,8 +217,8 @@ export const projectsData = [
     title: "Into UGM",
     desc: `Event website developed for Into UGM 2022, an academic event organized by IKAGAMASS UGM, supporting event promotion, participant registration, tryout submissions, and online payment processing. The platform successfully handled over 1,000 transactions, ensuring a smooth and reliable user experience throughout the event period.`,
     tech: ["Next.js", "Tailwind CSS", "Midtrans API"],
-    demoUrl: "#",
-    sourceUrl: "#",
+    demoUrl: "",
+    sourceUrl: "https://github.com/Rzkykhrllh/IntoUgm2022",
     color: "primary",
   },
 ];

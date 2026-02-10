@@ -13,7 +13,7 @@ const renderHighlightText = (highlight: string) => {
 
     if (index % 2 === 1) {
       return (
-        <strong key={`${index}-${part}`} className="text-[#0f172a] font-semibold">
+          <strong key={`${index}-${part}`} className="text-ink font-semibold">
           {part}
         </strong>
       );
@@ -36,15 +36,15 @@ export default function TimelineSection() {
     <section id="timeline" className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Retro section header */}
-        <div className="border-4 border-[#0f172a] bg-white inline-block px-6 py-2 mb-10" style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}>
+        <div className="retro-header mb-10">
           <span className="mono-label font-black text-sm">03. JOURNEY</span>
         </div>
 
         <div className="mb-8">
-          <h3 className="text-3xl font-black mb-4 text-[#0f172a]" style={{ fontFamily: 'monospace', letterSpacing: '0.05em' }}>
+          <h3 className="text-3xl font-black mb-4 text-ink" style={{ fontFamily: 'monospace', letterSpacing: '0.05em' }}>
             MY <span className="text-primary">TIMELINE</span>
           </h3>
-          <p className="leading-relaxed text-[#64748b] max-w-2xl">
+          <p className="leading-relaxed text-muted max-w-2xl">
             A quick look at my professional journey so far. Every step taught me
             something valuable.
           </p>
@@ -52,7 +52,7 @@ export default function TimelineSection() {
 
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-1.75 top-4 bottom-4 w-0.75 bg-[#e2e8f0] hidden md:block"></div>
+          <div className="absolute left-1.75 top-4 bottom-4 w-0.75 bg-border hidden md:block"></div>
 
           <div className="space-y-4">
             {timelineData.map((item, index, arr) => {
@@ -84,7 +84,7 @@ export default function TimelineSection() {
                   {/* Timeline Dot */}
                   <div className="hidden md:flex flex-col items-center">
                     <div
-                      className={`w-4 h-4 rounded-full ${colorClass} border-4 border-white shadow-md z-10 transition-transform duration-300 ${
+                      className={`w-4 h-4 rounded-full ${colorClass} border-4 border-paper z-10 transition-transform duration-300 ${
                         isExpanded ? "scale-125" : ""
                       }`}
                     ></div>
@@ -97,31 +97,31 @@ export default function TimelineSection() {
 
                   {/* Card */}
                   <div
-                    className={`flex-1 group experience-card bg-white border-2 ${
-                      isExpanded ? borderClass : "border-[#e2e8f0]"
-                    } p-6 transition-all duration-300 hover:border-[#cbd5e1] cursor-pointer`}
+                    className={`flex-1 group experience-card bg-paper border-2 ${
+                      isExpanded ? borderClass : "border-muted"
+                    } p-6 transition-all duration-300 hover:border-muted-light cursor-pointer`}
                     onClick={() => toggleExpand(index)}
                   >
                     {/* Header */}
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                       <div>
-                        <h4 className="font-black text-xl text-[#0f172a]">
+                        <h4 className="font-black text-xl text-ink">
                           {item.company}
                         </h4>
-                        <p className="font-medium text-[#64748b]">
+                        <p className="font-medium text-muted">
                           {item.title}
                         </p>
                       </div>
                       <div className="flex items-center gap-2 flex-wrap">
                         {item.label === "current" && (
                           <span
-                            className={`${colorClass} text-white text-xs font-bold mono-label px-3 py-1 rounded-full`}
+                            className={`${colorClass} text-paper text-xs font-bold mono-label px-3 py-1 border-2 border-ink`}
                           >
                             Current
                           </span>
                         )}
                         {item.type && (
-                          <span className="bg-[#f1f5f9] text-[#64748b] text-xs font-bold mono-label px-3 py-1 rounded-full">
+                          <span className="bg-paper-muted text-muted text-xs font-bold mono-label px-3 py-1 border-2 border-ink">
                             {item.type}
                           </span>
                         )}
@@ -129,7 +129,7 @@ export default function TimelineSection() {
                     </div>
 
                     {/* Period & Location */}
-                    <div className="flex items-center gap-4 text-sm text-[#64748b] mb-4">
+                    <div className="flex items-center gap-4 text-sm text-muted mb-4">
                       <span className="flex items-center gap-1.5">
                         <svg
                           className="w-4 h-4"
@@ -173,7 +173,7 @@ export default function TimelineSection() {
                     </div>
 
                     {description && (
-                      <p className="text-sm text-[#475569] leading-relaxed mb-4">
+                      <p className="text-sm text-muted-dark leading-relaxed mb-4">
                         {description}
                       </p>
                     )}
@@ -182,7 +182,7 @@ export default function TimelineSection() {
                     {item.highlights && item.highlights.length > 0 && (
                       <div
                         className={`flex items-center justify-between py-2 mb-2 ${
-                          isExpanded ? `border-b border-[#e2e8f0]` : ""
+                          isExpanded ? `border-b border-muted` : ""
                         }`}
                       >
                         <span
@@ -191,13 +191,13 @@ export default function TimelineSection() {
                           KEY ACHIEVEMENTS
                         </span>
                         <div className="flex items-center gap-2">
-                          <span className="text-[11px] uppercase tracking-wide text-[#94a3b8] hint-pulse">
+                          <span className="text-[11px] uppercase tracking-wide text-muted-light hint-pulse">
                             {isExpanded
                               ? "Click to collapse"
                               : "Click to expand"}
                           </span>
                           <svg
-                            className={`w-4 h-4 text-[#94a3b8] transition-transform duration-300 ${
+                            className={`w-4 h-4 text-muted-light transition-transform duration-300 ${
                               isExpanded ? "rotate-180" : ""
                             }`}
                             fill="none"
@@ -228,7 +228,7 @@ export default function TimelineSection() {
                           {item.highlights.map((highlight, hIndex) => (
                             <li
                               key={hIndex}
-                              className="flex items-start gap-2 text-sm text-[#64748b]"
+                              className="flex items-start gap-2 text-sm text-muted"
                             >
                               <span className={`${textClass} mt-0.5`}>◆</span>
                               <span>{renderHighlightText(highlight)}</span>
@@ -240,13 +240,13 @@ export default function TimelineSection() {
 
                     {/* Tech Stack - Always visible */}
                     {item.tech && item.tech.length > 0 && (
-                      <div className="flex flex-wrap gap-x-4 gap-y-1.5 pt-3 border-t border-dashed border-[#e2e8f0]">
+                      <div className="flex flex-wrap gap-x-4 gap-y-1.5 pt-3 border-t border-dashed border-muted">
                         {item.tech.map((t) => (
                           <span
                             key={t}
-                            className="inline-flex items-center gap-1.5 text-sm text-[#64748b]"
+                            className="inline-flex items-center gap-1.5 text-sm text-muted"
                           >
-                            <span className="text-[#94a3b8]">{"</>"}</span>
+                            <span className="text-muted-light">{"</>"}</span>
                             {t}
                           </span>
                         ))}

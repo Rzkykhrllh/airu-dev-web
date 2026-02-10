@@ -31,27 +31,40 @@ export default function Home() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      // Detect active section
+      const scrollY = window.scrollY;
+      const viewportMiddle = scrollY + window.innerHeight / 2;
+
+      // At top of page
+      if (scrollY < 300) {
+        setActiveSection("");
+        return;
+      }
+
+      // Near bottom
+      if (scrollY + window.innerHeight >= document.body.scrollHeight - 100) {
+        setActiveSection("contact");
+        return;
+      }
+
+      // Find which section is currently in view (closest to viewport middle)
       const sections = ["about", "skills", "timeline", "projects", "contact"];
-      const scrollPosition = window.scrollY + 150;
+      let closestSection = "";
+      let closestDistance = Infinity;
 
       for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
-            setActiveSection(section);
-            return;
+        const el = document.getElementById(section);
+        if (el) {
+          const sectionTop = el.offsetTop;
+          const distance = Math.abs(sectionTop - viewportMiddle);
+          
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestSection = section;
           }
         }
       }
-      // If at top of page
-      if (window.scrollY < 300) {
-        setActiveSection("");
-      }
+
+      setActiveSection(closestSection);
     };
 
     window.addEventListener("scroll", handleScroll);

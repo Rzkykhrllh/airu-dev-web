@@ -27,7 +27,10 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center px-6 pt-20 pb-16 relative overflow-hidden">
+    <section
+      id="hero"
+      className="min-h-screen flex items-center justify-center px-6 pt-20 pb-16 relative overflow-hidden"
+    >
       {/* Pixelated corner decorations */}
       <div
         className="absolute top-8 left-8 w-4 h-4 bg-primary"
@@ -139,19 +142,25 @@ export default function HeroSection() {
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-xs sm:text-sm text-[#64748b] whitespace-nowrap">CLASS</span>
+                  <span className="text-xs sm:text-sm text-[#64748b] whitespace-nowrap">
+                    CLASS
+                  </span>
                   <span className="font-black text-xs sm:text-sm text-[#0f172a] text-right">
                     SOFTWARE ENGINEER
                   </span>
                 </div>
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-xs sm:text-sm text-[#64748b] whitespace-nowrap">EXPERIENCE</span>
+                  <span className="text-xs sm:text-sm text-[#64748b] whitespace-nowrap">
+                    EXPERIENCE
+                  </span>
                   <span className="font-black text-xs sm:text-sm text-primary text-right">
                     3+ YEARS
                   </span>
                 </div>
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-xs sm:text-sm text-[#64748b] whitespace-nowrap">FUEL</span>
+                  <span className="text-xs sm:text-sm text-[#64748b] whitespace-nowrap">
+                    FUEL
+                  </span>
                   <span className="font-black text-xs sm:text-sm text-secondary text-right">
                     1000+ COFFEES
                   </span>
@@ -185,7 +194,7 @@ export default function HeroSection() {
               </a>
 
               <a
-                href="https://drive.google.com/drive/folders/19NOp4kRA3MVpH47GCEOIpFU9GO5jFj-T?usp=drive_link"
+                href="https://drive.google.com/drive/folders/19NOp4kRA3MVpH47GCEOIpFU9GO5jFj-T?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative border-4 border-[#0f172a] px-4 py-2 sm:px-6 sm:py-3 bg-secondary text-white font-black mono-label text-xs sm:text-sm hover:bg-transparent hover:text-[#0f172a] transition-all"

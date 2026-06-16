@@ -150,7 +150,7 @@ export default function AchievementSystem() {
   useEffect(() => {
     // Restore session achievements
     try {
-      const stored = sessionStorage.getItem("airu_achievements");
+      const stored = localStorage.getItem("airu_achievements");
       if (stored) {
         const ids = new Set<string>(JSON.parse(stored));
         unlockedRef.current = ids;
@@ -173,7 +173,7 @@ export default function AchievementSystem() {
       });
 
       try {
-        sessionStorage.setItem(
+        localStorage.setItem(
           "airu_achievements",
           JSON.stringify([...unlockedRef.current])
         );

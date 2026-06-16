@@ -6,7 +6,7 @@ export default function PixelDivider() {
         <div className="flex-1 flex items-center gap-1 justify-end">
           <div className="w-2 h-2 bg-primary animate-pulse" style={{ animationDelay: '0s' }} />
           <div className="w-2 h-2 bg-secondary animate-pulse" style={{ animationDelay: '0.2s' }} />
-          <div className="w-2 h-2 bg-accent animate-pulse" style={{ animationDelay: '0.4s' }} />
+          <div className="w-2 h-2 bg-paper animate-pulse" style={{ animationDelay: '0.4s' }} />
           <div className="w-2 h-2 bg-primary animate-pulse" style={{ animationDelay: '0.6s' }} />
           <div className="w-2 h-2 bg-secondary animate-pulse" style={{ animationDelay: '0.8s' }} />
         </div>
@@ -20,7 +20,7 @@ export default function PixelDivider() {
         <div className="flex-1 flex items-center gap-1">
           <div className="w-2 h-2 bg-secondary animate-pulse" style={{ animationDelay: '0.8s' }} />
           <div className="w-2 h-2 bg-primary animate-pulse" style={{ animationDelay: '0.6s' }} />
-          <div className="w-2 h-2 bg-accent animate-pulse" style={{ animationDelay: '0.4s' }} />
+          <div className="w-2 h-2 bg-paper animate-pulse" style={{ animationDelay: '0.4s' }} />
           <div className="w-2 h-2 bg-secondary animate-pulse" style={{ animationDelay: '0.2s' }} />
           <div className="w-2 h-2 bg-primary animate-pulse" style={{ animationDelay: '0s' }} />
         </div>

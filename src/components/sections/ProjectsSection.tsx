@@ -9,7 +9,7 @@ export default function ProjectsSection() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
-    <section id="projects" className="py-20 px-6 bg-white">
+    <section id="projects" className="py-20 px-6 bg-paper">
       <div className="max-w-6xl mx-auto">
         <SectionHeader label="04. PROJECTS" />
 

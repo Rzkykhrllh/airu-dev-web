@@ -53,7 +53,7 @@ html.dark .header {
 html.dark .bg-white { background-color: var(--retro-paper); }
 html.dark .bg-\[\#f8fafc\] { background-color: var(--retro-paper-soft); }
 html.dark .bg-\[\#f1f5f9\] { background-color: var(--retro-paper-muted); }
-html.dark .bg-\[\#1e293b\] { background-color: #0d1525; }
+html.dark .bg-\[\#1e293b\] { background-color: #334155; }
 
 /* Text overrides for hardcoded dark colors */
 html.dark .text-\[\#0f172a\] { color: var(--retro-ink); }
@@ -218,6 +218,11 @@ body {
   background: white;
   border: 2px solid #e2e8f0;
   transition: all 0.3s ease;
+}
+
+html.dark .project-card {
+  background: var(--retro-paper);
+  border-color: var(--retro-border);
 }
 
 .project-card:hover {

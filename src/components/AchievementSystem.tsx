@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { FaTrophy, FaLock, FaCheck } from "react-icons/fa";
 import { sendGAEvent } from "@next/third-parties/google";
+import { RetroWindowTitleBar, RetroProgressBar } from "@/components/ui";
 
 // ─── Achievement definitions ──────────────────────────────────────────────────
 
@@ -229,24 +230,11 @@ export default function AchievementSystem() {
             }}
           >
             {/* Title bar */}
-            <div className="bg-[#0f172a] px-4 py-3 flex items-center justify-between flex-shrink-0">
-              <div className="flex items-center gap-2">
-                <FaTrophy className="w-3 h-3 text-primary" />
-                <span
-                  className="text-xs text-white tracking-widest font-bold"
-                  style={{ fontFamily: "monospace" }}
-                >
-                  ACHIEVEMENT LOG
-                </span>
-              </div>
-              <button
-                onClick={() => setPanelOpen(false)}
-                className="w-5 h-5 border-2 border-white text-white hover:bg-white hover:text-[#0f172a] transition-colors flex items-center justify-center"
-                aria-label="Close"
-              >
-                <span className="text-[10px] font-black leading-none">✕</span>
-              </button>
-            </div>
+            <RetroWindowTitleBar
+              title="ACHIEVEMENT LOG"
+              leadingIcon={<FaTrophy className="w-3 h-3 text-primary" />}
+              onClose={() => setPanelOpen(false)}
+            />
 
             {/* Progress bar */}
             <div className="border-b-4 border-[#0f172a] px-4 py-3 flex-shrink-0">
@@ -264,12 +252,7 @@ export default function AchievementSystem() {
                   {unlockedCount} / {TOTAL}
                 </span>
               </div>
-              <div className="h-3 border-2 border-[#0f172a] bg-[#f8fafc]">
-                <div
-                  className="h-full bg-primary transition-all duration-500"
-                  style={{ width: `${(unlockedCount / TOTAL) * 100}%` }}
-                />
-              </div>
+              <RetroProgressBar value={(unlockedCount / TOTAL) * 100} />
             </div>
 
             {/* Achievement list */}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { projectsData } from "@/data/constants";
 import { sendGAEvent } from "@next/third-parties/google";
+import { SectionHeader, ExpandToggleRow, TechTag } from "@/components/ui";
 
 export default function ProjectsSection() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
@@ -10,10 +11,7 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-20 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
-        {/* Retro section header */}
-        <div className="border-4 border-[#0f172a] bg-white inline-block px-6 py-2 mb-10" style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}>
-          <span className="mono-label font-black text-sm">04. PROJECTS</span>
-        </div>
+        <SectionHeader label="04. PROJECTS" />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projectsData.map((project, index) => {
@@ -44,11 +42,7 @@ export default function ProjectsSection() {
                 role={isExpandable ? "button" : undefined}
                 tabIndex={isExpandable ? 0 : undefined}
                 aria-expanded={isExpandable ? isExpanded : undefined}
-                onClick={
-                  isExpandable
-                    ? () => setExpandedIndex((prev) => (prev === index ? null : index))
-                    : undefined
-                }
+                onClick={isExpandable ? () => setExpandedIndex((prev) => (prev === index ? null : index)) : undefined}
                 onKeyDown={
                   isExpandable
                     ? (event) => {
@@ -64,46 +58,18 @@ export default function ProjectsSection() {
                   <h3 className="font-bold text-xl text-[#0f172a]">{project.title}</h3>
                   <span className={`badge-pill badge-pill-sm ${bgClass} text-white`}>{project.year}</span>
                 </div>
-                <p className="text-sm text-[#64748b] whitespace-pre-line">
-                  {displayText}
-                </p>
+                <p className="text-sm text-[#64748b] whitespace-pre-line">{displayText}</p>
 
                 {isExpandable && (
-                  <div className="flex items-center justify-between mt-4 text-xs text-[#94a3b8]">
-                    <span className="mono-label">Details</span>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[11px] uppercase tracking-wide hint-pulse">
-                        {isExpanded ? "Click to collapse" : "Click to expand"}
-                      </span>
-                      <svg
-                        className={`w-4 h-4 transition-transform duration-300 ${
-                          isExpanded ? "rotate-180" : ""
-                        }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </div>
-                  </div>
+                  <ExpandToggleRow isExpanded={isExpanded} label="Details" />
                 )}
 
                 <div className="flex flex-wrap gap-2 mt-3">
-                  {project.tech.map((t, i) => (
-                    <span
-                      key={t}
-                      className="mono-label text-xs text-[#64748b]"
-                    >
-                      {t}
-                    </span>
+                  {project.tech.map((t) => (
+                    <TechTag key={t} label={t} variant="plain" />
                   ))}
                 </div>
+
                 {links.length > 0 && (
                   <div className="flex gap-4 pt-3 mt-4 border-t border-dashed border-[#e2e8f0]">
                     {links.map((link, linkIndex) => (
@@ -119,9 +85,7 @@ export default function ProjectsSection() {
                             link_type: link.label.toLowerCase().replace(" ", "_"),
                           });
                         }}
-                        className={`mono-label text-xs hover:underline ${
-                          linkTextClasses[linkIndex % linkTextClasses.length]
-                        }`}
+                        className={`mono-label text-xs hover:underline ${linkTextClasses[linkIndex % linkTextClasses.length]}`}
                       >
                         {link.label}
                       </a>

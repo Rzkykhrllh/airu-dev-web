@@ -1,4 +1,4 @@
-import { FaMapMarkerAlt, FaBriefcase, FaGraduationCap, FaCoffee } from "react-icons/fa";
+import { FaMapMarkerAlt, FaBriefcase, FaBullseye, FaCoffee } from "react-icons/fa";
 import { SectionHeader, SectionHeading, InfoCard } from "@/components/ui";
 
 export default function AboutSection() {
@@ -41,7 +41,7 @@ export default function AboutSection() {
             />
             <InfoCard
               rotation={1}
-              icon={<FaGraduationCap className="w-6 h-6 mb-2 text-[#0f172a]" />}
+              icon={<FaBullseye className="w-6 h-6 mb-2 text-[#0f172a]" />}
               label="FOCUS"
               value="FULL-STACK"
             />

@@ -47,6 +47,7 @@ export const PRESETS: Record<string, PresetEntry> = {
 
 const STORAGE_PRESET_KEY = "airu_theme_preset";
 const STORAGE_CUSTOM_KEY = "airu_custom_colors";
+const STORAGE_DARK_KEY = "airu_dark_mode";
 const DEFAULT_PRESET = "joints";
 
 export function applyColors(colors: ThemeColors) {
@@ -58,17 +59,29 @@ export function applyColors(colors: ThemeColors) {
   el.style.setProperty("--accent", colors.accent);
 }
 
+export function applyDark(dark: boolean) {
+  if (typeof document === "undefined") return;
+  document.documentElement.classList.toggle("dark", dark);
+}
+
 export function useTheme() {
   const [activePreset, setActivePreset] = useState<string>(DEFAULT_PRESET);
   const [customColors, setCustomColorsState] = useState<ThemeColors>(
     PRESETS[DEFAULT_PRESET].colors
   );
   const [isCustom, setIsCustom] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     try {
+      // Restore dark mode
+      const dark = localStorage.getItem(STORAGE_DARK_KEY) === "true";
+      setIsDark(dark);
+      applyDark(dark);
+
+      // Restore color theme
       const preset = localStorage.getItem(STORAGE_PRESET_KEY) ?? DEFAULT_PRESET;
       const storedCustom = localStorage.getItem(STORAGE_CUSTOM_KEY);
 
@@ -110,5 +123,16 @@ export function useTheme() {
     } catch {}
   }, []);
 
-  return { activePreset, customColors, isCustom, setPreset, setCustomColors, mounted };
+  const toggleDark = useCallback(() => {
+    setIsDark((prev) => {
+      const next = !prev;
+      applyDark(next);
+      try {
+        localStorage.setItem(STORAGE_DARK_KEY, String(next));
+      } catch {}
+      return next;
+    });
+  }, []);
+
+  return { activePreset, customColors, isCustom, isDark, setPreset, setCustomColors, toggleDark, mounted };
 }

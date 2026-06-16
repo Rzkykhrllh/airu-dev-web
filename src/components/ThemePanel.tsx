@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { FaPalette, FaTimes } from "react-icons/fa";
+import { FaPalette, FaTimes, FaMoon, FaSun } from "react-icons/fa";
 import { useTheme, PRESETS, ThemeColors } from "@/hooks/useTheme";
 import { unlockAchievement } from "@/components/AchievementSystem";
 
@@ -161,7 +161,7 @@ function ColorRow({ label, value, onChange }: ColorRowProps) {
 
 export default function ThemePanel() {
   const [open, setOpen] = useState(false);
-  const { activePreset, customColors, isCustom, setPreset, setCustomColors, mounted } =
+  const { activePreset, customColors, isCustom, isDark, setPreset, setCustomColors, toggleDark, mounted } =
     useTheme();
 
   // Track if color_master achievement has been fired this session
@@ -218,7 +218,29 @@ export default function ThemePanel() {
           {/* Scrollable content */}
           <div className="overflow-y-auto p-4 space-y-5">
 
-            {/* ── Presets ── */}
+            {/* ── Dark mode toggle ── */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                {isDark ? <FaMoon className="w-3 h-3 text-primary" /> : <FaSun className="w-3 h-3 text-primary" />}
+                <span className="text-[10px] font-black mono-label text-ink tracking-widest">
+                  {isDark ? "DARK MODE" : "LIGHT MODE"}
+                </span>
+              </div>
+              <button
+                onClick={toggleDark}
+                className={`relative w-10 h-5 border-2 border-ink transition-colors ${isDark ? "bg-ink" : "bg-paper-muted"}`}
+                aria-label="Toggle dark mode"
+              >
+                <span
+                  className={`absolute top-0.5 w-3 h-3 border-2 border-ink transition-all ${
+                    isDark ? "bg-primary left-5" : "bg-paper-soft left-0.5"
+                  }`}
+                />
+              </button>
+            </div>
+
+            {/* Divider */}
+            <div className="border-t-2 border-ink" />
             <div>
               <div className="text-[10px] font-black mono-label text-ink tracking-widest mb-3">
                 PRESETS

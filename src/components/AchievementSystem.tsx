@@ -213,8 +213,7 @@ export default function AchievementSystem() {
       <button
         onClick={() => setPanelOpen(true)}
         aria-label="Open achievement log"
-        className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-50 border-4 border-[#0f172a] bg-[#0f172a] text-primary px-3 py-2 flex items-center gap-2 font-black mono-label text-xs hover:bg-primary hover:text-[#0f172a] transition-all"
-        style={{ boxShadow: "4px 4px 0 rgba(15, 23, 42, 0.4)" }}
+        className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-50 border-4 border-ink bg-ink text-primary px-3 py-2 flex items-center gap-2 font-black mono-label text-xs hover:bg-primary hover:text-ink transition-all retro-shadow"
       >
         <FaTrophy className="w-3 h-3" />
         <span>
@@ -233,11 +232,8 @@ export default function AchievementSystem() {
 
           {/* Modal */}
           <div
-            className="relative border-4 border-[#0f172a] bg-white w-full max-w-sm flex flex-col"
-            style={{
-              boxShadow: "8px 8px 0 rgba(15, 23, 42, 0.4)",
-              maxHeight: "80vh",
-            }}
+            className="relative border-4 border-ink bg-paper w-full max-w-sm flex flex-col retro-shadow-strong"
+            style={{ maxHeight: "80vh" }}
           >
             {/* Title bar */}
             <RetroWindowTitleBar
@@ -247,18 +243,12 @@ export default function AchievementSystem() {
             />
 
             {/* Progress bar */}
-            <div className="border-b-4 border-[#0f172a] px-4 py-3 flex-shrink-0">
+            <div className="border-b-4 border-ink px-4 py-3 flex-shrink-0">
               <div className="flex justify-between items-center mb-2">
-                <span
-                  className="text-[10px] text-slate-500 tracking-widest"
-                  style={{ fontFamily: "monospace" }}
-                >
+                <span className="text-[10px] text-muted tracking-widest mono-label">
                   UNLOCKED
                 </span>
-                <span
-                  className="text-xs font-black text-[#0f172a]"
-                  style={{ fontFamily: "monospace" }}
-                >
+                <span className="text-xs font-black text-ink mono-label">
                   {unlockedCount} / {TOTAL}
                 </span>
               </div>
@@ -275,19 +265,19 @@ export default function AchievementSystem() {
                     className={`flex items-start gap-3 px-4 py-3 border-b-2 transition-colors ${
                       index === ACHIEVEMENT_LIST.length - 1
                         ? "border-transparent"
-                        : "border-[#0f172a]/10"
-                    } ${isUnlocked ? "bg-white" : "bg-[#f8fafc]"}`}
+                        : "border-ink/10"
+                    } ${isUnlocked ? "bg-paper" : "bg-paper-soft"}`}
                   >
                     {/* Icon badge */}
                     <div
                       className={`flex-shrink-0 w-8 h-8 flex items-center justify-center border-2 ${
                         isUnlocked
-                          ? "bg-primary border-[#0f172a]"
-                          : "bg-slate-200 border-slate-300"
+                          ? "bg-primary border-ink"
+                          : "bg-paper-muted border-border"
                       }`}
                     >
                       {isUnlocked ? (
-                        <FaTrophy className="w-3 h-3 text-[#0f172a]" />
+                        <FaTrophy className="w-3 h-3 text-ink" />
                       ) : (
                         <FaLock className="w-3 h-3 text-slate-400" />
                       )}
@@ -296,10 +286,9 @@ export default function AchievementSystem() {
                     {/* Text */}
                     <div className="flex-1 min-w-0">
                       <div
-                        className={`font-black text-[11px] tracking-wide leading-tight ${
-                          isUnlocked ? "text-[#0f172a]" : "text-slate-400"
+                        className={`font-black text-[11px] tracking-wide leading-tight mono-label ${
+                          isUnlocked ? "text-ink" : "text-muted-light"
                         }`}
-                        style={{ fontFamily: "monospace" }}
                       >
                         {isUnlocked || achievement.hint
                           ? achievement.title
@@ -307,7 +296,7 @@ export default function AchievementSystem() {
                       </div>
                       <div
                         className={`text-[10px] mt-0.5 leading-tight ${
-                          isUnlocked ? "text-slate-500" : "text-slate-400"
+                          isUnlocked ? "text-muted" : "text-muted-light"
                         }`}
                       >
                         {isUnlocked
@@ -328,11 +317,8 @@ export default function AchievementSystem() {
             </div>
 
             {/* Footer hint */}
-            <div className="border-t-4 border-[#0f172a] px-4 py-2 bg-[#f8fafc] flex-shrink-0">
-              <p
-                className="text-[9px] text-slate-400 text-center tracking-widest"
-                style={{ fontFamily: "monospace" }}
-              >
+            <div className="border-t-4 border-ink px-4 py-2 bg-paper-soft flex-shrink-0">
+              <p className="text-[9px] text-muted text-center tracking-widest mono-label">
                 {unlockedCount === TOTAL
                   ? "ALL ACHIEVEMENTS UNLOCKED — LEGEND STATUS"
                   : "EXPLORE THE SITE TO UNLOCK ALL ACHIEVEMENTS"}
@@ -354,11 +340,10 @@ export default function AchievementSystem() {
           }}
         >
           <div
-            className="border-4 border-primary bg-[#0f172a] p-3 flex items-start gap-3"
-            style={{ boxShadow: "4px 4px 0 rgba(0,0,0,0.6)" }}
+            className="border-4 border-primary bg-ink p-3 flex items-start gap-3 retro-shadow-strong"
           >
-            <div className="flex-shrink-0 w-9 h-9 bg-primary flex items-center justify-center border-2 border-[#0f172a]">
-              <FaTrophy className="w-4 h-4 text-[#0f172a]" />
+            <div className="flex-shrink-0 w-9 h-9 bg-primary flex items-center justify-center border-2 border-ink">
+              <FaTrophy className="w-4 h-4 text-ink" />
             </div>
             <div className="min-w-0 flex-1">
               <div

@@ -15,8 +15,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://dev.byairu.com"),
   title: "Airu - Software Engineer",
   description: "Personal portfolio of Airu, a passionate software engineer",
+  openGraph: {
+    title: "Airu - Software Engineer",
+    description: "Personal portfolio of Airu, a passionate software engineer",
+    url: "https://dev.byairu.com",
+    siteName: "Airu",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Airu - Software Engineer",
+    description: "Personal portfolio of Airu, a passionate software engineer",
+  },
 };
 
 export default function RootLayout({

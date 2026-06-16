@@ -3,10 +3,11 @@
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
-  --secondary: #10b981;
-  --accent: #f59e0b;
+  /* Default to joints theme — JS will override from localStorage */
+  --primary: #E9AA18;
+  --primary-dark: #d49a10;
+  --secondary: #6513BE;
+  --accent: #191A26;
   --muted: #64748b;
   
   /* Retro game theme colors */
@@ -330,4 +331,34 @@ body {
 
 .experience-card.border-accent::before {
   background: var(--accent);
+}
+
+/* ── Hue slider (ThemePanel) ──────────────────────────────────────────────── */
+.hue-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 12px;
+  border: 2px solid var(--retro-ink);
+  cursor: pointer;
+  outline: none;
+  display: block;
+}
+
+.hue-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 20px;
+  background: var(--retro-paper);
+  border: 3px solid var(--retro-ink);
+  cursor: pointer;
+  box-shadow: 1px 1px 0 var(--retro-ink);
+}
+
+.hue-slider::-moz-range-thumb {
+  width: 16px;
+  height: 20px;
+  background: var(--retro-paper);
+  border: 3px solid var(--retro-ink);
+  cursor: pointer;
+  border-radius: 0;
 }

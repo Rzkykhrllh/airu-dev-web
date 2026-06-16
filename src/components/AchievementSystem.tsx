@@ -74,6 +74,11 @@ const ACHIEVEMENT_LIST: Achievement[] = [
     desc: "Visited the photography portfolio. Nice eye.",
   },
   {
+    id: "color_master",
+    title: "COLOR MASTER",
+    desc: "You made it your own. Style unlocked.",
+  },
+  {
     id: "pay_to_win",
     title: "PAY TO WIN",
     desc: "Unlocked all achievements at once. Absolute legend.",

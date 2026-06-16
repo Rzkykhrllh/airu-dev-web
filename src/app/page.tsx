@@ -26,11 +26,6 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
-  // Set theme to joints in localStorage on mount
-  useEffect(() => {
-    localStorage.setItem("theme", "joints");
-  }, []);
-
   // Fire "PLAYER 1 HAS ENTERED" on page load
   useEffect(() => {
     const t = setTimeout(() => unlockAchievement("player_entered"), 1200);
@@ -181,8 +176,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen grid-pattern" data-theme="joints">
-      {/* ThemeSwitcher hidden temporarily - using "joints" theme as default */}
+    <div className="min-h-screen grid-pattern">
+      {/* ThemeSwitcher now lives globally in layout.tsx as <ThemePanel /> */}
       <Header scrolled={scrolled} />
       <FloatingSidebar scrolled={scrolled} activeSection={activeSection} />
 

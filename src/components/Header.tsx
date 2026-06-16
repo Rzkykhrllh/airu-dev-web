@@ -64,14 +64,21 @@ export default function Header({ scrolled }: HeaderProps) {
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
 
             {/* Dropdown Menu */}
             <div
               className={`absolute top-full right-0 mt-2 bg-paper border-4 border-ink retro-shadow overflow-hidden transition-all duration-200 ${
-                othersOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 invisible"
+                othersOpen
+                  ? "opacity-100 translate-y-0 visible"
+                  : "opacity-0 -translate-y-2 invisible"
               }`}
             >
               <a
@@ -82,8 +89,18 @@ export default function Header({ scrolled }: HeaderProps) {
               >
                 <FaCamera className="w-4 h-4" />
                 Photography
-                <svg className="w-3 h-3 ml-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                <svg
+                  className="w-3 h-3 ml-auto opacity-50"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
                 </svg>
               </a>
               <a
@@ -94,8 +111,18 @@ export default function Header({ scrolled }: HeaderProps) {
               >
                 <FaGamepad className="w-4 h-4" />
                 Hub
-                <svg className="w-3 h-3 ml-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                <svg
+                  className="w-3 h-3 ml-auto opacity-50"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
                 </svg>
               </a>
             </div>
@@ -117,7 +144,11 @@ export default function Header({ scrolled }: HeaderProps) {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="md:hidden border-4 border-ink bg-paper text-ink p-2 hover:bg-ink hover:text-paper transition-all retro-shadow"
         >
-          {mobileMenuOpen ? <FaTimes className="w-5 h-5" /> : <FaBars className="w-5 h-5" />}
+          {mobileMenuOpen ? (
+            <FaTimes className="w-5 h-5" />
+          ) : (
+            <FaBars className="w-5 h-5" />
+          )}
         </button>
       </div>
 
@@ -176,7 +207,9 @@ export default function Header({ scrolled }: HeaderProps) {
             href="/blog"
             onClick={() => setMobileMenuOpen(false)}
             className={`block text-sm font-bold mono-label px-4 py-3 border-2 border-ink transition-all ${
-              isBlogPage ? "bg-primary text-paper" : "bg-paper text-muted hover:bg-paper-soft"
+              isBlogPage
+                ? "bg-primary text-paper"
+                : "bg-paper text-muted hover:bg-paper-soft"
             }`}
           >
             Blog

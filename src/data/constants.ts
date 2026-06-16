@@ -195,7 +195,7 @@ export const timelineData = [
 
 export const projectsData = [
   {
-    year: "2025",
+    year: "2026",
     title: "Yomeru App",
     desc: `Learn Japanese by reading. Save your texts, click words to add them to your vocabulary bank with meanings, furigana, and custom notes. Watch your vocabulary grow as you read.`,
     tech: ["Next.js", "TypeScript", "Express.Js", "PostgreSQL", "Prisma ORM"],
@@ -203,7 +203,7 @@ export const projectsData = [
     color: "primary",
   },
   {
-    year: "2024",
+    year: "2026",
     title: "Photography Portfolio Website",
     desc: `End-to-end developed photography portfolio website with a custom admin panel for content and collection management.\n\n The project emphasizes clean UI design, responsive layout, and performance optimization for fast and reliable delivery of high-resolution images in a production environment.`,
     tech: ["Next.js", "Tailwind CSS", "Midtrans API"],

@@ -69,6 +69,11 @@ const ACHIEVEMENT_LIST: Achievement[] = [
     desc: "You clicked AIRU 9 times. True gamer instincts.",
   },
   {
+    id: "photography",
+    title: "PHOTOGRAPHER MODE",
+    desc: "Visited the photography portfolio. Nice eye.",
+  },
+  {
     id: "pay_to_win",
     title: "PAY TO WIN",
     desc: "Unlocked all achievements at once. Absolute legend.",

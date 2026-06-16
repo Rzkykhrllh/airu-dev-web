@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { FaCamera, FaGamepad, FaBars, FaTimes } from "react-icons/fa";
+import { FaCamera, FaBars, FaTimes } from "react-icons/fa";
 import { AiruLogo, MobileNavLink } from "@/components/ui";
+import { unlockAchievement } from "@/components/AchievementSystem";
 import Link from "next/link";
 
 interface HeaderProps {
@@ -74,22 +75,11 @@ export default function Header({ scrolled }: HeaderProps) {
                 href="https://byairu.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-5 py-3 text-sm font-bold mono-label text-muted hover:bg-paper-soft hover:text-primary transition-colors whitespace-nowrap"
+                onClick={() => unlockAchievement("photography")}
+                className="flex items-center gap-3 px-5 py-3 text-sm font-bold mono-label text-muted hover:bg-ink hover:text-paper transition-colors whitespace-nowrap"
               >
                 <FaCamera className="w-4 h-4" />
                 Photography
-                <svg className="w-3 h-3 ml-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-              <a
-                href="https://hub.airu.dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 px-5 py-3 text-sm font-bold mono-label text-muted hover:bg-paper-soft hover:text-secondary transition-colors whitespace-nowrap border-t-2 border-ink"
-              >
-                <FaGamepad className="w-4 h-4" />
-                Hub
                 <svg className="w-3 h-3 ml-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
@@ -137,8 +127,7 @@ export default function Header({ scrolled }: HeaderProps) {
           )}
 
           <MobileNavLink href="/blog" label="Blog" active={isBlogPage} onClick={() => setMobileMenuOpen(false)} />
-          <MobileNavLink href="https://byairu.com" label="Photography" icon={<FaCamera className="w-4 h-4" />} external onClick={() => setMobileMenuOpen(false)} />
-          <MobileNavLink href="https://hub.airu.dev" label="Hub" icon={<FaGamepad className="w-4 h-4" />} external onClick={() => setMobileMenuOpen(false)} />
+          <MobileNavLink href="https://byairu.com" label="Photography" icon={<FaCamera className="w-4 h-4" />} external onClick={() => { unlockAchievement("photography"); setMobileMenuOpen(false); }} />
           <MobileNavLink href="/#contact" label="Contact" onClick={() => setMobileMenuOpen(false)} />
         </nav>
       </div>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { FaTrophy, FaLock, FaCheck } from "react-icons/fa";
-import { sendGAEvent } from "@next/third-parties/google";
+import { trackEvent } from "@/lib/analytics";
 import { RetroWindowTitleBar, RetroProgressBar } from "@/components/ui";
 
 // ─── Achievement definitions ──────────────────────────────────────────────────
@@ -167,7 +167,7 @@ export default function AchievementSystem() {
       setUnlockedIds(new Set(unlockedRef.current));
 
       // Send GA4 event
-      sendGAEvent("event", "achievement_unlocked", {
+      trackEvent("achievement_unlocked", {
         achievement_id: id,
         achievement_title: ACHIEVEMENTS[id].title,
       });

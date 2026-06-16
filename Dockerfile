@@ -12,6 +12,10 @@ RUN npm ci
 # Copy source code
 COPY . .
 
+# Build-time env vars (NEXT_PUBLIC_* must be available during next build)
+ARG NEXT_PUBLIC_GA_ID
+ENV NEXT_PUBLIC_GA_ID=$NEXT_PUBLIC_GA_ID
+
 # Build the app
 RUN npm run build
 

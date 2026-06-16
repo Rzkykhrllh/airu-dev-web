@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { sendGAEvent } from "@next/third-parties/google";
+import { trackEvent } from "@/lib/analytics";
 
 import Header from "@/components/Header";
 import FloatingSidebar from "@/components/FloatingSidebar";
@@ -66,7 +66,7 @@ export default function Home() {
             if (startTime) {
               const seconds = Math.round((Date.now() - startTime) / 1000);
               if (seconds >= 2) {
-                sendGAEvent("event", "section_dwell_time", {
+                trackEvent("section_dwell_time", {
                   section_name: id,
                   time_seconds: seconds,
                 });
@@ -96,7 +96,7 @@ export default function Home() {
           if (startTime) {
             const seconds = Math.round((Date.now() - startTime) / 1000);
             if (seconds >= 2) {
-              sendGAEvent("event", "section_dwell_time", {
+              trackEvent("section_dwell_time", {
                 section_name: "footer",
                 time_seconds: seconds,
               });

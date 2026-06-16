@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { FaPlay, FaDownload, FaEnvelope } from "react-icons/fa";
 import { unlockAchievement } from "@/components/AchievementSystem";
-import { sendGAEvent } from "@next/third-parties/google";
+import { trackEvent } from "@/lib/analytics";
 import { RetroWindowTitleBar, RetroButton } from "@/components/ui";
 
 export default function HeroSection() {
@@ -133,7 +133,7 @@ export default function HeroSection() {
                 className="group relative justify-center"
                 onClick={() => {
                   unlockAchievement("cv");
-                  sendGAEvent("event", "cv_download", {});
+                  trackEvent("cv_download");
                 }}
               >
                 <FaDownload className="w-3 h-3" />

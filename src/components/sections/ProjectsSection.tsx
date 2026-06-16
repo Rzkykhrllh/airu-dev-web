@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { projectsData } from "@/data/constants";
-import { sendGAEvent } from "@next/third-parties/google";
+import { trackEvent } from "@/lib/analytics";
 import { SectionHeader, ExpandToggleRow, TechTag } from "@/components/ui";
 
 export default function ProjectsSection() {
@@ -80,7 +80,7 @@ export default function ProjectsSection() {
                         rel="noopener noreferrer"
                         onClick={(event) => {
                           event.stopPropagation();
-                          sendGAEvent("event", "project_link_click", {
+                          trackEvent("project_link_click", {
                             project_name: project.title,
                             link_type: link.label.toLowerCase().replace(" ", "_"),
                           });

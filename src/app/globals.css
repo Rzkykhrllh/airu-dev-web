@@ -5,7 +5,6 @@
   --foreground: #0f172a;
   /* Default to joints theme — JS will override from localStorage */
   --primary: #E9AA18;
-  --primary-dark: #d49a10;
   --secondary: #6513BE;
   --accent: #191A26;
   --muted: #64748b;
@@ -69,7 +68,6 @@ html.dark .border-\[\#cbd5e1\] { border-color: var(--retro-border); }
 /* Theme: Coral + Teal */
 [data-theme="coral"] {
   --primary: #f97316;
-  --primary-dark: #ea580c;
   --secondary: #14b8a6;
   --accent: #fbbf24;
 }
@@ -77,7 +75,6 @@ html.dark .border-\[\#cbd5e1\] { border-color: var(--retro-border); }
 /* Theme: Violet + Yellow */
 [data-theme="violet"] {
   --primary: #8b5cf6;
-  --primary-dark: #7c3aed;
   --secondary: #facc15;
   --accent: #ec4899;
 }
@@ -85,7 +82,6 @@ html.dark .border-\[\#cbd5e1\] { border-color: var(--retro-border); }
 /* Theme: Pink + Cyan */
 [data-theme="pink"] {
   --primary: #ec4899;
-  --primary-dark: #db2777;
   --secondary: #06b6d4;
   --accent: #a855f7;
 }
@@ -93,7 +89,6 @@ html.dark .border-\[\#cbd5e1\] { border-color: var(--retro-border); }
 /* Theme: Teal + Orange */
 [data-theme="teal"] {
   --primary: #14b8a6;
-  --primary-dark: #0d9488;
   --secondary: #f97316;
   --accent: #8b5cf6;
 }
@@ -101,7 +96,6 @@ html.dark .border-\[\#cbd5e1\] { border-color: var(--retro-border); }
 /* Theme: Blue + Coral */
 [data-theme="blue"] {
   --primary: #2D4CFF;
-  --primary-dark: #2563eb;
   --secondary: #FFB703;
   --accent: #111827;
 }
@@ -109,7 +103,6 @@ html.dark .border-\[\#cbd5e1\] { border-color: var(--retro-border); }
 /* Theme: Joints UGM - Yellow + Purple */
 [data-theme="joints"] {
   --primary: #E9AA18;
-  --primary-dark: #d49a10;
   --secondary: #6513BE;
   --accent: #191A26;
 }
@@ -324,11 +317,9 @@ html.dark .project-card {
 
 /* Color utility classes using CSS variables */
 .bg-primary { background-color: var(--primary); }
-.bg-primary-dark { background-color: var(--primary-dark); }
 .bg-secondary { background-color: var(--secondary); }
 .bg-accent { background-color: var(--accent); }
 .text-primary { color: var(--primary); }
-.text-primary-dark { color: var(--primary-dark); }
 .text-secondary { color: var(--secondary); }
 .text-accent { color: var(--accent); }
 .border-primary { border-color: var(--primary); }

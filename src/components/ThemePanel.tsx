@@ -286,11 +286,6 @@ export default function ThemePanel() {
                   onChange={(hex) => handleColorChange("primary", hex)}
                 />
                 <ColorRow
-                  label="PRIMARY DARK"
-                  value={customColors.primaryDark}
-                  onChange={(hex) => handleColorChange("primaryDark", hex)}
-                />
-                <ColorRow
                   label="SECONDARY"
                   value={customColors.secondary}
                   onChange={(hex) => handleColorChange("secondary", hex)}

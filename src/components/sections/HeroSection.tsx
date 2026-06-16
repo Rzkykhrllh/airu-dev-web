@@ -1,12 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaPlay, FaDownload, FaEnvelope } from "react-icons/fa";
+import { unlockAchievement } from "@/components/AchievementSystem";
 
 export default function HeroSection() {
   const [displayText, setDisplayText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
   const fullText = "AIRU";
+  const airuClickCount = useRef(0);
+
+  const handleAiruClick = () => {
+    airuClickCount.current += 1;
+    if (airuClickCount.current === 9) {
+      unlockAchievement("secret_combo");
+    }
+  };
 
   // Typing animation effect
   useEffect(() => {
@@ -120,7 +129,10 @@ export default function HeroSection() {
                   fontFamily: "monospace",
                   letterSpacing: "0.1em",
                   minHeight: "2.5rem",
+                  cursor: "default",
+                  userSelect: "none",
                 }}
+                onClick={handleAiruClick}
               >
                 <span>{displayText}</span>
                 {displayText.length === fullText.length && (
@@ -197,6 +209,7 @@ export default function HeroSection() {
                 href="https://drive.google.com/drive/folders/19NOp4kRA3MVpH47GCEOIpFU9GO5jFj-T?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => unlockAchievement("cv")}
                 className="group relative border-4 border-[#0f172a] px-4 py-2 sm:px-6 sm:py-3 bg-secondary text-white font-black mono-label text-xs sm:text-sm hover:bg-transparent hover:text-[#0f172a] transition-all"
                 style={{ boxShadow: "4px 4px 0 rgba(15, 23, 42, 0.5)" }}
               >

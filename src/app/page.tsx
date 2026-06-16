@@ -6,6 +6,9 @@ import Header from "@/components/Header";
 import FloatingSidebar from "@/components/FloatingSidebar";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import AchievementSystem, {
+  unlockAchievement,
+} from "@/components/AchievementSystem";
 import {
   HeroSection,
   StatsBar,
@@ -27,34 +30,119 @@ export default function Home() {
     localStorage.setItem("theme", "joints");
   }, []);
 
+  // Fire "PLAYER 1 HAS ENTERED" on page load
   useEffect(() => {
+    const t = setTimeout(() => unlockAchievement("player_entered"), 1200);
+    return () => clearTimeout(t);
+  }, []);
+
+  // Fire "DEEP READER" after 60 seconds
+  useEffect(() => {
+    const t = setTimeout(() => unlockAchievement("deep_reader"), 60_000);
+    return () => clearTimeout(t);
+  }, []);
+
+  // Use IntersectionObserver to reliably detect when sections enter the viewport.
+  // Scroll-based math (scrollY + offset) breaks for sections near the bottom of
+  // the page because maxScrollY can be less than section.offsetTop on some
+  // viewport sizes — IntersectionObserver has none of these constraints.
+  useEffect(() => {
+    const sectionIds = ["about", "skills", "timeline", "projects", "contact"];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            unlockAchievement(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    // Observe the footer element for "YOU REACHED THE END"
+    const footerEl = document.querySelector("footer");
+    const footerObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) unlockAchievement("footer");
+      },
+      { threshold: 0.1 }
+    );
+    if (footerEl) footerObserver.observe(footerEl);
+
+    return () => {
+      observer.disconnect();
+      footerObserver.disconnect();
+    };
+  }, []);
+
+  // Scroll handler — sticky header + active section for sidebar.
+  //
+  // Logic: a section stays active as long as its midpoint hasn't crossed the
+  // top of the viewport (i.e. the top 50% of the section is still visible).
+  // Once the midpoint passes, the NEXT section becomes active immediately.
+  //
+  // Iterate sections top-to-bottom. Find the first section whose midpoint
+  // (rect.top + rect.height/2) is still >= 0:
+  //   • If that section's top is already ≤ 0  → we're inside it, it's active.
+  //   • If top > 0 and i > 0                  → previous gave up, this one is next → active.
+  //   • If top > 0 and i === 0                → haven't reached first section yet.
+  // If every midpoint has passed → last section stays active.
+  useEffect(() => {
+    const sectionIds = ["about", "skills", "timeline", "projects", "contact"];
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      // Detect active section
-      const sections = ["about", "skills", "timeline", "projects", "contact"];
-      const scrollPosition = window.scrollY + 150;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
-            setActiveSection(section);
-            return;
-          }
-        }
-      }
-      // If at top of page
       if (window.scrollY < 300) {
         setActiveSection("");
+        return;
       }
+
+      // Special case: contact is short, so trigger it as soon as its bottom
+      // becomes visible on screen (rect.bottom <= viewport height).
+      const contactEl = document.getElementById("contact");
+      if (contactEl) {
+        const rect = contactEl.getBoundingClientRect();
+        if (rect.bottom <= window.innerHeight) {
+          setActiveSection("contact");
+          return;
+        }
+      }
+
+      // Midpoint logic for all other sections:
+      // switch active when a section's top 50% has scrolled past the viewport top.
+      let activeId = "";
+
+      for (let i = 0; i < sectionIds.length; i++) {
+        const el = document.getElementById(sectionIds[i]);
+        if (!el) continue;
+        const { top, height } = el.getBoundingClientRect();
+        const midpoint = top + height / 2;
+
+        if (midpoint >= 0) {
+          if (top <= 0) {
+            activeId = sectionIds[i]; // inside section, top half visible
+          } else if (i > 0) {
+            activeId = sectionIds[i]; // previous gave up, switch to this one
+          }
+          break;
+        }
+
+        if (i === sectionIds.length - 1) {
+          activeId = sectionIds[i]; // past every midpoint → last section
+        }
+      }
+
+      setActiveSection(activeId);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -77,6 +165,7 @@ export default function Home() {
       <ContactSection />
 
       <FloatingCTA />
+      <AchievementSystem />
       <Footer />
     </div>
   );

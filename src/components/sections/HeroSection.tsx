@@ -80,7 +80,7 @@ export default function HeroSection() {
                 <span>{displayText}</span>
                 {displayText.length === fullText.length && (
                   <span
-                    className="inline-block w-2 h-10 sm:h-12 md:h-14 bg-[#0f172a] ml-2"
+                    className="inline-block w-2 h-10 sm:h-12 md:h-14 bg-ink ml-2"
                     style={{ animation: "blink 1s step-end infinite", opacity: showCursor ? 1 : 0 }}
                   />
                 )}

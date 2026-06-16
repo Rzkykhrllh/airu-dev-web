@@ -53,6 +53,14 @@ html.dark .header {
 html.dark .bg-white { background-color: var(--retro-paper); }
 html.dark .bg-\[\#f8fafc\] { background-color: var(--retro-paper-soft); }
 html.dark .bg-\[\#f1f5f9\] { background-color: var(--retro-paper-muted); }
+html.dark .bg-\[\#0f172a\] { background-color: var(--retro-paper-muted); }
+
+/* Text overrides for hardcoded dark colors */
+html.dark .text-\[\#0f172a\] { color: var(--retro-ink); }
+html.dark .text-\[\#64748b\] { color: var(--retro-muted); }
+html.dark .text-\[\#475569\] { color: var(--retro-muted); }
+html.dark .text-\[\#94a3b8\] { color: var(--retro-muted-light); }
+
 /* Border overrides */
 html.dark .border-\[\#0f172a\] { border-color: var(--retro-ink); }
 html.dark .border-\[\#e2e8f0\] { border-color: var(--retro-border); }

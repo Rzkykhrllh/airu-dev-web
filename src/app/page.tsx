@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { sendGAEvent } from "@next/third-parties/google";
 
 import Header from "@/components/Header";
 import FloatingSidebar from "@/components/FloatingSidebar";
@@ -46,14 +47,32 @@ export default function Home() {
   // Scroll-based math (scrollY + offset) breaks for sections near the bottom of
   // the page because maxScrollY can be less than section.offsetTop on some
   // viewport sizes — IntersectionObserver has none of these constraints.
+  //
+  // Dwell time: record timestamp when section enters, send section_dwell_time
+  // event when it exits (only if user spent ≥ 2 seconds in the section).
   useEffect(() => {
     const sectionIds = ["about", "skills", "timeline", "projects", "contact"];
+    const sectionStartTimes = new Map<string, number>();
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          const id = entry.target.id;
           if (entry.isIntersecting) {
-            unlockAchievement(entry.target.id);
+            unlockAchievement(id);
+            sectionStartTimes.set(id, Date.now());
+          } else {
+            const startTime = sectionStartTimes.get(id);
+            if (startTime) {
+              const seconds = Math.round((Date.now() - startTime) / 1000);
+              if (seconds >= 2) {
+                sendGAEvent("event", "section_dwell_time", {
+                  section_name: id,
+                  time_seconds: seconds,
+                });
+              }
+              sectionStartTimes.delete(id);
+            }
           }
         });
       },
@@ -69,7 +88,22 @@ export default function Home() {
     const footerEl = document.querySelector("footer");
     const footerObserver = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) unlockAchievement("footer");
+        if (entry.isIntersecting) {
+          unlockAchievement("footer");
+          sectionStartTimes.set("footer", Date.now());
+        } else {
+          const startTime = sectionStartTimes.get("footer");
+          if (startTime) {
+            const seconds = Math.round((Date.now() - startTime) / 1000);
+            if (seconds >= 2) {
+              sendGAEvent("event", "section_dwell_time", {
+                section_name: "footer",
+                time_seconds: seconds,
+              });
+            }
+            sectionStartTimes.delete("footer");
+          }
+        }
       },
       { threshold: 0.1 }
     );

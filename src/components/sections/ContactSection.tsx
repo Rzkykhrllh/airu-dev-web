@@ -1,3 +1,7 @@
+"use client";
+
+import { sendGAEvent } from "@next/third-parties/google";
+
 export default function ContactSection() {
   return (
     <section id="contact" className="py-20 px-6">
@@ -19,6 +23,7 @@ export default function ContactSection() {
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <a
               href="mailto:m.rizky.khairullah@gmail.com"
+              onClick={() => sendGAEvent("event", "contact_link_click", { platform: "email" })}
               className="border-4 border-[#0f172a] bg-primary text-white px-6 py-3 sm:px-8 sm:py-4 font-black mono-label flex items-center gap-2 hover:bg-transparent hover:text-[#0f172a] transition-all transform -rotate-1 hover:-rotate-3 text-sm sm:text-base"
               style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}
             >
@@ -41,6 +46,7 @@ export default function ContactSection() {
               href="https://github.com/Rzkykhrllh"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => sendGAEvent("event", "contact_link_click", { platform: "github" })}
               className="border-4 border-[#0f172a] bg-[#0f172a] text-white px-6 py-3 sm:px-8 sm:py-4 font-black mono-label flex items-center gap-2 hover:bg-white hover:text-[#0f172a] transition-all transform rotate-1 hover:rotate-3 text-sm sm:text-base"
               style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}
             >
@@ -57,6 +63,7 @@ export default function ContactSection() {
               href="https://www.linkedin.com/in/airu/"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => sendGAEvent("event", "contact_link_click", { platform: "linkedin" })}
               className="border-4 border-[#0f172a] bg-white text-[#0f172a] px-6 py-3 sm:px-8 sm:py-4 font-black mono-label flex items-center gap-2 hover:bg-[#0f172a] hover:text-white transition-all transform -rotate-1 hover:-rotate-3 text-sm sm:text-base"
               style={{ boxShadow: '4px 4px 0 rgba(15, 23, 42, 0.3)' }}
             >

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { FaTrophy, FaLock, FaCheck } from "react-icons/fa";
+import { sendGAEvent } from "@next/third-parties/google";
 
 // ─── Achievement definitions ──────────────────────────────────────────────────
 
@@ -163,6 +164,12 @@ export default function AchievementSystem() {
       // Mark as unlocked
       unlockedRef.current.add(id);
       setUnlockedIds(new Set(unlockedRef.current));
+
+      // Send GA4 event
+      sendGAEvent("event", "achievement_unlocked", {
+        achievement_id: id,
+        achievement_title: ACHIEVEMENTS[id].title,
+      });
 
       try {
         sessionStorage.setItem(

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { projectsData } from "@/data/constants";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export default function ProjectsSection() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
@@ -111,7 +112,13 @@ export default function ProjectsSection() {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={(event) => event.stopPropagation()}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          sendGAEvent("event", "project_link_click", {
+                            project_name: project.title,
+                            link_type: link.label.toLowerCase().replace(" ", "_"),
+                          });
+                        }}
                         className={`mono-label text-xs hover:underline ${
                           linkTextClasses[linkIndex % linkTextClasses.length]
                         }`}

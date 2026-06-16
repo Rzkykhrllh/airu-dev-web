@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { FaPlay, FaDownload, FaEnvelope } from "react-icons/fa";
 import { unlockAchievement } from "@/components/AchievementSystem";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export default function HeroSection() {
   const [displayText, setDisplayText] = useState("");
@@ -209,7 +210,10 @@ export default function HeroSection() {
                 href="https://drive.google.com/drive/folders/19NOp4kRA3MVpH47GCEOIpFU9GO5jFj-T?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => unlockAchievement("cv")}
+                onClick={() => {
+                  unlockAchievement("cv");
+                  sendGAEvent("event", "cv_download", {});
+                }}
                 className="group relative border-4 border-[#0f172a] px-4 py-2 sm:px-6 sm:py-3 bg-secondary text-white font-black mono-label text-xs sm:text-sm hover:bg-transparent hover:text-[#0f172a] transition-all"
                 style={{ boxShadow: "4px 4px 0 rgba(15, 23, 42, 0.5)" }}
               >

@@ -11,9 +11,8 @@ export interface Achievement {
   id: string;
   title: string;
   desc: string;
-  /** If set, shown as the locked description instead of the default hint text.
-   *  Also causes the title to be visible even when locked. */
-  hint?: string;
+  /** If true, the title is visible when locked (title itself acts as the clue). */
+  revealed?: boolean;
 }
 
 // Ordered list — controls display order in the panel
@@ -77,7 +76,7 @@ const ACHIEVEMENT_LIST: Achievement[] = [
     id: "pay_to_win",
     title: "PAY TO WIN",
     desc: "Unlocked all achievements at once. Absolute legend.",
-    hint: "Wanna unlock all achievements at once? Please Hire Me :)",
+    revealed: true,
   },
 ];
 
@@ -296,7 +295,7 @@ export default function AchievementSystem() {
                         }`}
                         style={{ fontFamily: "monospace" }}
                       >
-                        {isUnlocked || achievement.hint
+                        {isUnlocked || achievement.revealed
                           ? achievement.title
                           : "????? ???????"}
                       </div>
@@ -307,7 +306,7 @@ export default function AchievementSystem() {
                       >
                         {isUnlocked
                           ? achievement.desc
-                          : (achievement.hint ?? "Keep exploring to unlock...")}
+                          : "Keep exploring to unlock..."}
                       </div>
                     </div>
 

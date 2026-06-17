@@ -22,7 +22,7 @@ export default function RetroProgressBar({
   const heightClass = height === "sm" ? "h-3" : "h-6";
   const borderClass = borderWidth === 4 ? "border-4" : "border-2";
   const fillClass = gradient
-    ? "bg-gradient-to-r from-primary via-secondary to-accent transition-all duration-100"
+    ? "bg-gradient-to-r from-primary via-secondary to-tertiary transition-all duration-100"
     : "bg-primary transition-all duration-500";
 
   const track = (

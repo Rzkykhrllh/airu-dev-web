@@ -21,7 +21,7 @@ export default function RetroWindowTitleBar({
         className={`bg-ink px-3 py-3 sm:px-6 sm:py-4 flex items-center justify-between border-b-4 border-ink ${className}`}
       >
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="w-3 h-3 sm:w-4 sm:h-4 bg-accent" />
+          <div className="w-3 h-3 sm:w-4 sm:h-4 bg-tertiary" />
           <div className="w-3 h-3 sm:w-4 sm:h-4 bg-primary" />
           <div className="w-3 h-3 sm:w-4 sm:h-4 bg-secondary" />
         </div>

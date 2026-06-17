@@ -32,11 +32,11 @@ export default function SkillsSection() {
 
           <div>
             <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-[#0f172a]">
-              <span className="text-accent">{"{"}</span> DevOps <span className="text-accent">{"}"}</span>
+              <span className="text-tertiary">{"{"}</span> DevOps <span className="text-tertiary">{"}"}</span>
             </h4>
             <div className="flex flex-wrap gap-3">
               {techStack.devops.map((skill) => (
-                <TechTag key={skill} label={skill} variant="solid" icon={techIcons[skill]} color="bg-accent" />
+                <TechTag key={skill} label={skill} variant="solid" icon={techIcons[skill]} color="bg-tertiary" />
               ))}
             </div>
           </div>

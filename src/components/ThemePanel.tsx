@@ -261,7 +261,7 @@ export default function ThemePanel() {
                     >
                       <div className="w-full h-2 rounded-none" style={{ background: colors.primary }} />
                       <div className="w-full h-2 rounded-none" style={{ background: colors.secondary }} />
-                      <div className="w-full h-2 rounded-none" style={{ background: colors.accent }} />
+                      <div className="w-full h-2 rounded-none" style={{ background: colors.tertiary }} />
                       <div className="text-[8px] font-black mono-label text-muted mt-0.5 truncate group-hover:text-ink transition-colors">
                         {label}
                       </div>
@@ -291,9 +291,9 @@ export default function ThemePanel() {
                   onChange={(hex) => handleColorChange("secondary", hex)}
                 />
                 <ColorRow
-                  label="ACCENT"
-                  value={customColors.accent}
-                  onChange={(hex) => handleColorChange("accent", hex)}
+                  label="TERTIARY"
+                  value={customColors.tertiary}
+                  onChange={(hex) => handleColorChange("tertiary", hex)}
                 />
               </div>
             </div>

@@ -46,7 +46,7 @@ export default function BlogPage() {
         <div className="flex items-center justify-center gap-2 mb-8">
           <div className="h-1 w-12 bg-primary rounded-full"></div>
           <div className="h-1 w-4 bg-secondary rounded-full"></div>
-          <div className="h-1 w-4 bg-accent rounded-full"></div>
+          <div className="h-1 w-4 bg-tertiary rounded-full"></div>
         </div>
 
         {/* Back Button */}

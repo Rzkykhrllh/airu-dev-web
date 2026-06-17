@@ -5,7 +5,7 @@ import { useEffect, useState, useCallback } from "react";
 export interface ThemeColors {
   primary: string;
   secondary: string;
-  accent: string;
+  tertiary: string;
 }
 
 export interface PresetEntry {
@@ -16,31 +16,31 @@ export interface PresetEntry {
 export const PRESETS: Record<string, PresetEntry> = {
   joints: {
     label: "Joints",
-    colors: { primary: "#E9AA18", secondary: "#6513BE", accent: "#191A26" },
+    colors: { primary: "#E9AA18", secondary: "#6513BE", tertiary: "#191A26" },
   },
   default: {
     label: "Indigo",
-    colors: { primary: "#6366f1", secondary: "#10b981", accent: "#f59e0b" },
+    colors: { primary: "#6366f1", secondary: "#10b981", tertiary: "#f59e0b" },
   },
   coral: {
     label: "Coral",
-    colors: { primary: "#f97316", secondary: "#14b8a6", accent: "#fbbf24" },
+    colors: { primary: "#f97316", secondary: "#14b8a6", tertiary: "#fbbf24" },
   },
   violet: {
     label: "Violet",
-    colors: { primary: "#8b5cf6", secondary: "#facc15", accent: "#ec4899" },
+    colors: { primary: "#8b5cf6", secondary: "#facc15", tertiary: "#ec4899" },
   },
   pink: {
     label: "Pink",
-    colors: { primary: "#ec4899", secondary: "#06b6d4", accent: "#a855f7" },
+    colors: { primary: "#ec4899", secondary: "#06b6d4", tertiary: "#a855f7" },
   },
   teal: {
     label: "Teal",
-    colors: { primary: "#14b8a6", secondary: "#f97316", accent: "#8b5cf6" },
+    colors: { primary: "#14b8a6", secondary: "#f97316", tertiary: "#8b5cf6" },
   },
   blue: {
     label: "Blue",
-    colors: { primary: "#2D4CFF", secondary: "#FFB703", accent: "#111827" },
+    colors: { primary: "#2D4CFF", secondary: "#FFB703", tertiary: "#111827" },
   },
 };
 
@@ -54,7 +54,7 @@ export function applyColors(colors: ThemeColors) {
   const el = document.documentElement;
   el.style.setProperty("--primary", colors.primary);
   el.style.setProperty("--secondary", colors.secondary);
-  el.style.setProperty("--accent", colors.accent);
+  el.style.setProperty("--tertiary", colors.tertiary);
 }
 
 export function applyDark(dark: boolean) {

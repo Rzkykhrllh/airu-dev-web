@@ -15,7 +15,7 @@ export default function ProjectsSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projectsData.map((project, index) => {
-            const colorClasses = ["bg-primary", "bg-secondary", "bg-accent"];
+            const colorClasses = ["bg-primary", "bg-secondary", "bg-tertiary"];
             const bgClass = colorClasses[index % colorClasses.length];
             const description =
               ("description" in project && typeof project.description === "string"

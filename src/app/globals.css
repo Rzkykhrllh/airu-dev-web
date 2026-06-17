@@ -6,7 +6,7 @@
   /* Default to joints theme — JS will override from localStorage */
   --primary: #E9AA18;
   --secondary: #6513BE;
-  --accent: #191A26;
+  --tertiary: #191A26;
   --muted: #64748b;
   
   /* Retro game theme colors */
@@ -69,42 +69,42 @@ html.dark .border-\[\#cbd5e1\] { border-color: var(--retro-border); }
 [data-theme="coral"] {
   --primary: #f97316;
   --secondary: #14b8a6;
-  --accent: #fbbf24;
+  --tertiary: #fbbf24;
 }
 
 /* Theme: Violet + Yellow */
 [data-theme="violet"] {
   --primary: #8b5cf6;
   --secondary: #facc15;
-  --accent: #ec4899;
+  --tertiary: #ec4899;
 }
 
 /* Theme: Pink + Cyan */
 [data-theme="pink"] {
   --primary: #ec4899;
   --secondary: #06b6d4;
-  --accent: #a855f7;
+  --tertiary: #a855f7;
 }
 
 /* Theme: Teal + Orange */
 [data-theme="teal"] {
   --primary: #14b8a6;
   --secondary: #f97316;
-  --accent: #8b5cf6;
+  --tertiary: #8b5cf6;
 }
 
 /* Theme: Blue + Coral */
 [data-theme="blue"] {
   --primary: #2D4CFF;
   --secondary: #FFB703;
-  --accent: #111827;
+  --tertiary: #111827;
 }
 
 /* Theme: Joints UGM - Yellow + Purple */
 [data-theme="joints"] {
   --primary: #E9AA18;
   --secondary: #6513BE;
-  --accent: #191A26;
+  --tertiary: #191A26;
 }
 
 @theme inline {
@@ -318,13 +318,13 @@ html.dark .project-card {
 /* Color utility classes using CSS variables */
 .bg-primary { background-color: var(--primary); }
 .bg-secondary { background-color: var(--secondary); }
-.bg-accent { background-color: var(--accent); }
+.bg-tertiary { background-color: var(--tertiary); }
 .text-primary { color: var(--primary); }
 .text-secondary { color: var(--secondary); }
-.text-accent { color: var(--accent); }
+.text-tertiary { color: var(--tertiary); }
 .border-primary { border-color: var(--primary); }
 .border-secondary { border-color: var(--secondary); }
-.border-accent { border-color: var(--accent); }
+.border-tertiary { border-color: var(--tertiary); }
 
 /* Retro theme utility classes */
 .bg-ink { background-color: var(--retro-ink); }
@@ -369,8 +369,8 @@ html.dark .project-card {
   background: var(--secondary);
 }
 
-.experience-card.border-accent::before {
-  background: var(--accent);
+.experience-card.border-tertiary::before {
+  background: var(--tertiary);
 }
 
 /* ── Hue slider (ThemePanel) ──────────────────────────────────────────────── */

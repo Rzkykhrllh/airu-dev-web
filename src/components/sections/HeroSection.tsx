@@ -49,9 +49,9 @@ export default function HeroSection() {
       <div className="absolute top-8 right-8 w-4 h-4 bg-secondary" style={{ imageRendering: "pixelated" }} />
       <div className="absolute top-8 right-14 w-4 h-4 bg-secondary" style={{ imageRendering: "pixelated" }} />
       <div className="absolute top-14 right-8 w-4 h-4 bg-secondary" style={{ imageRendering: "pixelated" }} />
-      <div className="absolute bottom-8 left-8 w-4 h-4 bg-accent" style={{ imageRendering: "pixelated" }} />
-      <div className="absolute bottom-8 left-14 w-4 h-4 bg-accent" style={{ imageRendering: "pixelated" }} />
-      <div className="absolute bottom-14 left-8 w-4 h-4 bg-accent" style={{ imageRendering: "pixelated" }} />
+      <div className="absolute bottom-8 left-8 w-4 h-4 bg-tertiary" style={{ imageRendering: "pixelated" }} />
+      <div className="absolute bottom-8 left-14 w-4 h-4 bg-tertiary" style={{ imageRendering: "pixelated" }} />
+      <div className="absolute bottom-14 left-8 w-4 h-4 bg-tertiary" style={{ imageRendering: "pixelated" }} />
       <div className="absolute bottom-8 right-8 w-4 h-4 bg-primary" style={{ imageRendering: "pixelated" }} />
       <div className="absolute bottom-8 right-14 w-4 h-4 bg-primary" style={{ imageRendering: "pixelated" }} />
       <div className="absolute bottom-14 right-8 w-4 h-4 bg-primary" style={{ imageRendering: "pixelated" }} />

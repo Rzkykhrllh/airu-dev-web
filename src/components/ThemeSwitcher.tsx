@@ -22,7 +22,7 @@ export default function ThemeSwitcher({ currentTheme, onThemeChange }: ThemeSwit
           >
             <span className="w-4 h-4 rounded-full" style={{ background: t.primary }}></span>
             <span className="w-4 h-4 rounded-full -ml-3" style={{ background: t.secondary }}></span>
-            <span className="w-4 h-4 rounded-full -ml-3" style={{ background: t.accent }}></span>
+            <span className="w-4 h-4 rounded-full -ml-3" style={{ background: t.tertiary }}></span>
             {t.name}
           </button>
         ))}

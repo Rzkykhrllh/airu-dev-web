@@ -50,9 +50,9 @@ export default function TimelineSection() {
 
           <div className="space-y-4">
             {timelineData.map((item, index, arr) => {
-              const colorClasses = ["bg-primary", "bg-secondary", "bg-accent"];
-              const borderClasses = ["border-primary", "border-secondary", "border-accent"];
-              const textClasses = ["text-primary", "text-secondary", "text-accent"];
+              const colorClasses = ["bg-primary", "bg-secondary", "bg-tertiary"];
+              const borderClasses = ["border-primary", "border-secondary", "border-tertiary"];
+              const textClasses = ["text-primary", "text-secondary", "text-tertiary"];
               const colorClass = colorClasses[index % colorClasses.length];
               const borderClass = borderClasses[index % borderClasses.length];
               const textClass = textClasses[index % textClasses.length];

@@ -31,6 +31,58 @@ export default function Home() {
     localStorage.setItem("theme", "joints");
   }, []);
 
+  // Konami code: ↑↑↓↓←→←→BA — triggers glitch effect + achievement
+  useEffect(() => {
+    const KONAMI = [
+      "ArrowUp","ArrowUp","ArrowDown","ArrowDown",
+      "ArrowLeft","ArrowRight","ArrowLeft","ArrowRight",
+      "b","a",
+    ];
+    let idx = 0;
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === KONAMI[idx]) {
+        idx++;
+        if (idx === KONAMI.length) {
+          idx = 0;
+          unlockAchievement("konami");
+          document.documentElement.classList.add("konami-glitch");
+          setTimeout(() => {
+            document.documentElement.classList.remove("konami-glitch");
+          }, 1600);
+        }
+      } else {
+        idx = e.key === KONAMI[0] ? 1 : 0;
+      }
+    };
+
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, []);
+
+  // DevTools detection — unlock achievement + drop console clue for Konami
+  useEffect(() => {
+    let detected = false;
+
+    const check = () => {
+      if (detected) return;
+      const isOpen =
+        window.outerWidth - window.innerWidth > 160 ||
+        window.outerHeight - window.innerHeight > 160;
+      if (!isOpen) return;
+
+      detected = true;
+      unlockAchievement("devtools_open");
+      console.log(
+        "%c🚨 INTRUSION DETECTED 🚨\n\nlol jk. Hi curious dev! 👋\n\nSince you're already snooping around...\nhere's a little secret:\n\n  CHEAT CODE: ↑ ↑ ↓ ↓ ← → ← → B A\n\nType it on the keyboard. Don't tell anyone. 🤫",
+        "color:#E9AA18;font-weight:bold;font-family:monospace;font-size:13px;line-height:2;"
+      );
+    };
+
+    const interval = setInterval(check, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   // Fire "PLAYER 1 HAS ENTERED" on page load
   useEffect(() => {
     const t = setTimeout(() => unlockAchievement("player_entered"), 1200);

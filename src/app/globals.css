@@ -331,3 +331,19 @@ body {
 .experience-card.border-accent::before {
   background: var(--accent);
 }
+
+/* ── Konami glitch effect ─────────────────────────────────────────────────── */
+@keyframes konami-glitch {
+  0%   { transform: translate(0, 0) skewX(0deg); filter: none; }
+  15%  { transform: translate(-6px, 3px) skewX(-3deg); filter: hue-rotate(90deg) brightness(1.5); }
+  30%  { transform: translate(6px, -4px) skewX(3deg); filter: hue-rotate(180deg) brightness(0.7); }
+  45%  { transform: translate(-4px, 6px) skewX(-2deg); filter: hue-rotate(270deg) brightness(1.3); }
+  60%  { transform: translate(4px, -6px) skewX(2deg); filter: hue-rotate(45deg) brightness(0.8); }
+  75%  { transform: translate(-6px, 2px) skewX(-4deg); filter: hue-rotate(135deg) brightness(1.6); }
+  90%  { transform: translate(6px, -2px) skewX(4deg); filter: hue-rotate(225deg) brightness(0.7); }
+  100% { transform: translate(0, 0) skewX(0deg); filter: none; }
+}
+
+.konami-glitch {
+  animation: konami-glitch 0.12s steps(1, end) 13 !important;
+}

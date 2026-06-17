@@ -57,6 +57,17 @@ const ACHIEVEMENTS_DATA: Achievement[] = [
     desc: "Visited the photography portfolio. Nice eye.",
   },
   {
+    id: "devtools_open",
+    title: "HACKING ACTIVITY",
+    desc: "So you think you can hack me? CUTE. 👀",
+  },
+  {
+    id: "konami",
+    title: "CHEATER",
+    desc: "↑↑↓↓←→←→BA. You absolute menace.",
+    revealed: true,
+  },
+  {
     id: "pay_to_win",
     title: "PAY TO WIN",
     desc: "Unlocked all achievements at once. Absolute legend.",

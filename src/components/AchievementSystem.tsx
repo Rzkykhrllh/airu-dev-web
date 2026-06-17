@@ -14,6 +14,8 @@ export interface Achievement {
   desc: string;
   /** If true, the title is visible when locked (title itself acts as the clue). */
   revealed?: boolean;
+  /** Custom text shown in locked state instead of "Keep exploring to unlock..." */
+  lockedDesc?: string;
 }
 
 // ─── Derived lookups ──────────────────────────────────────────────────────────
@@ -246,7 +248,7 @@ export default function AchievementSystem() {
                       >
                         {isUnlocked
                           ? achievement.desc
-                          : "Keep exploring to unlock..."}
+                          : (achievement.lockedDesc ?? "Keep exploring to unlock...")}
                       </div>
                     </div>
 

@@ -72,6 +72,7 @@ const ACHIEVEMENTS_DATA: Achievement[] = [
     title: "PAY TO WIN",
     desc: "Unlocked all achievements at once. Absolute legend.",
     revealed: true,
+    lockedDesc: "Requires: 1x job offer. You have: 0. Skill issue.",
   },
 ];
 

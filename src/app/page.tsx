@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { trackEvent } from "@/lib/analytics";
 
 import Header from "@/components/Header";
@@ -25,6 +25,27 @@ import {
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const mountTimeRef = useRef(Date.now());
+
+  // Night owl — visiting between midnight and 05:00
+  useEffect(() => {
+    const hour = new Date().getHours();
+    if (hour >= 0 && hour < 5) unlockAchievement("night_owl");
+  }, []);
+
+  // Tab spy — left the tab and came back
+  useEffect(() => {
+    let wasHidden = false;
+    const handleVisibility = () => {
+      if (document.hidden) {
+        wasHidden = true;
+      } else if (wasHidden) {
+        unlockAchievement("tab_spy");
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, []);
 
   // Set theme to joints in localStorage on mount
   useEffect(() => {
@@ -142,6 +163,9 @@ export default function Home() {
       ([entry]) => {
         if (entry.isIntersecting) {
           unlockAchievement("footer");
+          if (Date.now() - mountTimeRef.current < 15_000) {
+            unlockAchievement("speedrunner");
+          }
           sectionStartTimes.set("footer", Date.now());
         } else {
           const startTime = sectionStartTimes.get("footer");

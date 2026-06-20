@@ -196,10 +196,10 @@ export const timelineData = [
 export const projectsData = [
   {
     year: "2026",
-    title: "Yomeru App",
-    desc: `Learn Japanese by reading. Save your texts, click words to add them to your vocabulary bank with meanings, furigana, and custom notes. Watch your vocabulary grow as you read.`,
-    tech: ["Next.js", "TypeScript", "Express.Js", "PostgreSQL", "Prisma ORM"],
-    sourceUrl: "https://github.com/Rzkykhrllh/yomeru-app",
+    title: "Nihongo Popup",
+    desc: `A Chrome extension that turns your Google Sheet into a Japanese flashcard system. Kanji pop up on your screen while you work — recall the reading, flip the card, grade yourself (Know / Forgot). Data stays local, sync is manual, built for vocabulary maintenance without breaking flow.`,
+    tech: ["JavaScript", "Chrome Extension", "Google Sheets"],
+    sourceUrl: "https://github.com/Rzkykhrllh/flashcard-popup",
     color: "primary",
   },
   {
@@ -212,20 +212,20 @@ export const projectsData = [
     color: "primary",
   },
   {
+    year: "2026",
+    title: "Yomeru App",
+    desc: `Learn Japanese by reading. Save your texts, click words to add them to your vocabulary bank with meanings, furigana, and custom notes. Watch your vocabulary grow as you read.`,
+    tech: ["Next.js", "TypeScript", "Express.Js", "PostgreSQL", "Prisma ORM"],
+    sourceUrl: "https://github.com/Rzkykhrllh/yomeru-app",
+    color: "primary",
+  },
+  {
     year: "2022",
     title: "Into UGM",
     desc: `Event website developed for Into UGM 2022, an academic event organized by IKAGAMASS UGM, supporting event promotion, participant registration, tryout submissions, and online payment processing. The platform successfully handled over 1,000 transactions, ensuring a smooth and reliable user experience throughout the event period.`,
     tech: ["Next.js", "Tailwind CSS", "Midtrans API"],
     sourceUrl: "https://github.com/Rzkykhrllh/IntoUgm2022",
     color: "primary",
-  },
-  {
-    year: "2026",
-    title: "Nihongo Popup",
-    desc: `A Chrome extension that turns your Google Sheet into a Japanese flashcard system. Kanji pop up on your screen while you work — recall the reading, flip the card, grade yourself (Know / Forgot). Data stays local, sync is manual, built for vocabulary maintenance without breaking flow.`,
-    tech: ["JavaScript", "Chrome Extension", "Google Sheets"],
-    sourceUrl: "https://github.com/Rzkykhrllh/flashcard-popup",
-    color: "secondary",
   },
 ];
 

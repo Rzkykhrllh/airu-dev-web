@@ -219,6 +219,14 @@ export const projectsData = [
     sourceUrl: "https://github.com/Rzkykhrllh/IntoUgm2022",
     color: "primary",
   },
+  {
+    year: "2026",
+    title: "Nihongo Popup",
+    desc: `A Chrome extension that turns your Google Sheet into a Japanese flashcard system. Kanji pop up on your screen while you work — recall the reading, flip the card, grade yourself (Know / Forgot). Data stays local, sync is manual, built for vocabulary maintenance without breaking flow.`,
+    tech: ["JavaScript", "Chrome Extension", "Google Sheets"],
+    sourceUrl: "https://github.com/Rzkykhrllh/flashcard-popup",
+    color: "secondary",
+  },
 ];
 
 export const navSections = [

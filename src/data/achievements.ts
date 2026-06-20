@@ -57,6 +57,22 @@ const ACHIEVEMENTS_DATA: Achievement[] = [
     desc: "Visited the photography portfolio. Nice eye.",
   },
   {
+    id: "night_owl",
+    title: "NIGHT OWL",
+    desc: "Browsing portfolios at this hour? Go to sleep. 🦉",
+  },
+  {
+    id: "speedrunner",
+    title: "SPEEDRUN ATTEMPT",
+    desc: "You speedrun my portfolio? What did you even learn in under 15 seconds? 💨",
+    revealed: true,
+  },
+  {
+    id: "tab_spy",
+    title: "DISTRACTED.EXE",
+    desc: "You left for another tab. We saw that.",
+  },
+  {
     id: "devtools_open",
     title: "HACKING ACTIVITY",
     desc: "So you think you can hack me? CUTE. 👀",
@@ -72,7 +88,7 @@ const ACHIEVEMENTS_DATA: Achievement[] = [
     title: "PAY TO WIN",
     desc: "Unlocked all achievements at once. Absolute legend.",
     revealed: true,
-    lockedDesc: "Requires: 1x job offer. You have: 0. Skill issue.",
+    lockedDesc: "Hire Me, Give me your money and I'll unlock all achievements for you.",
   },
 ];
 

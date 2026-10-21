@@ -196,6 +196,16 @@ export const timelineData = [
 export const projectsData = [
   {
     year: "2026",
+    title: "Pickture",
+    desc: `A native macOS app for culling photo shoots: go through hundreds of RAW + JPEG frames from the keyboard, keep the best, and hand them to Lightroom. Similar shots stack automatically (on-device Vision), with side-by-side compare, focus peaking, and a quick crop / white-border export for Instagram and X.\n\nMarks and crops are written to XMP so Lightroom reads them, nothing is ever deleted permanently, and the grid stays smooth even on folders of 60,000+ photos. Free, with the source on GitHub.`,
+    tech: ["Swift", "SwiftUI", "AppKit", "Vision", "Core Image", "SQLite"],
+    demoUrl: "https://www.youtube.com/watch?v=Qk3aPS0QpDs",
+    demoLabel: "Demo Video",
+    sourceUrl: "https://github.com/Rzkykhrllh/pickture",
+    color: "primary",
+  },
+  {
+    year: "2026",
     title: "Nihongo Popup",
     desc: `A Chrome extension that turns your Google Sheet into a Japanese flashcard system. Kanji pop up on your screen while you work — recall the reading, flip the card, grade yourself (Know / Forgot). Data stays local, sync is manual, built for vocabulary maintenance without breaking flow.`,
     tech: ["JavaScript", "Chrome Extension", "Google Sheets"],

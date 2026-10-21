@@ -23,7 +23,7 @@ export default function ProjectsSection() {
                 : project.desc) || "";
             const normalizedDescription = description.replace(/\s*\n+\s*/g, " ").trim();
             const links = [
-              { label: "Live Demo", url: project.demoUrl },
+              { label: ("demoLabel" in project && project.demoLabel) || "Live Demo", url: project.demoUrl },
               { label: "Source", url: project.sourceUrl },
             ].filter((link) => !!link.url);
             const linkTextClasses = ["text-primary", "text-secondary"];

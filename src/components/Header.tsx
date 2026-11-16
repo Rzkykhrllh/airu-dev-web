@@ -72,7 +72,7 @@ export default function Header({ scrolled }: HeaderProps) {
               }`}
             >
               <a
-                href="https://byairu.com"
+                href="https://frame.byairu.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => unlockAchievement("photography")}
@@ -127,7 +127,7 @@ export default function Header({ scrolled }: HeaderProps) {
           )}
 
           <MobileNavLink href="/blog" label="Blog" active={isBlogPage} onClick={() => setMobileMenuOpen(false)} />
-          <MobileNavLink href="https://byairu.com" label="Photography" icon={<FaCamera className="w-4 h-4" />} external onClick={() => { unlockAchievement("photography"); setMobileMenuOpen(false); }} />
+          <MobileNavLink href="https://frame.byairu.com" label="Photography" icon={<FaCamera className="w-4 h-4" />} external onClick={() => { unlockAchievement("photography"); setMobileMenuOpen(false); }} />
           <MobileNavLink href="/#contact" label="Contact" onClick={() => setMobileMenuOpen(false)} />
         </nav>
       </div>

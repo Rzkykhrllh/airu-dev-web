@@ -217,7 +217,7 @@ export const projectsData = [
     title: "Photography Portfolio Website",
     desc: `End-to-end developed photography portfolio website with a custom admin panel for content and collection management.\n\n The project emphasizes clean UI design, responsive layout, and performance optimization for fast and reliable delivery of high-resolution images in a production environment.`,
     tech: ["Next.js", "Tailwind CSS", "Midtrans API"],
-    demoUrl: "https://byairu.com/",
+    demoUrl: "https://frame.byairu.com/",
     sourceUrl: "https://github.com/Rzkykhrllh/airu-portfolio-web",
     color: "primary",
   },
